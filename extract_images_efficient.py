@@ -45,13 +45,14 @@ class EfficientImageExtractor:
                 page = doc.load_page(page_num - 1)  # 页面索引从0开始
 
                 # 方法1: 提取PDF中的嵌入图像
-                embedded_images = self._extract_embedded_images(page, page_num)
+                # embedded_images = self._extract_embedded_images(page, page_num)
 
                 # 方法2: 通过页面截图检测图像区域
                 screenshot_images = self._extract_from_screenshot(page, page_num)
 
                 # 合并结果
-                page_images = embedded_images + screenshot_images
+                # page_images = embedded_images + screenshot_images
+                page_images = screenshot_images
                 extracted_images.extend(page_images)
 
                 logger.info(f"第{page_num}页提取完成: {len(page_images)}张图像")
@@ -177,11 +178,11 @@ class EfficientImageExtractor:
                 x, y, w, h = cv2.boundingRect(contour)
 
                 # 基础筛选条件 - 加强尺寸过滤
-                if area < 10000:  # 面积太小
+                if area < 15000:  # 面积太小
                     continue
 
                 # 新增：极小小图直接过滤 - 页码通常是这个尺寸范围
-                if w < 200 and h < 150 and w * h < 20000:  # 极小的矩形，很可能是页码
+                if w < 200 or h < 200 or w * h < 40000:  # 极小的矩形，很可能是页码
                     logger.info(f"  过滤极小小图: 尺寸{w}x{h}, 面积{w*h}")
                     continue
 
@@ -323,7 +324,8 @@ def main():
     extractor = EfficientImageExtractor(pdf_path)
 
     # 提取第5、6、16、17页的图像
-    target_pages = [5, 6, 16, 17]
+    # target_pages = [5, 6, 16, 17]
+    target_pages = list(range(1,225))
     extracted_images = extractor.extract_images_from_pages(target_pages)
 
     # 输出结果
