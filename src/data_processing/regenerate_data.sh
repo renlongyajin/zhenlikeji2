@@ -1,0 +1,3 @@
+python3 src/data_processing/extract_images_efficient.py
+python3 src/data_processing/rename_extracted_images.py
+python3 src/data_processing/unified_pdf_processor.py
