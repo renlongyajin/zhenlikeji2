@@ -93,23 +93,49 @@ class MedicalRetrievalManager:
             logger.error(f"❌ Milvus连接失败: {e}")
 
     def keyword_search(self, query: str, top_k: int = 10) -> List[SearchResult]:
-        """关键词搜索"""
+        """关键词搜索 - 增强版支持标题优先级"""
         logger.info(f"🔍 执行关键词搜索: '{query}'")
 
         try:
+            # 智能标题权重配置
             search_body = {
                 "query": {
-                    "multi_match": {
-                        "query": query,
-                        "fields": ["content^2", "chapter_title^1.5", "section_title^1.2"],
-                        "type": "best_fields",
-                        "fuzziness": "AUTO"
+                    "bool": {
+                        "should": [
+                            {
+                                "multi_match": {
+                                    "query": query,
+                                    "fields": ["chapter_title^10.0", "section_title^8.0"],  # 标题高权重
+                                    "type": "best_fields",
+                                    "boost": 2.0
+                                }
+                            },
+                            {
+                                "multi_match": {
+                                    "query": query,
+                                    "fields": ["content^2.0"],  # 内容基础权重
+                                    "type": "best_fields",
+                                    "fuzziness": "AUTO"
+                                }
+                            },
+                            {
+                                "match": {
+                                    "chapter_title": {
+                                        "query": query,
+                                        "boost": 15.0  # 完全匹配章节标题超高权重
+                                    }
+                                }
+                            }
+                        ],
+                        "minimum_should_match": 1
                     }
                 },
                 "size": top_k,
                 "highlight": {
                     "fields": {
-                        "content": {"fragment_size": 150, "number_of_fragments": 3}
+                        "content": {"fragment_size": 150, "number_of_fragments": 3},
+                        "chapter_title": {},
+                        "section_title": {}
                     }
                 }
             }
@@ -128,18 +154,51 @@ class MedicalRetrievalManager:
                 search_results = []
                 for hit in hits:
                     source = hit['_source']
+
+                    # 计算增强分数
+                    base_score = hit['_score']
+
+                    # 应用标题优先级算法
+                    title_priority_score = self._calculate_title_priority_score(
+                        query,
+                        source.get('chapter_title', ''),
+                        source.get('section_title', '')
+                    )
+
+                    # 内容类型分析加分
+                    content_analysis = self._analyze_content_type(
+                        source.get('content', ''),
+                        source.get('chapter_title', '') + ' ' + source.get('section_title', '')
+                    )
+
+                    # 基础概念识别
+                    concept_analysis = self._identify_basic_concepts(
+                        query, source.get('content', '')
+                    )
+
+                    # 综合评分计算
+                    enhanced_score = (
+                        base_score * 0.6 +  # 基础搜索分数占60%
+                        title_priority_score * 0.3 +  # 标题优先级占30%
+                        (content_analysis['confidence'] * 5.0) * 0.05 +  # 内容类型占5%
+                        (concept_analysis['relevance_score'] * 0.5) * 0.05  # 概念识别占5%
+                    )
+
                     search_results.append(SearchResult(
                         content=source.get('content', ''),
-                        score=hit['_score'],
+                        score=enhanced_score,
                         source='elasticsearch',
                         page_number=source.get('page_number', 0),
                         chapter_title=source.get('chapter_title', ''),
                         section_title=source.get('section_title', ''),
                         doc_id=hit['_id'],
-                        search_type='keyword'
+                        search_type='keyword_enhanced'
                     ))
 
-                logger.info(f"✅ 关键词搜索完成，找到 {len(search_results)} 个结果")
+                # 按增强分数重新排序
+                search_results.sort(key=lambda x: x.score, reverse=True)
+
+                logger.info(f"✅ 增强关键词搜索完成，找到 {len(search_results)} 个结果")
                 return search_results
             else:
                 logger.error(f"❌ 关键词搜索失败: {response.status_code}")
@@ -305,6 +364,162 @@ class MedicalRetrievalManager:
             logger.error(f"❌ 高级搜索失败: {e}")
             return []
 
+    def _analyze_content_type(self, content: str, title: str = "") -> Dict[str, Any]:
+        """分析内容类型和医学文档分类"""
+        content_lower = content.lower()
+        title_lower = title.lower()
+
+        # ROSE相关关键词
+        rose_keywords = ['rose', '快速现场评价', 'rapid on-site evaluation', '细胞学', '细胞诊断']
+        # 诊断相关关键词
+        diagnostic_keywords = ['诊断标准', '诊断要点', '鉴别诊断', '诊断依据', '确诊']
+        # 治疗相关关键词
+        treatment_keywords = ['治疗方案', '治疗方法', '治疗原则', '用药', '手术', '化疗', '放疗']
+        # 病例相关关键词
+        case_keywords = ['病例报告', '病例分析', '个案', '临床病例', '典型病例']
+
+        content_type = 'general'
+        confidence = 0.0
+
+        # 标题优先分析
+        if any(keyword in title_lower for keyword in rose_keywords):
+            content_type = 'rose_technology'
+            confidence = 0.9
+        elif any(keyword in title_lower for keyword in diagnostic_keywords):
+            content_type = 'diagnostic_criteria'
+            confidence = 0.8
+        elif any(keyword in title_lower for keyword in treatment_keywords):
+            content_type = 'treatment_guidelines'
+            confidence = 0.8
+        elif any(keyword in title_lower for keyword in case_keywords):
+            content_type = 'case_study'
+            confidence = 0.7
+        else:
+            # 内容分析
+            rose_score = sum(1 for keyword in rose_keywords if keyword in content_lower)
+            diagnostic_score = sum(1 for keyword in diagnostic_keywords if keyword in content_lower)
+            treatment_score = sum(1 for keyword in treatment_keywords if keyword in content_lower)
+            case_score = sum(1 for keyword in case_keywords if keyword in content_lower)
+
+            max_score = max(rose_score, diagnostic_score, treatment_score, case_score)
+
+            if max_score > 0:
+                if rose_score == max_score and rose_score >= 2:
+                    content_type = 'rose_technology'
+                    confidence = min(0.8, rose_score * 0.2)
+                elif diagnostic_score == max_score and diagnostic_score >= 2:
+                    content_type = 'diagnostic_criteria'
+                    confidence = min(0.7, diagnostic_score * 0.15)
+                elif treatment_score == max_score and treatment_score >= 2:
+                    content_type = 'treatment_guidelines'
+                    confidence = min(0.7, treatment_score * 0.15)
+                elif case_score == max_score and case_score >= 2:
+                    content_type = 'case_study'
+                    confidence = min(0.6, case_score * 0.15)
+
+        return {
+            'type': content_type,
+            'confidence': confidence,
+            'is_rose_related': content_type == 'rose_technology'
+        }
+
+    def _identify_basic_concepts(self, query: str, content: str) -> Dict[str, Any]:
+        """识别基础概念vs具体亚型"""
+        query_lower = query.lower()
+        content_lower = content.lower()
+
+        # 基础概念关键词
+        basic_concepts = [
+            '肺部恶性肿瘤', '肺癌', '肿瘤', '癌症', '细胞学', '病理学',
+            '诊断', '治疗', '症状', '预后', '分期', '分级'
+        ]
+
+        # ROSE基础概念
+        rose_basic = [
+            'rose技术', '快速现场评价', '细胞学诊断', '细胞采集',
+            '制片技术', '染色方法', '显微镜检查'
+        ]
+
+        # 具体亚型和专业术语
+        specific_subtypes = [
+            '腺癌', '鳞癌', '小细胞癌', '大细胞癌', '神经内分泌癌',
+            '细支气管肺泡癌', '肺类癌', '肺肉瘤样癌', '胸膜肺母细胞瘤'
+        ]
+
+        # ROSE专业术语
+        rose_specific = [
+            '细胞核增大', '核仁明显', '核分裂象', '细胞异型性',
+            '核浆比失调', '染色质分布不均', '细胞排列紊乱',
+            '印戒细胞', '砂粒体', '坏死碎片'
+        ]
+
+        query_is_basic = any(concept in query_lower for concept in basic_concepts + rose_basic)
+        query_is_specific = any(term in query_lower for term in specific_subtypes + rose_specific)
+
+        content_matches_basic = sum(1 for concept in basic_concepts + rose_basic if concept in content_lower)
+        content_matches_specific = sum(1 for term in specific_subtypes + rose_specific if term in content_lower)
+
+        if query_is_specific:
+            # 查询包含专业术语，优先匹配具体亚型内容
+            relevance_score = content_matches_specific * 2 + content_matches_basic * 0.5
+            content_level = 'specific'
+        elif query_is_basic:
+            # 查询包含基础概念，平衡匹配基础和专业内容
+            relevance_score = content_matches_basic * 1.5 + content_matches_specific * 1.0
+            content_level = 'mixed'
+        else:
+            # 一般查询，按内容匹配度评分
+            relevance_score = content_matches_basic + content_matches_specific
+            content_level = 'general'
+
+        return {
+            'content_level': content_level,
+            'relevance_score': relevance_score,
+            'matches_basic': content_matches_basic,
+            'matches_specific': content_matches_specific,
+            'query_type': 'specific' if query_is_specific else ('basic' if query_is_basic else 'general')
+        }
+
+    def _calculate_title_priority_score(self, query: str, chapter_title: str, section_title: str) -> float:
+        """计算标题优先级分数 - 整合三个脚本的最优权重"""
+        query_lower = query.lower()
+        chapter_lower = chapter_title.lower()
+        section_lower = section_title.lower()
+
+        # 标题权重配置（采用最高效的权重组合）
+        chapter_weight = 10.0  # 章标题最高权重
+        section_weight = 8.0   # 节标题高权重
+        subsection_weight = 5.0 # 小节标题中等权重
+        paragraph_weight = 3.0  # 段落标题基础权重
+
+        title_score = 0.0
+
+        # 章节标题匹配（最高优先级）
+        if chapter_lower and query_lower in chapter_lower:
+            title_score += chapter_weight
+        elif chapter_lower and any(word in chapter_lower for word in query_lower.split()):
+            word_matches = sum(1 for word in query_lower.split() if word in chapter_lower)
+            title_score += chapter_weight * (word_matches / len(query_lower.split()))
+
+        # 节标题匹配（高优先级）
+        if section_lower and query_lower in section_lower:
+            title_score += section_weight
+        elif section_lower and any(word in section_lower for word in query_lower.split()):
+            word_matches = sum(1 for word in query_lower.split() if word in section_lower)
+            title_score += section_weight * (word_matches / len(query_lower.split()))
+
+        # 医学关键词在标题中的特殊处理
+        medical_keywords = [
+            'rose', '肺部恶性肿瘤', '细胞学', '病理', '诊断', '治疗',
+            '腺癌', '鳞癌', '细胞核', '核仁', '异型性'
+        ]
+
+        for keyword in medical_keywords:
+            if keyword in chapter_lower or keyword in section_lower:
+                title_score += 2.0  # 医学关键词额外加权
+
+        return min(title_score, 25.0)  # 最高25分封顶
+
     def _apply_filters(self, results: List[SearchResult], filters: Dict[str, Any]) -> List[SearchResult]:
         """应用过滤器"""
         filtered_results = []
@@ -334,8 +549,80 @@ class MedicalRetrievalManager:
 
         return filtered_results
 
+    def intelligent_search(self, query: str, search_config: Dict[str, Any] = None) -> List[SearchResult]:
+        """智能搜索 - 整合所有优化算法"""
+        if search_config is None:
+            search_config = {}
+
+        logger.info(f"🧠 执行智能搜索: '{query}'")
+
+        try:
+            top_k = search_config.get('top_k', 10)
+            enable_title_priority = search_config.get('enable_title_priority', True)
+            enable_content_analysis = search_config.get('enable_content_analysis', True)
+            enable_concept_identification = search_config.get('enable_concept_identification', True)
+            keyword_weight = search_config.get('keyword_weight', 0.6)
+
+            # 执行基础混合搜索
+            base_results = self.hybrid_search(query, top_k * 2, keyword_weight)
+
+            if not base_results:
+                return []
+
+            # 应用智能优化算法
+            enhanced_results = []
+            for result in base_results:
+                enhanced_result = result
+                total_score = result.score
+
+                # 1. 标题优先级评分
+                if enable_title_priority:
+                    title_score = self._calculate_title_priority_score(
+                        query, result.chapter_title, result.section_title
+                    )
+                    total_score += title_score * 0.3  # 标题权重占30%
+
+                # 2. 内容类型分析
+                if enable_content_analysis:
+                    content_analysis = self._analyze_content_type(
+                        result.content, result.chapter_title + " " + result.section_title
+                    )
+                    if content_analysis['is_rose_related']:
+                        total_score += 5.0  # ROSE相关内容加分
+                    total_score += content_analysis['confidence'] * 3.0  # 类型置信度加分
+
+                # 3. 基础概念识别
+                if enable_concept_identification:
+                    concept_analysis = self._identify_basic_concepts(query, result.content)
+
+                    # 根据查询类型调整分数
+                    if concept_analysis['query_type'] == 'specific':
+                        total_score += concept_analysis['relevance_score'] * 2.0
+                    elif concept_analysis['query_type'] == 'basic':
+                        total_score += concept_analysis['relevance_score'] * 1.5
+                    else:
+                        total_score += concept_analysis['relevance_score'] * 1.0
+
+                enhanced_result.score = total_score
+                enhanced_results.append(enhanced_result)
+
+            # 重新排序
+            enhanced_results.sort(key=lambda x: x.score, reverse=True)
+
+            # 应用过滤器
+            if search_config.get('filters'):
+                enhanced_results = self._apply_filters(enhanced_results, search_config['filters'])
+
+            logger.info(f"✅ 智能搜索完成，返回 {len(enhanced_results[:top_k])} 个优化结果")
+            return enhanced_results[:top_k]
+
+        except Exception as e:
+            logger.error(f"❌ 智能搜索失败: {e}")
+            # 回退到普通混合搜索
+            return self.hybrid_search(query, search_config.get('top_k', 10), search_config.get('keyword_weight', 0.6))
+
     def search(self, query: str, search_type: str = "hybrid", **kwargs) -> List[Dict[str, Any]]:
-        """统一搜索接口"""
+        """统一搜索接口 - 增强版支持智能搜索"""
         logger.info(f"🔍 统一搜索接口: '{query}' (类型: {search_type})")
 
         try:
@@ -347,6 +634,10 @@ class MedicalRetrievalManager:
                 top_k = kwargs.get('top_k', 10)
                 keyword_weight = kwargs.get('keyword_weight', 0.5)
                 results = self.hybrid_search(query, top_k, keyword_weight)
+            elif search_type == "intelligent":
+                # 智能搜索模式
+                search_config = kwargs.get('search_config', {})
+                results = self.intelligent_search(query, search_config)
             else:
                 logger.error(f"❌ 未知的搜索类型: {search_type}")
                 return []
