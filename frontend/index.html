@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>医学RAG智能问答系统</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-brain"></i> 医学RAG智能问答系统</h1>
+                <p class="subtitle">基于ReAct智能代理和RAG技术的医学文献问答平台</p>
+            </div>
+            <div class="header-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="query-count">0</span>
+                    <span class="stat-label">查询次数</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="avg-response-time">0</span>
+                    <span class="stat-label">平均响应(s)</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- 主要内容区 -->
+        <main class="main-content">
+            <!-- 控制面板 -->
+            <div class="control-panel">
+                <div class="model-selection">
+                    <label for="model-select">选择模型:</label>
+                    <select id="model-select" class="model-select">
+                        <option value="mock">模拟模型 (测试用)</option>
+                        <option value="deepseek">DeepSeek Reasoner</option>
+                        <option value="qwen">千问3 Max</option>
+                    </select>
+                </div>
+
+                <div class="search-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="include-images" checked>
+                        <span class="checkmark"></span>
+                        包含图片
+                    </label>
+
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="show-reasoning" checked>
+                        <span class="checkmark"></span>
+                        显示推理过程
+                    </label>
+                </div>
+            </div>
+
+            <!-- 查询区域 -->
+            <div class="search-section">
+                <div class="search-container">
+                    <textarea
+                        id="query-input"
+                        placeholder="请输入您的医学问题，例如：什么是肺部恶性肿瘤的ROSE细胞学特征？"
+                        rows="3"
+                    ></textarea>
+                    <button id="search-btn" class="search-btn">
+                        <i class="fas fa-search"></i>
+                        查询
+                    </button>
+                </div>
+
+                <div class="quick-suggestions">
+                    <span class="suggestions-label">快速提问:</span>
+                    <div class="suggestion-tags">
+                        <button class="suggestion-tag" data-question="什么是ROSE技术？">ROSE技术</button>
+                        <button class="suggestion-tag" data-question="肺部恶性肿瘤的特征是什么？">肺部肿瘤</button>
+                        <button class="suggestion-tag" data-question="腺癌和鳞癌有什么区别？">腺癌vs鳞癌</button>
+                        <button class="suggestion-tag" data-question="细胞核增大有什么临床意义？">细胞核增大</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 历史记录 -->
+            <div class="history-section" id="history-section" style="display: none;">
+                <h3><i class="fas fa-history"></i> 历史查询</h3>
+                <div class="history-list" id="history-list">
+                    <!-- 历史记录将动态添加到这里 -->
+                </div>
+            </div>
+
+            <!-- 结果展示区域 -->
+            <div class="results-section" id="results-section" style="display: none;">
+                <!-- 答案区域 -->
+                <div class="answer-box">
+                    <div class="answer-header">
+                        <h3><i class="fas fa-lightbulb"></i> AI回答</h3>
+                        <div class="answer-meta">
+                            <span class="confidence-badge" id="confidence-badge">置信度: 0%</span>
+                            <span class="response-time" id="response-time">响应时间: 0s</span>
+                            <span class="model-used" id="model-used">模型: -</span>
+                        </div>
+                    </div>
+                    <div class="answer-content" id="answer-content">
+                        <!-- 答案内容将动态添加到这里 -->
+                    </div>
+                </div>
+
+                <!-- 推理过程 -->
+                <div class="reasoning-box" id="reasoning-box" style="display: none;">
+                    <h3><i class="fas fa-cogs"></i> 推理过程</h3>
+                    <div class="reasoning-steps" id="reasoning-steps">
+                        <!-- 推理步骤将动态添加到这里 -->
+                    </div>
+                </div>
+
+                <!-- 参考来源 -->
+                <div class="sources-box">
+                    <h3><i class="fas fa-book"></i> 参考来源</h3>
+                    <div class="sources-list" id="sources-list">
+                        <!-- 参考来源将动态添加到这里 -->
+                    </div>
+                </div>
+
+                <!-- 图片展示 -->
+                <div class="images-section" id="images-section" style="display: none;">
+                    <h3><i class="fas fa-image"></i> 相关图片</h3>
+                    <div class="images-grid" id="images-grid">
+                        <!-- 图片将动态添加到这里 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 加载状态 -->
+            <div class="loading-overlay" id="loading-overlay" style="display: none;">
+                <div class="loading-content">
+                    <div class="loading-spinner"></div>
+                    <p>正在查询中，请稍候...</p>
+                    <div class="loading-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- 图片放大模态框 -->
+        <div class="image-modal" id="image-modal">
+            <div class="modal-content">
+                <span class="modal-close">&times;</span>
+                <img id="modal-image" src="" alt="放大图片">
+                <div class="modal-caption" id="modal-caption"></div>
+            </div>
+        </div>
+
+        <!-- 状态指示器 -->
+        <div class="status-indicator" id="status-indicator">
+            <div class="status-dot"></div>
+            <span class="status-text">系统状态检测中...</span>
+        </div>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2025 医学RAG智能问答系统 | 基于ReAct智能代理和RAG技术</p>
+                <div class="footer-links">
+                    <a href="#" onclick="showAPIStatus()">API状态</a>
+                    <a href="#" onclick="showSystemStats()">系统统计</a>
+                    <a href="#" onclick="showHelp()">使用帮助</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

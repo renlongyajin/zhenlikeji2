@@ -1,0 +1,476 @@
+#!/usr/bin/env python3
+"""
+RAG系统数据库导入器
+将PDF提取的文本数据导入Elasticsearch和Milvus
+"""
+
+import json
+import re
+import os
+import logging
+from datetime import datetime
+from typing import List, Dict, Any, Optional
+from dataclasses import dataclass
+
+# 数据库客户端
+from elasticsearch import Elasticsearch
+from pymilvus import connections, FieldSchema, CollectionSchema, DataType, Collection, utility
+
+# 嵌入模型
+import sys
+sys.path.append('/home/ubuntu/myproject/zhenlikeji2/src')
+from embedding.embedding_models import get_embedding_manager
+
+# 配置日志
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+@dataclass
+class TextChunk:
+    """文本块数据结构"""
+    id: str
+    content: str
+    page_number: int
+    chapter_title: str
+    section_title: str
+    subsection_title: Optional[str] = None
+    chunk_index: int = 0
+    total_chunks: int = 1
+    metadata: Dict[str, Any] = None
+
+class DatabaseImporter:
+    """数据库导入器类"""
+
+    def __init__(self,
+                 es_host: str = "localhost",
+                 es_port: int = 9200,
+                 milvus_host: str = "localhost",
+                 milvus_port: int = 19530,
+                 embedding_model: str = "jina"):
+        """
+        初始化数据库连接
+
+        Args:
+            es_host: Elasticsearch主机地址
+            es_port: Elasticsearch端口
+            milvus_host: Milvus主机地址
+            milvus_port: Milvus端口
+            embedding_model: 嵌入模型类型
+        """
+        # 连接Elasticsearch
+        self.es = Elasticsearch(f"http://{es_host}:{es_port}")
+
+        # 连接Milvus
+        try:
+            connections.connect(alias="default", host=milvus_host, port=str(milvus_port))
+            logger.info("✅ 成功连接到Milvus")
+        except Exception as e:
+            logger.error(f"❌ 连接Milvus失败: {e}")
+            raise
+
+        # 初始化嵌入模型
+        try:
+            self.embedding_manager = get_embedding_manager(model_type=embedding_model)
+            logger.info(f"✅ 初始化嵌入模型: {embedding_model}")
+        except Exception as e:
+            logger.error(f"❌ 初始化嵌入模型失败: {e}")
+            raise
+
+        # 索引和集合名称
+        self.es_index = "medical_documents"
+        self.milvus_collection = "medical_vectors"
+
+        # 确保索引和集合存在
+        self._create_elasticsearch_index()
+        self._create_milvus_collection()
+
+    def _create_elasticsearch_index(self):
+        """创建Elasticsearch索引"""
+        index_settings = {
+            "settings": {
+                "number_of_shards": 1,
+                "number_of_replicas": 0
+            },
+            "mappings": {
+                "properties": {
+                    "content": {
+                        "type": "text",
+                        "analyzer": "standard"
+                    },
+                    "chapter_title": {"type": "keyword"},
+                    "section_title": {"type": "keyword"},
+                    "page_number": {"type": "integer"},
+                    "chunk_index": {"type": "integer"},
+                    "metadata": {"type": "object"},
+                    "created_at": {"type": "date"}
+                }
+            }
+        }
+
+        try:
+            if not self.es.indices.exists(index=self.es_index):
+                self.es.indices.create(index=self.es_index, body=index_settings)
+                logger.info(f"✅ 创建Elasticsearch索引: {self.es_index}")
+            else:
+                logger.info(f"ℹ️  Elasticsearch索引已存在: {self.es_index}")
+        except Exception as e:
+            logger.warning(f"⚠️  Elasticsearch索引检查/创建失败: {e}")
+            # 继续执行，可能是索引已存在或其他非关键错误
+
+    def _create_milvus_collection(self):
+        """创建Milvus集合"""
+        # 检查集合是否已存在
+        if utility.has_collection(self.milvus_collection):
+            utility.drop_collection(self.milvus_collection)
+            logger.info(f"🗑️  删除已存在的Milvus集合: {self.milvus_collection}")
+
+        # 定义字段
+        fields = [
+            FieldSchema(name="id", dtype=DataType.VARCHAR, max_length=255, is_primary=True),
+            FieldSchema(name="vector", dtype=DataType.FLOAT_VECTOR, dim=768),
+            FieldSchema(name="page_number", dtype=DataType.INT32),
+            FieldSchema(name="chunk_index", dtype=DataType.INT32),
+            FieldSchema(name="content_hash", dtype=DataType.VARCHAR, max_length=64)
+        ]
+
+        # 创建schema
+        schema = CollectionSchema(fields, f"Medical document vectors for {self.milvus_collection}")
+
+        # 创建集合
+        self.collection = Collection(name=self.milvus_collection, schema=schema)
+
+        # 创建索引
+        index_params = {
+            "metric_type": "COSINE",
+            "index_type": "IVF_FLAT",
+            "params": {"nlist": 128}
+        }
+        self.collection.create_index("vector", index_params)
+
+        logger.info(f"✅ 创建Milvus集合: {self.milvus_collection}")
+
+    def parse_structured_json(self, json_path: str) -> List[Dict[str, Any]]:
+        """
+        解析结构化的JSON文件
+
+        Args:
+            json_path: JSON文件路径
+
+        Returns:
+            解析后的文档数据列表
+        """
+        logger.info(f"📖 开始解析JSON文件: {json_path}")
+
+        with open(json_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+
+        documents = []
+        doc_id = 0
+
+        # 解析章节结构
+        for chapter in data.get('content_structure', {}).get('hierarchy', []):
+            chapter_title = chapter.get('title', '')
+
+            for section in chapter.get('sections', []):
+                section_title = section.get('title', '')
+
+                # 创建文档记录
+                doc = {
+                    'id': f"doc_{doc_id}",
+                    'chapter_title': chapter_title,
+                    'section_title': section_title,
+                    'page_number': section.get('page', 0),
+                    'content': f"{chapter_title} - {section_title}",
+                    'metadata': {
+                        'type': 'section',
+                        'chapter': chapter_title,
+                        'section': section_title,
+                        'page': section.get('page', 0)
+                    }
+                }
+                documents.append(doc)
+                doc_id += 1
+
+        # 解析页面内容
+        for page in data.get('content_structure', {}).get('pages', []):
+            page_number = page.get('page_number', 0)
+
+            for block in page.get('text_blocks', []):
+                text = block.get('text', '').strip()
+                if text and len(text) > 10:  # 过滤短文本
+                    doc = {
+                        'id': f"doc_{doc_id}",
+                        'page_number': page_number,
+                        'content': text,
+                        'metadata': {
+                            'type': 'text_block',
+                            'page': page_number,
+                            'is_title': block.get('is_title', False),
+                            'confidence': block.get('confidence', 0.0)
+                        }
+                    }
+                    documents.append(doc)
+                    doc_id += 1
+
+        logger.info(f"✅ 解析完成，共获得 {len(documents)} 个文档片段")
+        return documents
+
+    def parse_text_file(self, text_path: str, chunk_size: int = 500, chunk_overlap: int = 50) -> List[Dict[str, Any]]:
+        """
+        解析文本文件并进行分块
+
+        Args:
+            text_path: 文本文件路径
+            chunk_size: 分块大小（字符数）
+            chunk_overlap: 分块重叠大小
+
+        Returns:
+            分块后的文档数据列表
+        """
+        logger.info(f"📖 开始解析文本文件: {text_path}")
+
+        with open(text_path, 'r', encoding='utf-8') as f:
+            text = f.read()
+
+        documents = []
+        doc_id = 0
+
+        # 按页面分割
+        page_pattern = r'#### 第(\d+)页'
+        pages = re.split(page_pattern, text)
+
+        current_page = 0
+        for i in range(1, len(pages), 2):  # 跳过分割符
+            if i + 1 < len(pages):
+                page_num = int(pages[i])
+                page_content = pages[i + 1]
+
+                # 对页面内容进行分块
+                chunks = self._split_text_into_chunks(page_content, chunk_size, chunk_overlap)
+
+                for chunk_idx, chunk in enumerate(chunks):
+                    doc = {
+                        'id': f"doc_{doc_id}",
+                        'page_number': page_num,
+                        'content': chunk,
+                        'chunk_index': chunk_idx,
+                        'total_chunks': len(chunks),
+                        'metadata': {
+                            'type': 'text_chunk',
+                            'page': page_num,
+                            'chunk_index': chunk_idx,
+                            'total_chunks': len(chunks)
+                        }
+                    }
+                    documents.append(doc)
+                    doc_id += 1
+
+        logger.info(f"✅ 文本解析完成，共获得 {len(documents)} 个文档片段")
+        return documents
+
+    def _split_text_into_chunks(self, text: str, chunk_size: int, chunk_overlap: int) -> List[str]:
+        """将文本分割成块"""
+        if len(text) <= chunk_size:
+            return [text]
+
+        chunks = []
+        start = 0
+
+        while start < len(text):
+            end = start + chunk_size
+
+            # 如果这是最后一个块，直接添加
+            if end >= len(text):
+                chunks.append(text[start:])
+                break
+
+            # 尝试在句子边界分割
+            chunk = text[start:end]
+
+            # 查找最后一个句子结束符
+            last_sentence_end = max(
+                chunk.rfind('。'),
+                chunk.rfind('！'),
+                chunk.rfind('？'),
+                chunk.rfind('\\n')
+            )
+
+            if last_sentence_end > chunk_size * 0.8:  # 如果找到合适的分割点
+                actual_end = start + last_sentence_end + 1
+                chunks.append(text[start:actual_end])
+                start = actual_end - chunk_overlap
+            else:
+                chunks.append(chunk)
+                start = end - chunk_overlap
+
+        return chunks
+
+    def generate_embeddings(self, texts: List[str]) -> List[List[float]]:
+        """
+        生成文本嵌入向量
+
+        Args:
+            texts: 文本列表
+
+        Returns:
+            嵌入向量列表
+        """
+        logger.info(f"🧮 开始生成嵌入向量，共 {len(texts)} 个文本")
+
+        try:
+            # 使用嵌入管理器生成向量
+            embeddings_array = self.embedding_manager.encode_texts(texts)
+            embeddings = embeddings_array.tolist()
+
+            logger.info(f"✅ 嵌入向量生成完成，向量维度: {len(embeddings[0])}")
+            return embeddings
+
+        except Exception as e:
+            logger.error(f"❌ 嵌入向量生成失败: {e}")
+            raise
+
+    def import_to_elasticsearch(self, documents: List[Dict[str, Any]]):
+        """
+        导入数据到Elasticsearch
+
+        Args:
+            documents: 文档数据列表
+        """
+        logger.info(f"📤 开始向Elasticsearch导入数据，共 {len(documents)} 个文档")
+
+        success_count = 0
+        error_count = 0
+
+        for doc in documents:
+            try:
+                # 添加时间戳
+                doc['created_at'] = datetime.now()
+
+                # 索引文档
+                self.es.index(index=self.es_index, id=doc['id'], body=doc)
+                success_count += 1
+
+                if success_count % 100 == 0:
+                    logger.info(f"📊 已导入 {success_count} 个文档")
+
+            except Exception as e:
+                logger.error(f"❌ 导入文档 {doc['id']} 失败: {e}")
+                error_count += 1
+
+        logger.info(f"✅ Elasticsearch导入完成: 成功 {success_count}, 失败 {error_count}")
+
+        # 刷新索引
+        self.es.indices.refresh(index=self.es_index)
+
+        # 显示索引统计
+        stats = self.es.indices.stats(index=self.es_index)
+        doc_count = stats['indices'][self.es_index]['primaries']['docs']['count']
+        logger.info(f"📈 Elasticsearch索引文档总数: {doc_count}")
+
+    def import_to_milvus(self, documents: List[Dict[str, Any]], embeddings: List[List[float]]):
+        """
+        导入数据到Milvus
+
+        Args:
+            documents: 文档数据列表
+            embeddings: 对应的嵌入向量列表
+        """
+        logger.info(f"📤 开始向Milvus导入数据，共 {len(documents)} 个向量")
+
+        if len(documents) != len(embeddings):
+            raise ValueError("文档数量和嵌入向量数量不匹配")
+
+        # 准备数据
+        ids = [doc['id'] for doc in documents]
+        page_numbers = [doc.get('page_number', 0) for doc in documents]
+        chunk_indices = [doc.get('chunk_index', 0) for doc in documents]
+
+        # 生成内容哈希（简化版本）
+        import hashlib
+        content_hashes = []
+        for doc in documents:
+            content = doc.get('content', '')
+            hash_obj = hashlib.md5(content.encode('utf-8'))
+            content_hashes.append(hash_obj.hexdigest())
+
+        # 插入数据
+        entities = [
+            ids,
+            embeddings,
+            page_numbers,
+            chunk_indices,
+            content_hashes
+        ]
+
+        try:
+            self.collection.insert(entities)
+            self.collection.flush()
+            logger.info(f"✅ Milvus数据导入完成")
+
+            # 显示集合统计
+            self.collection.load()
+            stats = self.collection.num_entities
+            logger.info(f"📈 Milvus集合向量总数: {stats}")
+
+        except Exception as e:
+            logger.error(f"❌ Milvus数据导入失败: {e}")
+            raise
+
+    def close(self):
+        """关闭连接"""
+        if self.es:
+            self.es.close()
+            logger.info("✅ 关闭Elasticsearch连接")
+
+def main():
+    """主函数"""
+    # 文件路径
+    json_path = "/home/ubuntu/myproject/zhenlikeji2/data/extracted/恶件肺脏疾病和哺脏少见病快速现场评价组学图谱-224_structured.json"
+    text_path = "/home/ubuntu/myproject/zhenlikeji2/data/extracted/text_stable/恶件肺脏疾病和哺脏少见病快速现场评价组学图谱-224_stable_extracted.txt"
+
+    # 创建导入器
+    importer = DatabaseImporter(embedding_model="jina")
+
+    try:
+        # 解析数据
+        documents = []
+
+        # 从JSON文件解析
+        if os.path.exists(json_path):
+            json_docs = importer.parse_structured_json(json_path)
+            documents.extend(json_docs)
+            logger.info(f"📊 从JSON文件获得 {len(json_docs)} 个文档")
+
+        # 从文本文件解析
+        if os.path.exists(text_path):
+            text_docs = importer.parse_text_file(text_path)
+            documents.extend(text_docs)
+            logger.info(f"📊 从文本文件获得 {len(text_docs)} 个文档")
+
+        if not documents:
+            logger.error("❌ 没有找到任何文档数据")
+            return
+
+        logger.info(f"📈 总共获得 {len(documents)} 个文档片段")
+
+        # 导入到Elasticsearch
+        importer.import_to_elasticsearch(documents)
+
+        # 生成嵌入向量
+        texts = [doc['content'] for doc in documents]
+        embeddings = importer.generate_embeddings(texts)
+
+        # 导入到Milvus
+        importer.import_to_milvus(documents, embeddings)
+
+        logger.info("🎉 数据导入完成！")
+
+    except Exception as e:
+        logger.error(f"❌ 数据导入过程中出现错误: {e}")
+        raise
+
+    finally:
+        importer.close()
+
+if __name__ == "__main__":
+    main()

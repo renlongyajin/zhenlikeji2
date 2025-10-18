@@ -13,6 +13,7 @@ import logging
 from typing import Dict, List, Optional, Tuple
 import re
 import time
+import json
 from dataclasses import dataclass
 
 # OCR相关导入
@@ -110,18 +111,26 @@ class StablePDFTextExtractor:
             # 生成文本内容
             text_content = self._generate_text_content(all_text_blocks, pdf_path, total_pages)
 
+            # 生成JSON内容
+            json_content = self._generate_json_content(all_text_blocks, pdf_path, total_pages)
+
             result = {
                 'pdf_path': str(pdf_path),
                 'total_pages': total_pages,
                 'pages_with_text': pages_with_text,
                 'text_blocks': len(all_text_blocks),
                 'processing_time': time.strftime('%Y-%m-%d %H:%M:%S'),
-                'text_content': text_content
+                'text_content': text_content,
+                'json_content': json_content
             }
 
-            # 保存文件
-            output_path = self._save_text_content(pdf_path, text_content)
-            result['output_path'] = output_path
+            # 保存文本文件
+            text_output_path = self._save_text_content(pdf_path, text_content)
+            result['text_output_path'] = text_output_path
+
+            # 保存JSON文件
+            json_output_path = self._save_json_content(pdf_path, json_content)
+            result['json_output_path'] = json_output_path
 
             logger.info(f"文本提取完成，成功处理 {pages_with_text}/{total_pages} 页")
             return result
@@ -379,6 +388,178 @@ class StablePDFTextExtractor:
             logger.error(f"保存文本文件失败: {e}")
             raise
 
+    def _generate_json_content(self, text_blocks: List[TextBlock], pdf_path: Path, total_pages: int) -> Dict:
+        """生成结构化JSON内容"""
+        doc_title = pdf_path.stem.replace('_', ' ').replace('-', ' ')
+
+        # 文档元数据
+        json_structure = {
+            "document_info": {
+                "title": doc_title,
+                "original_pdf": pdf_path.name,
+                "total_pages": total_pages,
+                "extraction_time": time.strftime('%Y-%m-%d %H:%M:%S'),
+                "text_blocks_count": len(text_blocks),
+                "processing_engine": "StablePDFTextExtractor"
+            },
+            "content_structure": {
+                "hierarchy": self._build_content_hierarchy(text_blocks),
+                "pages": self._build_page_structure(text_blocks)
+            },
+            "text_content": self._build_text_content_by_hierarchy(text_blocks)
+        }
+
+        return json_structure
+
+    def _build_content_hierarchy(self, text_blocks: List[TextBlock]) -> List[Dict]:
+        """构建内容层次结构"""
+        hierarchy = []
+        current_chapter = None
+        current_section = None
+
+        for block in text_blocks:
+            if not block.is_title:
+                continue
+
+            if block.title_type == 'chapter':
+                current_chapter = {
+                    "type": "chapter",
+                    "title": block.text,
+                    "page": block.page_num,
+                    "sections": []
+                }
+                hierarchy.append(current_chapter)
+                current_section = None
+
+            elif block.title_type == 'section' and current_chapter:
+                current_section = {
+                    "type": "section",
+                    "title": block.text,
+                    "page": block.page_num,
+                    "subsections": []
+                }
+                current_chapter["sections"].append(current_section)
+
+            elif block.title_type == 'subsection' and current_section:
+                subsection = {
+                    "type": "subsection",
+                    "title": block.text,
+                    "page": block.page_num
+                }
+                current_section["subsections"].append(subsection)
+
+        return hierarchy
+
+    def _build_page_structure(self, text_blocks: List[TextBlock]) -> List[Dict]:
+        """构建页面结构"""
+        pages_dict = {}
+
+        for block in text_blocks:
+            page_num = block.page_num
+            if page_num not in pages_dict:
+                pages_dict[page_num] = {
+                    "page_number": page_num,
+                    "text_blocks": [],
+                    "titles": []
+                }
+
+            page_content = {
+                "text": block.text,
+                "is_title": block.is_title,
+                "title_type": block.title_type,
+                "confidence": block.confidence,
+                "bbox": list(block.bbox) if isinstance(block.bbox, tuple) else block.bbox
+            }
+
+            pages_dict[page_num]["text_blocks"].append(page_content)
+            if block.is_title:
+                pages_dict[page_num]["titles"].append({
+                    "title": block.text,
+                    "type": block.title_type
+                })
+
+        return list(pages_dict.values())
+
+    def _build_text_content_by_hierarchy(self, text_blocks: List[TextBlock]) -> Dict:
+        """按层次结构构建文本内容"""
+        content = {
+            "chapters": [],
+            "raw_text": []
+        }
+
+        current_chapter = None
+        current_section = None
+        current_chapter_text = []
+        current_section_text = []
+
+        for block in text_blocks:
+            if block.is_title:
+                # 保存前一章的内容
+                if current_chapter and current_chapter_text:
+                    if current_section and current_section_text:
+                        current_section["content"] = "\n".join(current_section_text)
+                        current_section_text = []
+                    current_chapter["content"] = "\n".join(current_chapter_text)
+                    content["chapters"].append(current_chapter)
+                    current_chapter_text = []
+
+                # 开始新的章节/节
+                if block.title_type == 'chapter':
+                    current_chapter = {
+                        "title": block.text,
+                        "page": block.page_num,
+                        "sections": []
+                    }
+                    current_section = None
+                elif block.title_type == 'section' and current_chapter:
+                    current_section = {
+                        "title": block.text,
+                        "page": block.page_num,
+                        "content": ""
+                    }
+                    current_chapter["sections"].append(current_section)
+                elif block.title_type == 'subsection' and current_section:
+                    subsection = {
+                        "title": block.text,
+                        "page": block.page_num,
+                        "content": ""
+                    }
+                    current_section["subsections"] = current_section.get("subsections", [])
+                    current_section["subsections"].append(subsection)
+            else:
+                # 普通文本内容
+                text_line = block.text.strip()
+                if text_line:
+                    content["raw_text"].append(text_line)
+                    current_chapter_text.append(text_line)
+                    current_section_text.append(text_line)
+
+        # 保存最后一章的内容
+        if current_chapter and current_chapter_text:
+            if current_section and current_section_text:
+                current_section["content"] = "\n".join(current_section_text)
+            current_chapter["content"] = "\n".join(current_chapter_text)
+            content["chapters"].append(current_chapter)
+
+        return content
+
+    def _save_json_content(self, pdf_path: Path, json_content: Dict) -> str:
+        """保存JSON内容"""
+        output_filename = f"{pdf_path.stem}_structured.json"
+        # 保存到 data/extracted 目录
+        json_output_dir = Path("data/extracted")
+        json_output_dir.mkdir(parents=True, exist_ok=True)
+        output_path = json_output_dir / output_filename
+
+        try:
+            with open(output_path, 'w', encoding='utf-8') as f:
+                json.dump(json_content, f, ensure_ascii=False, indent=2)
+            logger.info(f"JSON内容已保存: {output_path}")
+            return str(output_path)
+        except Exception as e:
+            logger.error(f"保存JSON文件失败: {e}")
+            raise
+
 
 def main():
     """主函数"""
@@ -401,7 +582,8 @@ def main():
         print(f"总页数: {result['total_pages']}")
         print(f"有文本的页面: {result['pages_with_text']}")
         print(f"文本块数量: {result['text_blocks']}")
-        print(f"输出文件: {result['output_path']}")
+        print(f"Markdown输出文件: {result['text_output_path']}")
+        print(f"JSON输出文件: {result['json_output_path']}")
 
     except Exception as e:
         logger.error(f"处理失败: {e}")
