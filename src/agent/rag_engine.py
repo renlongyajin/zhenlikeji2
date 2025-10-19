@@ -116,9 +116,9 @@ class RAGEngine:
             # 初始化检索管理器
             retrieval_config = self.config.get('retrieval', {})
             self.retrieval_manager = create_retrieval_manager(
-                es_host=retrieval_config.get('es_host', 'localhost'),
+                es_host=retrieval_config.get('es_host', 'elasticsearch'),
                 es_port=retrieval_config.get('es_port', 9200),
-                milvus_host=retrieval_config.get('milvus_host', 'localhost'),
+                milvus_host=retrieval_config.get('milvus_host', 'milvus'),
                 milvus_port=retrieval_config.get('milvus_port', 19530),
                 embedding_manager=self.embedding_manager
             )
@@ -359,25 +359,40 @@ class RAGEngine:
 
 # 创建默认配置
 def create_default_rag_config() -> Dict[str, Any]:
-    """创建默认RAG配置"""
-    return {
-        'llm': {
-            'default_provider': 'mock',
-            'deepseek': {
-                'api_key': 'your-deepseek-api-key',
-                'base_url': 'https://api.deepseek.com',
-                'model': 'deepseek-reasoner'
-            },
-            'qwen': {
-                'api_key': 'your-qwen-api-key',
-                'base_url': 'https://dashscope.aliyuncs.com/api/v1',
-                'model': 'qwen-max'
-            }
+    """创建默认RAG配置，从环境变量读取API密钥"""
+    import os
+
+    # 从环境变量读取API密钥
+    deepseek_api_key = os.environ.get('DEEPSEEK_API_KEY', '')
+    qwen_api_key = os.environ.get('QWEN_API_KEY', '') or os.environ.get('DASHSCOPE_API_KEY', '')
+
+    # 只有当API密钥存在时才启用相应的提供者
+    llm_config = {
+        'default_provider': 'mock',
+        'deepseek': {
+            'api_key': deepseek_api_key or 'your-deepseek-api-key',
+            'base_url': 'https://api.deepseek.com',
+            'model': 'deepseek-reasoner'
         },
+        'qwen': {
+            'api_key': qwen_api_key or 'your-qwen-api-key',
+            'base_url': 'https://dashscope.aliyuncs.com/api/v1',
+            'model': 'qwen-max'
+        }
+    }
+
+    # 如果环境变量中有有效的API密钥，则设置为默认提供者
+    if deepseek_api_key and len(deepseek_api_key) > 10:
+        llm_config['default_provider'] = 'deepseek'
+    elif qwen_api_key and len(qwen_api_key) > 10:
+        llm_config['default_provider'] = 'qwen'
+
+    return {
+        'llm': llm_config,
         'retrieval': {
-            'es_host': 'localhost',
+            'es_host': 'elasticsearch',
             'es_port': 9200,
-            'milvus_host': 'localhost',
+            'milvus_host': 'milvus',
             'milvus_port': 19530
         },
         'embedding': {

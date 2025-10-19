@@ -74,10 +74,26 @@ http {
         # server app3:8000;
     }
 
-    # HTTP服务器配置（端口12345）
+    # HTTP服务器配置（重定向到HTTPS）
     server {
         listen 80;
         server_name localhost;
+        return 301 https://$server_name$request_uri;
+    }
+
+    # HTTPS服务器配置
+    server {
+        listen 443 ssl http2;
+        server_name localhost;
+
+        # SSL证书配置（开发环境使用自签名证书）
+        ssl_certificate /etc/nginx/ssl/cert.pem;
+        ssl_certificate_key /etc/nginx/ssl/key.pem;
+        ssl_protocols TLSv1.2 TLSv1.3;
+        ssl_ciphers ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384;
+        ssl_prefer_server_ciphers off;
+        ssl_session_cache shared:SSL:10m;
+        ssl_session_timeout 10m;
 
         # 前端静态文件服务
         location / {

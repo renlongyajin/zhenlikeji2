@@ -32,9 +32,9 @@ class MedicalRetrievalManager:
     """医学检索管理器"""
 
     def __init__(self,
-                 es_host: str = "localhost",
+                 es_host: str = "elasticsearch",
                  es_port: int = 9200,
-                 milvus_host: str = "localhost",
+                 milvus_host: str = "milvus",
                  milvus_port: int = 19530,
                  embedding_manager=None):
         """初始化检索管理器"""
@@ -692,9 +692,9 @@ class MedicalRetrievalManager:
             logger.error(f"❌ 获取统计信息失败: {e}")
             return {"status": "error", "error": str(e)}
 
-def create_retrieval_manager(es_host: str = "localhost",
+def create_retrieval_manager(es_host: str = "elasticsearch",
                            es_port: int = 9200,
-                           milvus_host: str = "localhost",
+                           milvus_host: str = "milvus",
                            milvus_port: int = 19530,
                            embedding_manager=None) -> MedicalRetrievalManager:
     """创建检索管理器"""

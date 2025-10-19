@@ -13,9 +13,7 @@ services:
       - POSTGRES_URL=postgresql://admin:password@postgres:5432/rag_system
       - JINA_API_KEY=${JINA_API_KEY:-}
       - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY:-}
-      - QWEN_API_KEY=${DASHSCOPE_API_KEY:-}  # 使用DASHSCOPE_API_KEY作为QWEN_API_KEY
-      - DASHSCOPE_API_KEY=${DASHSCOPE_API_KEY:-}
-      - SILICONFLOW_API_KEY=${SILICONFLOW_API_KEY:-}
+      - QWEN_API_KEY=${QWEN_API_KEY:-}
       - ENVIRONMENT=production
       - LOG_LEVEL=INFO
     depends_on:
@@ -29,7 +27,6 @@ services:
       - ./logs:/app/logs
       - ./data:/app/data
       - ./config:/app/config
-      - ./src:/app/src:ro
     networks:
       - rag-network
     restart: unless-stopped
@@ -45,7 +42,8 @@ services:
     image: nginx:alpine
     container_name: rag-react-nginx
     ports:
-      - "12345:80"
+      - "80:80"
+      - "443:443"
     volumes:
       - ./frontend:/usr/share/nginx/html
       - ./nginx.conf:/etc/nginx/nginx.conf

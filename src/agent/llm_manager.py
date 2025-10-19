@@ -217,10 +217,21 @@ class QwenProvider(BaseLLMProvider):
 
             if response.status_code == 200:
                 result = response.json()
+                # 修复：处理千问API的不同响应格式
+                if 'output' in result and 'text' in result['output']:
+                    # 新的响应格式
+                    content = result['output']['text']
+                elif 'output' in result and 'choices' in result['output'] and len(result['output']['choices']) > 0:
+                    # 旧的响应格式
+                    content = result['output']['choices'][0]['message']['content']
+                else:
+                    # 其他格式，尝试直接访问
+                    content = str(result.get('output', result))
+
                 return LLMResponse(
-                    content=result['output']['choices'][0]['message']['content'],
-                    model=result['model'],
-                    usage=result['usage'],
+                    content=content,
+                    model=result.get('model', 'qwen-max'),
+                    usage=result.get('usage', {}),
                     response_time=response_time,
                     timestamp=datetime.now().isoformat()
                 )
