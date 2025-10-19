@@ -2,3 +2,4 @@ data
 restore_temp
 volumes
 backups
+**/__pycache__/
