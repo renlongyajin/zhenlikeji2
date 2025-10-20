@@ -97,7 +97,7 @@ class MedicalRetrievalManager:
         logger.info(f"🔍 执行关键词搜索: '{query}'")
 
         try:
-            # 智能标题权重配置
+            # 智能标题权重配置 - 增强描述性内容，降低图号权重
             search_body = {
                 "query": {
                     "bool": {
@@ -105,15 +105,15 @@ class MedicalRetrievalManager:
                             {
                                 "multi_match": {
                                     "query": query,
-                                    "fields": ["chapter_title^10.0", "section_title^8.0"],  # 标题高权重
+                                    "fields": ["chapter_title^12.0", "section_title^10.0", "chapter_path^8.0"],  # 标题和章节路径高权重
                                     "type": "best_fields",
-                                    "boost": 2.0
+                                    "boost": 2.5
                                 }
                             },
                             {
                                 "multi_match": {
                                     "query": query,
-                                    "fields": ["content^2.0"],  # 内容基础权重
+                                    "fields": ["content^3.0"],  # 内容基础权重提升
                                     "type": "best_fields",
                                     "fuzziness": "AUTO"
                                 }
@@ -122,8 +122,31 @@ class MedicalRetrievalManager:
                                 "match": {
                                     "chapter_title": {
                                         "query": query,
-                                        "boost": 15.0  # 完全匹配章节标题超高权重
+                                        "boost": 20.0  # 完全匹配章节标题超高权重
                                     }
+                                }
+                            },
+                            {
+                                "function_score": {
+                                    "query": {
+                                        "multi_match": {
+                                            "query": query,
+                                            "fields": ["content"],
+                                            "type": "best_fields"
+                                        }
+                                    },
+                                    "functions": [
+                                        {
+                                            "filter": {"term": {"metadata.has_descriptive_content": True}},
+                                            "weight": 1.5  # 包含描述性内容的文档权重提升
+                                        },
+                                        {
+                                            "filter": {"term": {"metadata.has_figure_numbers": True}},
+                                            "weight": 0.7  # 包含图号的文档权重降低
+                                        }
+                                    ],
+                                    "score_mode": "multiply",
+                                    "boost_mode": "multiply"
                                 }
                             }
                         ],
@@ -133,9 +156,10 @@ class MedicalRetrievalManager:
                 "size": top_k,
                 "highlight": {
                     "fields": {
-                        "content": {"fragment_size": 150, "number_of_fragments": 3},
+                        "content": {"fragment_size": 300, "number_of_fragments": 2},  # 增大片段，包含更多描述内容
                         "chapter_title": {},
-                        "section_title": {}
+                        "section_title": {},
+                        "chapter_path": {}
                     }
                 }
             }

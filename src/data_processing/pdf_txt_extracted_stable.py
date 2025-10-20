@@ -295,32 +295,28 @@ class StablePDFTextExtractor:
             return (0, 0, 100, 20)  # 默认bbox
 
     def _is_likely_title(self, text: str) -> tuple:
-        """标题检测"""
+        """标题检测 - 严格版"""
         if not text or len(text.strip()) < 2:
             return False, None
 
         text = text.strip()
 
-        # 章节模式 (第X章)
-        if re.match(r'^第[一二三四五六七八九十\d]+章\s*', text):
+        # 章节模式 (第X章) - 必须以"第X章"开头，后面跟具体标题或空格
+        # 排除只有"第X章"三个字的情况（可能是页眉）
+        if re.match(r'^第[一二三四五六七八九十\d]+章\s+\S', text):
             return True, 'chapter'
 
-        # 节模式 (第X节)
-        if re.match(r'^第[一二三四五六七八九十\d]+节\s*', text):
+        # 允许"第X章"后直接跟中文（不需要空格）
+        if re.match(r'^第[一二三四五六七八九十\d]+章[^。，；：、\s]', text):
+            return True, 'chapter'
+
+        # 节模式 (第X节) - 必须以"第X节"开头
+        if re.match(r'^第[一二三四五六七八九十\d]+节', text):
             return True, 'section'
 
         # 小节模式 (X、 or X.)
-        if re.match(r'^[一二三四五六七八九十]+\.?\s*', text):
+        if re.match(r'^[一二三四五六七八九十]+[\.、]\s*\S', text):
             return True, 'subsection'
-
-        # 其他标题指示器
-        title_indicators = [
-            len(text) < 30,  # 短文本
-            text.endswith('：') or text.endswith(':'),  # 以冒号结尾
-        ]
-
-        if sum(title_indicators) >= 2:
-            return True, 'generic'
 
         return False, None
 
@@ -412,7 +408,7 @@ class StablePDFTextExtractor:
         return json_structure
 
     def _build_content_hierarchy(self, text_blocks: List[TextBlock]) -> List[Dict]:
-        """构建内容层次结构"""
+        """构建内容层次结构 - 修复版"""
         hierarchy = []
         current_chapter = None
         current_section = None
@@ -431,7 +427,17 @@ class StablePDFTextExtractor:
                 hierarchy.append(current_chapter)
                 current_section = None
 
-            elif block.title_type == 'section' and current_chapter:
+            elif block.title_type == 'section':
+                # 如果没有当前章节，创建一个默认章节
+                if not current_chapter:
+                    current_chapter = {
+                        "type": "chapter",
+                        "title": f"未命名章节（页{block.page_num}）",
+                        "page": block.page_num,
+                        "sections": []
+                    }
+                    hierarchy.append(current_chapter)
+
                 current_section = {
                     "type": "section",
                     "title": block.text,
@@ -440,7 +446,26 @@ class StablePDFTextExtractor:
                 }
                 current_chapter["sections"].append(current_section)
 
-            elif block.title_type == 'subsection' and current_section:
+            elif block.title_type == 'subsection':
+                # 如果没有当前节，创建一个默认节
+                if not current_section:
+                    if not current_chapter:
+                        current_chapter = {
+                            "type": "chapter",
+                            "title": f"未命名章节（页{block.page_num}）",
+                            "page": block.page_num,
+                            "sections": []
+                        }
+                        hierarchy.append(current_chapter)
+
+                    current_section = {
+                        "type": "section",
+                        "title": f"未命名节（页{block.page_num}）",
+                        "page": block.page_num,
+                        "subsections": []
+                    }
+                    current_chapter["sections"].append(current_section)
+
                 subsection = {
                     "type": "subsection",
                     "title": block.text,
@@ -481,7 +506,7 @@ class StablePDFTextExtractor:
         return list(pages_dict.values())
 
     def _build_text_content_by_hierarchy(self, text_blocks: List[TextBlock]) -> Dict:
-        """按层次结构构建文本内容"""
+        """按层次结构构建文本内容 - 修复版"""
         content = {
             "chapters": [],
             "raw_text": []
@@ -494,51 +519,73 @@ class StablePDFTextExtractor:
 
         for block in text_blocks:
             if block.is_title:
-                # 保存前一章的内容
-                if current_chapter and current_chapter_text:
-                    if current_section and current_section_text:
-                        current_section["content"] = "\n".join(current_section_text)
-                        current_section_text = []
-                    current_chapter["content"] = "\n".join(current_chapter_text)
-                    content["chapters"].append(current_chapter)
-                    current_chapter_text = []
-
                 # 开始新的章节/节
                 if block.title_type == 'chapter':
+                    # 保存前一章的内容
+                    if current_chapter:
+                        if current_section and current_section_text:
+                            current_section["content"] = "\n".join(current_section_text)
+                            current_section_text = []
+                        if current_chapter_text:
+                            current_chapter["content"] = "\n".join(current_chapter_text)
+                        content["chapters"].append(current_chapter)
+                        current_chapter_text = []
+
+                    # 创建新章节
                     current_chapter = {
                         "title": block.text,
                         "page": block.page_num,
                         "sections": []
                     }
                     current_section = None
-                elif block.title_type == 'section' and current_chapter:
+
+                elif block.title_type == 'section':
+                    # 如果没有当前章节，创建一个默认章节
+                    if not current_chapter:
+                        current_chapter = {
+                            "title": f"未命名章节（页{block.page_num}）",
+                            "page": block.page_num,
+                            "sections": []
+                        }
+
+                    # 保存前一节的内容
+                    if current_section and current_section_text:
+                        current_section["content"] = "\n".join(current_section_text)
+                        current_section_text = []
+
+                    # 创建新节
                     current_section = {
                         "title": block.text,
                         "page": block.page_num,
                         "content": ""
                     }
                     current_chapter["sections"].append(current_section)
-                elif block.title_type == 'subsection' and current_section:
-                    subsection = {
-                        "title": block.text,
-                        "page": block.page_num,
-                        "content": ""
-                    }
-                    current_section["subsections"] = current_section.get("subsections", [])
-                    current_section["subsections"].append(subsection)
+
+                elif block.title_type == 'subsection':
+                    if current_section:
+                        subsection = {
+                            "title": block.text,
+                            "page": block.page_num,
+                            "content": ""
+                        }
+                        current_section["subsections"] = current_section.get("subsections", [])
+                        current_section["subsections"].append(subsection)
             else:
                 # 普通文本内容
                 text_line = block.text.strip()
                 if text_line:
                     content["raw_text"].append(text_line)
-                    current_chapter_text.append(text_line)
-                    current_section_text.append(text_line)
+                    if current_chapter:
+                        current_chapter_text.append(text_line)
+                    if current_section:
+                        current_section_text.append(text_line)
 
         # 保存最后一章的内容
-        if current_chapter and current_chapter_text:
+        if current_chapter:
             if current_section and current_section_text:
                 current_section["content"] = "\n".join(current_section_text)
-            current_chapter["content"] = "\n".join(current_chapter_text)
+            if current_chapter_text:
+                current_chapter["content"] = "\n".join(current_chapter_text)
             content["chapters"].append(current_chapter)
 
         return content

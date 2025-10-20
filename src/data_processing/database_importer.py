@@ -245,21 +245,47 @@ class DatabaseImporter:
                 page_num = int(pages[i])
                 page_content = pages[i + 1]
 
-                # 对页面内容进行分块
-                chunks = self._split_text_into_chunks(page_content, chunk_size, chunk_overlap)
+                # 对页面内容进行分块 - 使用新的智能分块策略
+                # 首先尝试按章节结构分割
+                chapter_sections = self._split_by_chapter_structure(page_content)
+                if len(chapter_sections) > 1:
+                    # 如果成功按章节分割，对每个章节再进行智能分块
+                    all_chunks = []
+                    for section in chapter_sections:
+                        if len(section) <= chunk_size:
+                            all_chunks.append(section)
+                        else:
+                            # 对章节内部进行智能分块
+                            section_chunks = self._split_section_intelligently(section, chunk_size, chunk_overlap)
+                            all_chunks.extend(section_chunks)
+                    chunks = all_chunks
+                else:
+                    # 如果无法按章节分割，使用改进的智能分块
+                    chunks = self._split_section_intelligently(page_content, chunk_size, chunk_overlap)
+
+                # 提取页面级别的章节信息
+                page_chapter_info = self._extract_chapter_info_from_page(page_content)
 
                 for chunk_idx, chunk in enumerate(chunks):
+                    # 提取当前块的章节信息
+                    chunk_chapter_info = self._extract_chapter_info_from_chunk(chunk, page_chapter_info)
+
                     doc = {
                         'id': f"doc_{doc_id}",
                         'page_number': page_num,
                         'content': chunk,
+                        'chapter_title': chunk_chapter_info.get('chapter_title', ''),
+                        'section_title': chunk_chapter_info.get('section_title', ''),
                         'chunk_index': chunk_idx,
                         'total_chunks': len(chunks),
                         'metadata': {
                             'type': 'text_chunk',
                             'page': page_num,
                             'chunk_index': chunk_idx,
-                            'total_chunks': len(chunks)
+                            'total_chunks': len(chunks),
+                            'chapter_path': chunk_chapter_info.get('chapter_path', ''),
+                            'has_descriptive_content': chunk_chapter_info.get('has_descriptive_content', False),
+                            'has_figure_numbers': chunk_chapter_info.get('has_figure_numbers', False)
                         }
                     }
                     documents.append(doc)
@@ -269,7 +295,7 @@ class DatabaseImporter:
         return documents
 
     def _split_text_into_chunks(self, text: str, chunk_size: int, chunk_overlap: int) -> List[str]:
-        """将文本分割成块"""
+        """将文本分割成块 - 章节边界优先的动态分块策略"""
         if len(text) <= chunk_size:
             return [text]
 
@@ -304,6 +330,150 @@ class DatabaseImporter:
                 start = end - chunk_overlap
 
         return chunks
+
+    def _split_by_chapter_structure(self, text: str) -> List[str]:
+        """按章节结构分割文本"""
+        # 识别章节标题模式
+        chapter_patterns = [
+            r'##\s+第[一二三四五六七八九十]+节\s+[^\n]+',  # ## 第九节 黏液腺癌
+            r'###\s+[^\n]+',  # ### 二级标题
+            r'图\s*2-\d+\s*[^\n]+',  # 图号标题
+        ]
+
+        sections = []
+        current_pos = 0
+
+        for pattern in chapter_patterns:
+            matches = list(re.finditer(pattern, text))
+            if len(matches) > 1:
+                # 找到多个匹配，按此模式分割
+                for i, match in enumerate(matches):
+                    start_pos = match.start()
+                    if i < len(matches) - 1:
+                        end_pos = matches[i + 1].start()
+                    else:
+                        end_pos = len(text)
+
+                    section_text = text[start_pos:end_pos].strip()
+                    if section_text:
+                        sections.append(section_text)
+                return sections
+
+        # 如果没有找到章节结构，返回原文本
+        return [text]
+
+    def _split_section_intelligently(self, text: str, chunk_size: int, chunk_overlap: int) -> List[str]:
+        """智能分块单个章节或段落"""
+        if len(text) <= chunk_size:
+            return [text]
+
+        chunks = []
+        start = 0
+
+        while start < len(text):
+            end = start + chunk_size
+
+            # 如果这是最后一个块，直接添加
+            if end >= len(text):
+                chunks.append(text[start:])
+                break
+
+            # 查找描述性内容的分割点
+            chunk = text[start:end]
+
+            # 优先在描述段落边界分割
+            # 1. 查找描述性段落的结束（分号后、句号后）
+            desc_end_patterns = [
+                r'；[^图]',  # 分号后不是图字
+                r'。\s*[^图]',  # 句号后不是图字
+                r'\n\s*',  # 换行
+            ]
+
+            best_split_pos = -1
+            best_score = 0
+
+            for pattern in desc_end_patterns:
+                matches = list(re.finditer(pattern, chunk))
+                for match in matches:
+                    pos = match.end() - 1
+                    if pos > chunk_size * 0.6:  # 在块的60%之后
+                        score = pos / chunk_size  # 越靠后越好
+                        if score > best_score:
+                            best_score = score
+                            best_split_pos = pos
+
+            # 如果没有找到好的描述性分割点，使用句子边界
+            if best_split_pos == -1:
+                # 查找最后一个句子结束符
+                last_sentence_end = max(
+                    chunk.rfind('。'),
+                    chunk.rfind('！'),
+                    chunk.rfind('？'),
+                    chunk.rfind('\n')
+                )
+
+                if last_sentence_end > chunk_size * 0.6:
+                    best_split_pos = last_sentence_end + 1
+                else:
+                    # 强制在块大小处分割
+                    best_split_pos = chunk_size
+
+            actual_end = start + best_split_pos
+            chunks.append(text[start:actual_end])
+            start = actual_end - chunk_overlap
+
+        return chunks
+
+    def _extract_chapter_info_from_page(self, page_content: str) -> Dict[str, Any]:
+        """从页面内容提取章节信息"""
+        chapter_info = {
+            'chapter_title': '',
+            'section_title': '',
+            'chapter_path': '',
+            'has_descriptive_content': False,
+            'has_figure_numbers': False
+        }
+
+        # 提取章节标题
+        chapter_match = re.search(r'#\s+第[一二三四五六七八九十]+章\s+([^\n]+)', page_content)
+        if chapter_match:
+            chapter_info['chapter_title'] = chapter_match.group(1).strip()
+
+        # 提取小节标题
+        section_match = re.search(r'##\s+第[一二三四五六七八九十]+节\s+([^\n]+)', page_content)
+        if section_match:
+            chapter_info['section_title'] = section_match.group(1).strip()
+
+        # 构建章节路径
+        if chapter_info['chapter_title'] and chapter_info['section_title']:
+            chapter_info['chapter_path'] = f"{chapter_info['chapter_title']} - {chapter_info['section_title']}"
+        elif chapter_info['section_title']:
+            chapter_info['chapter_path'] = chapter_info['section_title']
+
+        # 检测内容类型
+        chapter_info['has_descriptive_content'] = bool(re.search(r'[；。]\s*[^图]', page_content))
+        chapter_info['has_figure_numbers'] = bool(re.search(r'图\s*2-\d+', page_content))
+
+        return chapter_info
+
+    def _extract_chapter_info_from_chunk(self, chunk: str, page_chapter_info: Dict[str, Any]) -> Dict[str, Any]:
+        """从分块内容提取章节信息"""
+        chunk_info = page_chapter_info.copy()
+
+        # 重新检测当前块的具体内容类型
+        chunk_info['has_descriptive_content'] = bool(re.search(r'[；。]\s*[^图]', chunk))
+        chunk_info['has_figure_numbers'] = bool(re.search(r'图\s*2-\d+', chunk))
+
+        # 如果当前块包含章节标题，更新章节信息
+        section_match = re.search(r'##\s+第[一二三四五六七八九十]+节\s+([^\n]+)', chunk)
+        if section_match:
+            chunk_info['section_title'] = section_match.group(1).strip()
+            if chunk_info['chapter_title']:
+                chunk_info['chapter_path'] = f"{chunk_info['chapter_title']} - {chunk_info['section_title']}"
+            else:
+                chunk_info['chapter_path'] = chunk_info['section_title']
+
+        return chunk_info
 
     def generate_embeddings(self, texts: List[str]) -> List[List[float]]:
         """
@@ -424,28 +594,44 @@ class DatabaseImporter:
 
 def main():
     """主函数"""
-    # 文件路径
-    json_path = "/home/ubuntu/myproject/zhenlikeji2/data/extracted/恶件肺脏疾病和哺脏少见病快速现场评价组学图谱-224_structured.json"
-    text_path = "/home/ubuntu/myproject/zhenlikeji2/data/extracted/text_stable/恶件肺脏疾病和哺脏少见病快速现场评价组学图谱-224_stable_extracted.txt"
+    import argparse
+
+    parser = argparse.ArgumentParser(description="导入PDF提取数据到数据库")
+    parser.add_argument("--json", help="结构化JSON文件路径",
+                       default="/home/ubuntu/myproject/zhenlikeji2/data/extracted/恶件肺脏疾病和哺脏少见病快速现场评价组学图谱-224_final_structured.json")
+    parser.add_argument("--text", help="纯文本文件路径",
+                       default="/home/ubuntu/myproject/zhenlikeji2/data/extracted/text_stable/恶件肺脏疾病和哺脏少见病快速现场评价组学图谱-224_extracted.txt")
+    parser.add_argument("--embedding", choices=["jina", "openai"], default="jina",
+                       help="嵌入模型类型")
+    parser.add_argument("--use-json", action="store_true", default=True,
+                       help="使用JSON文件")
+    parser.add_argument("--use-text", action="store_true", default=True,
+                       help="使用文本文件")
+
+    args = parser.parse_args()
 
     # 创建导入器
-    importer = DatabaseImporter(embedding_model="jina")
+    importer = DatabaseImporter(embedding_model=args.embedding)
 
     try:
         # 解析数据
         documents = []
 
         # 从JSON文件解析
-        if os.path.exists(json_path):
-            json_docs = importer.parse_structured_json(json_path)
+        if args.use_json and os.path.exists(args.json):
+            json_docs = importer.parse_structured_json(args.json)
             documents.extend(json_docs)
             logger.info(f"📊 从JSON文件获得 {len(json_docs)} 个文档")
+        elif args.use_json:
+            logger.warning(f"⚠️  JSON文件不存在: {args.json}")
 
         # 从文本文件解析
-        if os.path.exists(text_path):
-            text_docs = importer.parse_text_file(text_path)
+        if args.use_text and os.path.exists(args.text):
+            text_docs = importer.parse_text_file(args.text)
             documents.extend(text_docs)
             logger.info(f"📊 从文本文件获得 {len(text_docs)} 个文档")
+        elif args.use_text:
+            logger.warning(f"⚠️  文本文件不存在: {args.text}")
 
         if not documents:
             logger.error("❌ 没有找到任何文档数据")

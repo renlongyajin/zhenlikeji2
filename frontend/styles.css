@@ -380,6 +380,75 @@ body {
     color: #3498db;
 }
 
+.answer-content h4 {
+    color: #2c3e50;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 20px 0 10px 0;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #3498db;
+}
+
+.answer-content h5 {
+    color: #34495e;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 15px 0 8px 0;
+}
+
+.answer-content .answer-list {
+    margin: 10px 0;
+    padding-left: 25px;
+}
+
+.answer-content .answer-list li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.answer-content .answer-multi-line {
+    background: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.answer-content .answer-multi-line p {
+    margin-bottom: 10px;
+    padding: 5px 0;
+    border-bottom: 1px dashed #dee2e6;
+}
+
+.answer-content .answer-multi-line p:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+/* 医学专业术语高亮 */
+.answer-content .medical-term {
+    background: #e3f2fd;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #1976d2;
+    font-weight: 500;
+}
+
+/* 重要警告或提示 */
+.answer-content .important-note {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    border-left: 4px solid #f39c12;
+}
+
+.answer-content .important-note::before {
+    content: "⚠️ ";
+    font-size: 18px;
+}
+
 /* 推理过程 */
 .reasoning-steps {
     display: flex;
@@ -448,6 +517,54 @@ body {
 .source-title {
     font-weight: 600;
     color: #2c3e50;
+}
+
+/* 章节信息样式 */
+.chapter-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.chapter-title i {
+    color: #3498db;
+    font-size: 12px;
+}
+
+.section-title {
+    font-size: 13px;
+    color: #5a6c7d;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-left: 20px; /* 缩进显示 */
+}
+
+.section-title i {
+    color: #95a5a6;
+    font-size: 11px;
+}
+
+.no-chapter {
+    font-size: 13px;
+    color: #6c757d;
+    font-style: italic;
+}
+
+.source-info {
+    flex: 1;
+    min-width: 0; /* 防止flex溢出 */
+}
+
+.chapter-section-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .source-score {

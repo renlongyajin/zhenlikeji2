@@ -328,23 +328,66 @@ class LLMManager:
             logger.warning(f"⚠️ 提供者 {provider_name} 不可用，使用默认提供者")
             self.active_provider = 'mock'
 
-    async def generate_response(self, messages: List[Dict[str, str]], **kwargs) -> LLMResponse:
+    async def generate_response(self, messages, **kwargs) -> LLMResponse:
         """生成响应"""
         provider = self.providers.get(self.active_provider)
         if not provider:
             raise ValueError(f"LLM提供者 {self.active_provider} 未找到")
 
-        logger.info(f"🤖 使用 {self.active_provider} 提供者生成响应")
-        return await provider.generate_response(messages, **kwargs)
+        # 转换消息格式
+        converted_messages = self._convert_messages(messages)
 
-    def generate_response_sync(self, messages: List[Dict[str, str]], **kwargs) -> LLMResponse:
+        logger.info(f"🤖 使用 {self.active_provider} 提供者生成响应")
+        return await provider.generate_response(converted_messages, **kwargs)
+
+    def _convert_messages(self, messages):
+        """转换消息格式 - 支持LangChain Message对象和字典格式"""
+        converted_messages = []
+
+        for msg in messages:
+            if hasattr(msg, 'type') and hasattr(msg, 'content'):
+                # LangChain Message对象
+                if msg.type == 'system':
+                    role = 'system'
+                elif msg.type == 'human':
+                    role = 'user'
+                elif msg.type == 'ai':
+                    role = 'assistant'
+                elif msg.type == 'tool':
+                    role = 'tool'
+                else:
+                    role = 'user'  # 默认
+
+                converted_messages.append({
+                    'role': role,
+                    'content': str(msg.content)
+                })
+            elif isinstance(msg, dict):
+                # 字典格式
+                converted_messages.append({
+                    'role': msg.get('role', 'user'),
+                    'content': str(msg.get('content', ''))
+                })
+            else:
+                # 其他格式，尝试转换为字符串
+                converted_messages.append({
+                    'role': 'user',
+                    'content': str(msg)
+                })
+
+        return converted_messages
+
+    def generate_response_sync(self, messages, **kwargs) -> LLMResponse:
         """同步生成响应"""
         provider = self.providers.get(self.active_provider)
         if not provider:
             raise ValueError(f"LLM提供者 {self.active_provider} 未找到")
 
+        # 转换消息格式
+        converted_messages = self._convert_messages(messages)
+
         logger.info(f"🤖 使用 {self.active_provider} 提供者生成响应（同步）")
-        return provider.generate_response_sync(messages, **kwargs)
+        return provider.generate_response_sync(converted_messages, **kwargs)
 
     def generate_medical_answer(self, question: str, context: List[Dict[str, Any]], reasoning_history: List[Dict[str, Any]]) -> str:
         """生成医学答案"""

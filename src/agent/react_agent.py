@@ -462,6 +462,8 @@ Observation: 等待搜索结果..."""
                 "answer": result.get("final_answer", ""),
                 "confidence": result.get("confidence", 0.0),
                 "reasoning_steps": result.get("reasoning_steps", []),
+                "retrieved_docs": result.get("retrieved_docs", []),
+                "search_queries": result.get("search_queries", [question]),
                 "metadata": result.get("metadata", {})
             }
 
@@ -503,6 +505,8 @@ Observation: 等待搜索结果..."""
                 "answer": result.get("final_answer", ""),
                 "confidence": result.get("confidence", 0.0),
                 "reasoning_steps": result.get("reasoning_steps", []),
+                "retrieved_docs": result.get("retrieved_docs", []),
+                "search_queries": result.get("search_queries", [question]),
                 "metadata": result.get("metadata", {})
             }
 
