@@ -77,7 +77,7 @@ class DatabaseImporter:
             raise
 
         # 索引和集合名称
-        self.es_index = "medical_documents"
+        self.es_index = "medical_documents_fixed"
         self.milvus_collection = "medical_vectors"
 
         # 确保索引和集合存在

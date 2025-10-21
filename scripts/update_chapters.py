@@ -60,7 +60,7 @@ class ChapterUpdater:
         """初始化更新器"""
         self.es_host = es_host
         self.es_port = es_port
-        self.es_index = "medical_documents"
+        self.es_index = "medical_documents_fixed"
         self.es_client = None
         self._connect_elasticsearch()
 

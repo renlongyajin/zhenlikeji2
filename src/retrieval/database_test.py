@@ -27,7 +27,7 @@ class DatabaseTester:
         self.es_base_url = f"http://{es_host}:{es_port}"
         self.milvus_host = milvus_host
         self.milvus_port = milvus_port
-        self.es_index = "medical_documents"
+        self.es_index = "medical_documents_fixed"
         self.milvus_collection = "medical_vectors"
 
     def test_elasticsearch_connection(self):

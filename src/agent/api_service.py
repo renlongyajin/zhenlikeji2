@@ -497,9 +497,14 @@ async def root():
     }
 
 # 启动函数
-def run_api_service(host: str = "0.0.0.0", port: int = 8000, reload: bool = False):
+def run_api_service(host: str = "0.0.0.0", port: int = None, reload: bool = False):
     """运行API服务"""
     import uvicorn
+    import os
+
+    # 从环境变量读取端口，默认8001避免冲突
+    if port is None:
+        port = int(os.environ.get('API_PORT', '8001'))
 
     logger.info(f"🚀 启动API服务: {host}:{port}")
     uvicorn.run(

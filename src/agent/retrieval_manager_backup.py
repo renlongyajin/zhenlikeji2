@@ -32,9 +32,9 @@ class MedicalRetrievalManager:
     """医学检索管理器"""
 
     def __init__(self,
-                 es_host: str = "localhost",  # 修复：使用localhost而非elasticsearch
+                 es_host: str = "elasticsearch",
                  es_port: int = 9200,
-                 milvus_host: str = "localhost",  # 修复：使用localhost而非milvus
+                 milvus_host: str = "milvus",
                  milvus_port: int = 19530,
                  embedding_manager=None):
         """初始化检索管理器"""
@@ -42,8 +42,8 @@ class MedicalRetrievalManager:
         self.milvus_host = milvus_host
         self.milvus_port = milvus_port
         self.embedding_manager = embedding_manager
-        self.es_index = "medical_documents_fixed"  # 使用优化后的数据索引
-        self.milvus_collection = "medical_vectors_fixed"  # 使用优化后的向量集合
+        self.es_index = "medical_documents_fixed"
+        self.milvus_collection = "medical_vectors"
         self.milvus_connection_alias = "medical_retrieval"
 
         # 测试连接并建立持久连接
@@ -200,9 +200,12 @@ class MedicalRetrievalManager:
                         query, source.get('content', '')
                     )
 
-                    # 综合评分计算 - 改进版：根据ES分数质量动态调整权重
-                    enhanced_score = self._calculate_enhanced_score(
-                        base_score, title_priority_score, content_analysis, concept_analysis
+                    # 综合评分计算
+                    enhanced_score = (
+                        base_score * 0.6 +  # 基础搜索分数占60%
+                        title_priority_score * 0.3 +  # 标题优先级占30%
+                        (content_analysis['confidence'] * 5.0) * 0.05 +  # 内容类型占5%
+                        (concept_analysis['relevance_score'] * 0.5) * 0.05  # 概念识别占5%
                     )
 
                     search_results.append(SearchResult(
@@ -541,42 +544,8 @@ class MedicalRetrievalManager:
 
         return min(title_score, 25.0)  # 最高25分封顶
 
-    def _calculate_enhanced_score(self, base_score: float, title_priority_score: float,
-                                  content_analysis: Dict[str, Any], concept_analysis: Dict[str, Any]) -> float:
-        """
-        改进的评分计算算法 - 根据ES分数质量动态调整权重
-
-        问题：原始算法过度惩罚高ES分数的文档
-        解决方案：根据ES分数质量动态调整权重，更好地保留高质量结果
-        """
-        # 根据ES分数质量动态调整权重
-        if base_score >= 50:  # 高质量ES结果（如chunk_0019的66.39分）
-            base_weight = 0.85  # 保留85%的ES分数
-            title_weight = 0.10  # 降低标题权重
-            content_weight = 0.03  # 降低内容权重
-            concept_weight = 0.02  # 降低概念权重
-        elif base_score >= 20:  # 中等质量ES结果
-            base_weight = 0.75
-            title_weight = 0.15
-            content_weight = 0.07
-            concept_weight = 0.03
-        else:  # 低质量ES结果
-            base_weight = 0.60  # 原始权重
-            title_weight = 0.30
-            content_weight = 0.05
-            concept_weight = 0.05
-
-        # 计算改进的分数
-        enhanced_score = (
-            base_score * base_weight +
-            title_priority_score * title_weight +
-            (content_analysis['confidence'] * 5.0) * content_weight +
-            (concept_analysis['relevance_score'] * 0.5) * concept_weight
-        )
-
-        return enhanced_score
-
     def _apply_filters(self, results: List[SearchResult], filters: Dict[str, Any]) -> List[SearchResult]:
+        """应用过滤器"""
         filtered_results = []
 
         for result in results:

@@ -42,7 +42,7 @@ class OptimizedMedicalRetrievalManager:
         self.milvus_host = milvus_host
         self.milvus_port = milvus_port
         self.embedding_manager = embedding_manager
-        self.es_index = "medical_documents"
+        self.es_index = "medical_documents_fixed"
         self.milvus_collection = "medical_vectors"
         self.milvus_connection_alias = "medical_retrieval"
 

@@ -628,10 +628,10 @@ def create_default_rag_config() -> Dict[str, Any]:
     return {
         'llm': llm_config,
         'retrieval': {
-            'es_host': 'elasticsearch',
-            'es_port': 9200,
-            'milvus_host': 'milvus',
-            'milvus_port': 19530
+            'es_host': os.environ.get('ELASTICSEARCH_HOST', 'elasticsearch'),  # 使用环境变量，Docker环境默认为服务名
+            'es_port': int(os.environ.get('ELASTICSEARCH_PORT', '9200')),
+            'milvus_host': os.environ.get('MILVUS_HOST', 'milvus'),  # 使用环境变量，Docker环境默认为服务名
+            'milvus_port': int(os.environ.get('MILVUS_PORT', '19530'))
         },
         'embedding': {
             'type': 'jina'  # 使用可用的jina模型

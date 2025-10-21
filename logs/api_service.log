@@ -1,0 +1,39 @@
+INFO:     Started server process [169376]
+INFO:     Waiting for application startup.
+2025-10-21 19:06:24,853 - INFO - 🚀 启动RAG问答服务...
+2025-10-21 19:06:24,858 - INFO - ✅ 初始化嵌入模型: jina
+2025-10-21 19:06:24,858 - INFO - ✅ 嵌入管理器初始化成功: jina
+2025-10-21 19:06:24,935 - INFO - ✅ DeepSeek提供者初始化成功
+2025-10-21 19:06:24,935 - INFO - ✅ 千问提供者初始化成功
+2025-10-21 19:06:24,935 - INFO - ✅ 模拟LLM提供者初始化成功
+2025-10-21 19:06:24,935 - INFO - ✅ LLM管理器初始化成功
+2025-10-21 19:06:24,941 - INFO - ✅ Elasticsearch连接成功
+/home/ubuntu/miniconda3/envs/zhenlikeji/lib/python3.10/site-packages/pymilvus/client/__init__.py:6: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import DistributionNotFound, get_distribution
+2025-10-21 19:06:25,552 - ERROR - ❌ Milvus连接失败: <ConnectionNotExistException: (code=1, message=should create connect first.)>
+2025-10-21 19:06:25,555 - INFO - ✅ Milvus持久连接建立成功: medical_retrieval
+2025-10-21 19:06:25,555 - INFO - ✅ 检索管理器初始化成功
+2025-10-21 19:06:25,556 - WARNING - ⚠️ 嵌入管理器导入失败，使用模拟模式
+2025-10-21 19:06:25,614 - INFO - ✅ DeepSeek提供者初始化成功
+2025-10-21 19:06:25,615 - INFO - ✅ 千问提供者初始化成功
+2025-10-21 19:06:25,615 - INFO - ✅ 模拟LLM提供者初始化成功
+2025-10-21 19:06:25,615 - INFO - ✅ LLM管理器初始化成功
+2025-10-21 19:06:25,620 - INFO - ✅ Elasticsearch连接成功
+2025-10-21 19:06:25,625 - ERROR - ❌ Milvus连接失败: <ConnectionNotExistException: (code=1, message=should create connect first.)>
+2025-10-21 19:06:25,632 - INFO - ✅ Milvus持久连接建立成功: enhanced_retrieval
+2025-10-21 19:06:25,632 - INFO - ✅ 增强版检索管理器初始化完成
+2025-10-21 19:06:25,632 - INFO - ✅ 增强版检索管理器初始化成功
+2025-10-21 19:06:25,651 - INFO - ✅ LangGraph工作流构建完成
+2025-10-21 19:06:25,651 - INFO - ✅ LangGraph ReAct Agent 初始化完成
+2025-10-21 19:06:25,651 - INFO - ✅ LangGraph Agent初始化成功
+2025-10-21 19:06:25,651 - WARNING - ⚠️ 旧版RAG引擎初始化失败: name 'create_rag_engine' is not defined
+2025-10-21 19:06:25,652 - INFO - ✅ LangGraph RAG引擎初始化成功
+2025-10-21 19:06:25,652 - INFO - ✅ RAG引擎初始化成功
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:     127.0.0.1:58204 - "GET /health HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2025-10-21 19:06:53,976 - INFO - 🛑 关闭RAG问答服务...
+INFO:     Application shutdown complete.
+INFO:     Finished server process [169376]

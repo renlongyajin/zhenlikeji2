@@ -45,11 +45,11 @@ RUN useradd --create-home --shell /bin/bash app && \
 USER app
 
 # 暴露端口
-EXPOSE 8000
+EXPOSE 8001
 
 # 健康检查
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8000/health || exit 1
+    CMD curl -f http://localhost:8001/health || exit 1
 
-# 启动命令
-CMD ["python3", "-m", "uvicorn", "src.agent.api_service:app", "--host", "0.0.0.0", "--port", "8000", "--log-level", "info"]
+# 启动命令 - 使用环境变量端口
+CMD ["sh", "-c", "python3 -m uvicorn src.agent.api_service:app --host 0.0.0.0 --port ${API_PORT:-8001} --log-level info"]

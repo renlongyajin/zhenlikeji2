@@ -524,7 +524,7 @@ class EnhancedMedicalReActAgent:
 
         # Elasticsearch连接配置
         self.es_base_url = f"http://{es_host}:{es_port}"
-        self.es_index = "medical_documents"
+        self.es_index = "medical_documents_fixed"
 
         # 初始化章节智能模块
         self.chapter_intelligence = ChapterIntelligence(self.es_base_url, self.es_index)

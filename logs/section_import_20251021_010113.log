@@ -1,0 +1,29 @@
+2025-10-21 01:01:13,488 - INFO - HEAD http://localhost:9200/ [status:200 duration:0.004s]
+2025-10-21 01:01:13,488 - INFO - ✅ 成功连接到Elasticsearch
+2025-10-21 01:01:13,504 - INFO - ✅ 成功连接到Milvus
+2025-10-21 01:01:13,506 - INFO - ✅ 初始化嵌入模型: jina
+2025-10-21 01:01:13,506 - INFO - 动态检测嵌入向量维度...
+2025-10-21 01:01:13,506 - INFO - 🔄 开始编码 1 个文本
+2025-10-21 01:01:21,620 - INFO - ✅ 编码完成，获得 (1, 768) 的向量数组
+2025-10-21 01:01:21,620 - INFO - ✅ 初始化嵌入模型: jina (检测到维度: 768)
+2025-10-21 01:01:21,622 - INFO - HEAD http://localhost:9200/medical_sections [status:404 duration:0.002s]
+2025-10-21 01:01:21,755 - INFO - PUT http://localhost:9200/medical_sections [status:200 duration:0.132s]
+2025-10-21 01:01:21,755 - INFO - ✅ 创建Elasticsearch索引: medical_sections
+2025-10-21 01:01:22,282 - INFO - ✅ 创建Milvus集合: medical_section_vectors
+2025-10-21 01:01:23,804 - INFO - 📖 开始从JSON文件加载数据: data/processed_chunks.json
+2025-10-21 01:01:23,805 - INFO - ✅ 成功加载 54 个数据块
+2025-10-21 01:01:23,805 - INFO - 📤 开始向Elasticsearch导入数据，共 54 个文档...
+2025-10-21 01:01:23,832 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.025s]
+2025-10-21 01:01:23,833 - INFO - ✅ Elasticsearch导入完成: 成功 54 个, 失败 0 个
+2025-10-21 01:01:23,853 - INFO - POST http://localhost:9200/medical_sections/_refresh [status:200 duration:0.019s]
+2025-10-21 01:01:23,853 - INFO - 🧮 开始生成嵌入向量，共 54 个文本...
+2025-10-21 01:01:23,853 - INFO - 🔄 开始编码 54 个文本
+2025-10-21 01:01:42,919 - INFO - ✅ 编码完成，获得 (54, 768) 的向量数组
+2025-10-21 01:01:42,924 - INFO - ✅ 嵌入向量生成完成
+2025-10-21 01:01:42,924 - INFO - 📤 开始向Milvus导入数据，共 54 个向量...
+2025-10-21 01:01:45,999 - INFO - ✅ Milvus数据导入完成
+2025-10-21 01:01:46,001 - INFO - 📈 Milvus集合向量总数: 54
+2025-10-21 01:01:46,002 - INFO - 
+🎉 所有数据导入流程成功完成！
+2025-10-21 01:01:46,003 - INFO - 🔌 关闭Elasticsearch连接
+2025-10-21 01:01:46,005 - INFO - 🔌 关闭Milvus连接

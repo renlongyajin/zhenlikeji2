@@ -46,7 +46,7 @@ class EnhancedMedicalRetrievalManager:
         self.milvus_host = milvus_host
         self.milvus_port = milvus_port
         self.embedding_manager = embedding_manager
-        self.es_index = "medical_documents"
+        self.es_index = "medical_documents_fixed"
         self.milvus_collection = "medical_vectors"
         self.milvus_connection_alias = "enhanced_retrieval"
 
@@ -262,12 +262,9 @@ class EnhancedMedicalRetrievalManager:
                         query, source.get('content', '')
                     )
 
-                    # 综合评分计算（新权重分配）
-                    enhanced_score = (
-                        base_score * 0.4 +  # 基础搜索分数占40%
-                        title_priority_score * 0.4 +  # 标题优先级占40%
-                        (content_analysis['confidence'] * 8.0) * 0.1 +  # 内容类型占10%
-                        (medical_terms_analysis['relevance_score'] * 2.0) * 0.1  # 医学术语占10%
+                    # 综合评分计算（改进版：根据ES分数质量动态调整权重）
+                    enhanced_score = self._calculate_enhanced_score(
+                        base_score, title_priority_score, content_analysis, medical_terms_analysis
                     )
 
                     # 创建增强版搜索结果
@@ -344,6 +341,41 @@ class EnhancedMedicalRetrievalManager:
                 title_score += config['medical_term_bonus'] * 0.2
 
         return min(title_score, 50.0)  # 最高50分封顶
+
+    def _calculate_enhanced_score(self, base_score: float, title_priority_score: float,
+                                  content_analysis: Dict[str, Any], medical_terms_analysis: Dict[str, Any]) -> float:
+        """
+        改进的评分计算算法 - 根据ES分数质量动态调整权重
+
+        问题：原始算法过度惩罚高ES分数的文档（只保留40%的ES分数）
+        解决方案：根据ES分数质量动态调整权重，更好地保留高质量结果
+        """
+        # 根据ES分数质量动态调整权重
+        if base_score >= 50:  # 高质量ES结果（如chunk_0019的66.39分）
+            base_weight = 0.80  # 保留80%的ES分数（原来只有40%）
+            title_weight = 0.15  # 降低标题权重（原来40%）
+            content_weight = 0.03  # 降低内容权重（原来10%）
+            concept_weight = 0.02  # 降低概念权重（原来10%）
+        elif base_score >= 20:  # 中等质量ES结果
+            base_weight = 0.70
+            title_weight = 0.20
+            content_weight = 0.07
+            concept_weight = 0.03
+        else:  # 低质量ES结果
+            base_weight = 0.40  # 原始权重
+            title_weight = 0.40
+            content_weight = 0.10
+            concept_weight = 0.10
+
+        # 计算改进的分数
+        enhanced_score = (
+            base_score * base_weight +
+            title_priority_score * title_weight +
+            (content_analysis['confidence'] * 8.0) * content_weight +
+            (medical_terms_analysis['relevance_score'] * 2.0) * concept_weight
+        )
+
+        return enhanced_score
 
     def _analyze_enhanced_content_type(self, content: str, title: str = "") -> Dict[str, Any]:
         """增强版内容类型分析"""

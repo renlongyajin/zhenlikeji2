@@ -10,6 +10,7 @@ import logging
 import os
 from dotenv import load_dotenv
 from src.agent.enhanced_react_agent import EnhancedMedicalReActAgent
+from src.agent.react_agent import MedicalReActAgent
 from src.agent.llm_manager import LLMManager
 from src.agent.retrieval_manager import MedicalRetrievalManager
 from src.embedding.embedding_models import get_embedding_manager
@@ -70,6 +71,7 @@ def interactive_test():
 
         # 初始化增强版ReAct代理
         agent = EnhancedMedicalReActAgent(
+        # agent = MedicalReActAgent(
             llm_manager=llm_manager,
             retrieval_manager=retrieval_manager,
             embedding_manager=embedding_manager,
