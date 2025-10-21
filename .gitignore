@@ -1,5 +1,5 @@
-data
-restore_temp
-volumes
 backups
-**/__pycache__/
+data
+volumes
+useless
+__pycache__/
