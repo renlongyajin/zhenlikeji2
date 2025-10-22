@@ -8,6 +8,7 @@ const elements = {
     queryInput: document.getElementById('query-input'),
     searchBtn: document.getElementById('search-btn'),
     modelSelect: document.getElementById('model-select'),
+    embeddingModelSelect: document.getElementById('embedding-model-select'),  // 新增嵌入模型选择
     includeImages: document.getElementById('include-images'),
     showReasoning: document.getElementById('show-reasoning'),
     historySection: document.getElementById('history-section'),
@@ -189,6 +190,10 @@ async function handleSearch() {
         if (selectedModel !== 'mock') {
             requestData.search_config.model_provider = selectedModel;
         }
+
+        // 添加嵌入模型选择
+        const selectedEmbeddingModel = elements.embeddingModelSelect.value;
+        requestData.search_config.embedding_model = selectedEmbeddingModel;
 
         // 发送查询请求
         const startTime = Date.now();

@@ -92,7 +92,8 @@ def interactive_test():
             print("  - 黏液腺癌的细胞学特点有哪些？")
             print()
 
-            question = input("➤ 您的问题: ").strip()
+            # question = input("➤ 您的问题: ").strip()
+            question = "腺癌的图像特征是是什么？"
 
             if not question:
                 print("⚠️  问题不能为空，请重新输入")

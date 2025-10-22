@@ -47,7 +47,7 @@ class EnhancedMedicalRetrievalManager:
         self.milvus_port = milvus_port
         self.embedding_manager = embedding_manager
         self.es_index = "medical_documents_fixed"
-        self.milvus_collection = "medical_vectors"
+        self.milvus_collection = "medical_vectors_fixed"
         self.milvus_connection_alias = "enhanced_retrieval"
 
         # 测试连接并建立持久连接
@@ -74,8 +74,43 @@ class EnhancedMedicalRetrievalManager:
                 timeout=30
             )
             logger.info(f"✅ Milvus持久连接建立成功: {self.milvus_connection_alias}")
+
+            # 预加载集合并保持加载状态
+            self._preload_milvus_collection()
+
         except Exception as e:
             logger.error(f"❌ Milvus连接建立失败: {e}")
+
+    def _preload_milvus_collection(self):
+        """预加载Milvus集合并验证状态 - 使用milvus_data_test.py的成功模式"""
+        try:
+            from pymilvus import Collection, utility
+
+            # 获取集合并加载
+            collection = Collection(self.milvus_collection, using=self.milvus_connection_alias)
+
+            # 加载集合
+            collection.load()
+            logger.info(f"✅ Milvus集合 {self.milvus_collection} 加载指令已发送")
+
+            # 【关键修复】使用官方推荐的utility.wait_for_loading_complete()
+            # 这将确保我们等到集合100%加载完毕再继续，无论需要多长时间
+            logger.info("正在等待集合完全加载...")
+            utility.wait_for_loading_complete(
+                collection_name=self.milvus_collection,
+                using=self.milvus_connection_alias,
+                timeout=120  # 设置合理的超时时间
+            )
+            logger.info("✅ 集合已确认100%加载完成，准备搜索。")
+
+            # 验证加载状态
+            if collection.num_entities > 0:
+                logger.info(f"📊 集合包含 {collection.num_entities} 个实体")
+            else:
+                logger.warning(f"⚠️ 集合为空或加载异常")
+
+        except Exception as e:
+            logger.error(f"❌ 预加载Milvus集合失败: {e}")
 
     def _test_connections(self):
         """测试数据库连接"""
@@ -545,90 +580,92 @@ class EnhancedMedicalRetrievalManager:
             return []
 
     def _semantic_search_enhanced(self, query: str, top_k: int = 10) -> List[EnhancedSearchResult]:
-        """增强版语义搜索"""
+        """增强版语义搜索 - 使用milvus_data_test.py的成功模式"""
         logger.info(f"🔍 执行增强版语义搜索: '{query}'")
 
         try:
-            # 生成查询向量
+            # 生成查询向量 - 使用milvus_data_test.py的成功模式
             if self.embedding_manager:
-                query_vector = self.embedding_manager.encode_texts([query])[0]
+                # 【关键修复】直接使用[0]访问第一个元素，避免复杂的形状检测
+                query_vector = self.embedding_manager.encode(query)[0].tolist()
             else:
                 # 模拟向量
                 np.random.seed(hash(query) % 1000)
                 query_vector = np.random.random(768).tolist()
 
-            # Milvus向量搜索
+            # Milvus向量搜索 - 使用milvus_data_test.py的成功模式
             from pymilvus import Collection
-            collection = Collection(self.milvus_collection, using=self.milvus_connection_alias)
-            collection.load()
 
+            # 获取集合（假设已通过预加载）
+            collection = Collection(self.milvus_collection, using=self.milvus_connection_alias)
+
+            # 【关键修复】使用与成功脚本相同的搜索参数
             search_params = {
-                "metric_type": "COSINE",
-                "params": {"nprobe": 16}
+                "metric_type": "L2",
+                "params": {"nprobe": 10}  # 使用nprobe=10而不是16
             }
 
+            # 执行搜索
             results = collection.search(
                 data=[query_vector],
-                anns_field="vector",
+                anns_field="embedding",
                 param=search_params,
                 limit=top_k,
-                output_fields=["id", "page_number"],
-                using=self.milvus_connection_alias
+                output_fields=["id", "page_number", "chapter_title", "section_title"]
             )
 
             # 获取文档详细信息
             search_results = []
-            for result in results[0]:
-                doc_id = result.id
+            if results and results[0]:
+                for result in results[0]:
+                    doc_id = result.id
 
-                # 从Elasticsearch获取文档详细信息
-                doc_response = requests.get(
-                    f"{self.es_base_url}/{self.es_index}/_doc/{doc_id}",
-                    timeout=10
-                )
-
-                if doc_response.status_code == 200:
-                    doc_data = doc_response.json()['_source']
-
-                    # 计算语义相似度分数
-                    semantic_score = 1.0 / (1.0 + result.distance)
-
-                    # 内容质量分析
-                    content_analysis = self._analyze_enhanced_content_type(
-                        doc_data.get('content', ''),
-                        doc_data.get('chapter_title', '') + ' ' + doc_data.get('section_title', '')
+                    # 从Elasticsearch获取文档详细信息
+                    doc_response = requests.get(
+                        f"{self.es_base_url}/{self.es_index}/_doc/{doc_id}",
+                        timeout=10
                     )
 
-                    # 医学术语识别
-                    medical_analysis = self._identify_medical_terms_density(
-                        query, doc_data.get('content', '')
-                    )
+                    if doc_response.status_code == 200:
+                        doc_data = doc_response.json()['_source']
 
-                    # 综合评分
-                    final_score = (
-                        semantic_score * 0.7 +
-                        content_analysis['confidence'] * 0.2 +
-                        medical_analysis['relevance_score'] * 0.1
-                    )
+                        # 计算语义相似度分数
+                        semantic_score = 1.0 / (1.0 + result.distance)
 
-                    search_result = EnhancedSearchResult(
-                        content=doc_data.get('content', ''),
-                        score=final_score,
-                        source='milvus',
-                        page_number=getattr(result, 'page_number', 0),
-                        chapter_title=doc_data.get('chapter_title', ''),
-                        section_title=doc_data.get('section_title', ''),
-                        doc_id=doc_id,
-                        search_type='semantic',
-                        title_match_score=0.0,  # 语义搜索没有标题匹配分数
-                        content_quality_score=content_analysis['confidence'],
-                        is_descriptive=content_analysis['is_descriptive'],
-                        has_medical_terms=medical_analysis['has_medical_terms']
-                    )
+                        # 内容质量分析
+                        content_analysis = self._analyze_enhanced_content_type(
+                            doc_data.get('content', ''),
+                            doc_data.get('chapter_title', '') + ' ' + doc_data.get('section_title', '')
+                        )
 
-                    search_results.append(search_result)
+                        # 医学术语识别
+                        medical_analysis = self._identify_medical_terms_density(
+                            query, doc_data.get('content', '')
+                        )
 
-            collection.release()
+                        # 综合评分
+                        final_score = (
+                            semantic_score * 0.7 +
+                            content_analysis['confidence'] * 0.2 +
+                            medical_analysis['relevance_score'] * 0.1
+                        )
+
+                        search_result = EnhancedSearchResult(
+                            content=doc_data.get('content', ''),
+                            score=final_score,
+                            source='milvus',
+                            page_number=getattr(result, 'page_number', 0),
+                            chapter_title=doc_data.get('chapter_title', ''),
+                            section_title=doc_data.get('section_title', ''),
+                            doc_id=doc_id,
+                            search_type='semantic',
+                            title_match_score=0.0,  # 语义搜索没有标题匹配分数
+                            content_quality_score=content_analysis['confidence'],
+                            is_descriptive=content_analysis['is_descriptive'],
+                            has_medical_terms=medical_analysis['has_medical_terms']
+                        )
+
+                        search_results.append(search_result)
 
             logger.info(f"✅ 增强版语义搜索完成，找到 {len(search_results)} 个结果")
             return search_results

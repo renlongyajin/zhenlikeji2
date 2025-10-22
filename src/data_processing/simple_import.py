@@ -36,8 +36,12 @@ except ImportError as e:
 class SimpleImporter:
     """简单数据导入器 - 使用项目标准配置"""
 
-    def __init__(self):
-        """初始化导入器 - 使用项目标准配置"""
+    def __init__(self, embedding_model: str = None):
+        """初始化导入器 - 使用项目标准配置
+
+        Args:
+            embedding_model: 指定的嵌入模型类型 (jina 或 qwen3-0.6b)，默认为None使用环境变量配置
+        """
         # 从环境变量获取连接配置，使用项目标准配置
         # Docker环境使用不同的环境变量名
         self.es_host = os.environ.get('ELASTICSEARCH_HOST', 'elasticsearch')  # Docker服务名
@@ -52,10 +56,23 @@ class SimpleImporter:
 
         # 初始化嵌入模型
         try:
-            self.embedding_model = JinaEmbeddingModel()
+            # 如果指定了嵌入模型类型，使用指定的模型
+            if embedding_model:
+                if embedding_model == "qwen3-0.6b":
+                    from src.embedding.embedding_models import Qwen3EmbeddingModel
+                    self.embedding_model = Qwen3EmbeddingModel()
+                    logger.info("✅ 使用指定的千问3-0.6B嵌入模型")
+                else:
+                    # 默认使用Jina模型
+                    self.embedding_model = JinaEmbeddingModel()
+                    logger.info("✅ 使用指定的Jina嵌入模型")
+            else:
+                # 使用默认的Jina模型
+                self.embedding_model = JinaEmbeddingModel()
+                logger.info("✅ 使用默认的Jina嵌入模型")
+
             # 根据现有集合的维度调整，medical_vectors_fixed使用768维
             self.embedding_dimension = 768
-            logger.info("✅ Jina嵌入模型初始化成功")
             logger.info(f"使用适配的嵌入维度: {self.embedding_dimension}")
         except Exception as e:
             logger.error(f"嵌入模型初始化失败: {e}")
@@ -67,6 +84,10 @@ class SimpleImporter:
         logger.info(f"  Elasticsearch: {self.es_host}:{self.es_port} -> {self.es_index}")
         logger.info(f"  Milvus: {self.milvus_host}:{self.milvus_port} -> {self.milvus_collection}")
         logger.info(f"  嵌入维度: {self.embedding_dimension}")
+        if embedding_model:
+            logger.info(f"  嵌入模型: {embedding_model}")
+        else:
+            logger.info(f"  嵌入模型: 默认 (Jina)")
 
     def test_connections(self) -> bool:
         """测试数据库连接"""
@@ -114,9 +135,9 @@ class SimpleImporter:
         logger.info(f"加载切块数据: {json_file}")
 
         try:
-            # 支持相对路径和绝对路径
-            if not os.path.isabs(json_file):
-                json_file = os.path.join('data', json_file)
+            # # 支持相对路径和绝对路径
+            # if not os.path.isabs(json_file):
+            #     json_file = os.path.join('data', json_file)
 
             if not os.path.exists(json_file):
                 logger.error(f"文件不存在: {json_file}")
@@ -354,6 +375,12 @@ def main():
         action="store_true",
         help="仅测试连接，不执行导入"
     )
+    parser.add_argument(
+        "--embedding-model", "-e",
+        type=str,
+        default=None,
+        help="指定嵌入模型 (jina 或 qwen3-0.6b)，默认使用环境变量配置"
+    )
 
     args = parser.parse_args()
 
@@ -363,7 +390,12 @@ def main():
         return 1
 
     # 创建导入器
-    importer = SimpleImporter()
+    embedding_model = args.embedding_model
+    if embedding_model:
+        logger.info(f"使用指定的嵌入模型: {embedding_model}")
+        importer = SimpleImporter(embedding_model=embedding_model)
+    else:
+        importer = SimpleImporter()
 
     # 测试连接
     if args.test_only:

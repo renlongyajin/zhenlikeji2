@@ -1,0 +1,48 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: 调试 Milvus 单项测试",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/one_click_test.py",
+            "console": "integratedTerminal",
+            "args": [
+               
+            ],
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            
+                "name": "测试llm_question_generator",
+                "type": "python",
+                "request": "launch",
+                "program": "${workspaceFolder}/src/recall_test/llm_question_generator.py",
+                "console": "integratedTerminal",
+                "args": [
+                   
+                ],
+                "justMyCode": true,
+                "cwd": "${workspaceFolder}"
+            
+        },
+        {
+            
+            "name": "测试simple_interactive_test",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/simple_interactive_test.py",
+            "console": "integratedTerminal",
+            "args": [
+               
+            ],
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}"
+        
+    }
+    ]
+}

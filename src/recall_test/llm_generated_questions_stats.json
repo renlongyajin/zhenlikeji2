@@ -1,0 +1,74 @@
+{
+  "total_questions": 4,
+  "difficulty_distribution": {
+    "basic": 1,
+    "medium": 2,
+    "hard": 1
+  },
+  "type_distribution": {
+    "concept": 1,
+    "diagnosis": 1,
+    "differential": 1,
+    "case_analysis": 1
+  },
+  "category_distribution": {
+    "lung_cancer": 2,
+    "metastatic_tumor": 2
+  },
+  "chunk_coverage": {
+    "total_available": 44,
+    "total_used": 6,
+    "coverage_percentage": 13.636363636363635,
+    "unused_chunks": [
+      "chunk_0033",
+      "chunk_0044",
+      "chunk_0027",
+      "chunk_0034",
+      "chunk_0041",
+      "chunk_0003",
+      "chunk_0009",
+      "chunk_0035",
+      "chunk_0025",
+      "chunk_0008",
+      "chunk_0014",
+      "chunk_0043",
+      "chunk_0018",
+      "chunk_0026",
+      "chunk_0023",
+      "chunk_0017",
+      "chunk_0010",
+      "chunk_0007",
+      "chunk_0019",
+      "chunk_0032",
+      "chunk_0002",
+      "chunk_0006",
+      "chunk_0028",
+      "chunk_0001",
+      "chunk_0005",
+      "chunk_0040",
+      "chunk_0024",
+      "chunk_0012",
+      "chunk_0020",
+      "chunk_0037",
+      "chunk_0011",
+      "chunk_0022",
+      "chunk_0013",
+      "chunk_0004",
+      "chunk_0038",
+      "chunk_0042",
+      "chunk_0039",
+      "chunk_0015"
+    ],
+    "chunk_usage_frequency": {
+      "chunk_0016": 1,
+      "chunk_0021": 1,
+      "chunk_0031": 2,
+      "chunk_0029": 2,
+      "chunk_0036": 2,
+      "chunk_0030": 2
+    }
+  },
+  "avg_expected_chunks_per_question": 2.5,
+  "generation_timestamp": "2025-10-22T03:32:37.842542",
+  "model_used": "qwen3-max"
+}

@@ -234,6 +234,16 @@ class RAGEngine:
             if query.search_config and 'model_provider' in query.search_config:
                 self.llm_manager.set_active_provider(query.search_config['model_provider'])
 
+            # 设置嵌入模型（如果指定）
+            if query.search_config and 'embedding_model' in query.search_config:
+                embedding_model = query.search_config['embedding_model']
+                logger.info(f"🔄 切换嵌入模型为: {embedding_model}")
+                # 重新初始化嵌入管理器
+                from src.embedding.embedding_models import get_embedding_manager
+                self.embedding_manager = get_embedding_manager(embedding_model)
+                # 更新检索管理器中的嵌入管理器
+                self.retrieval_manager.embedding_manager = self.embedding_manager
+
             # 执行ReAct代理（处理同步/异步API差异）
             if hasattr(self.react_agent, 'process_query'):
                 # 增强版ReAct代理使用同步API
@@ -337,6 +347,16 @@ class RAGEngine:
             # 设置LLM提供者
             if query.search_config and 'model_provider' in query.search_config:
                 self.llm_manager.set_active_provider(query.search_config['model_provider'])
+
+            # 设置嵌入模型（如果指定）
+            if query.search_config and 'embedding_model' in query.search_config:
+                embedding_model = query.search_config['embedding_model']
+                logger.info(f"🔄 切换嵌入模型为: {embedding_model}")
+                # 重新初始化嵌入管理器
+                from src.embedding.embedding_models import get_embedding_manager
+                self.embedding_manager = get_embedding_manager(embedding_model)
+                # 更新检索管理器中的嵌入管理器
+                self.retrieval_manager.embedding_manager = self.embedding_manager
 
             # 执行ReAct代理
             agent_result = self.react_agent.process_question_sync(query.question)
@@ -603,6 +623,7 @@ def create_default_rag_config() -> Dict[str, Any]:
     # 从环境变量读取API密钥
     deepseek_api_key = os.environ.get('DEEPSEEK_API_KEY', '')
     qwen_api_key = os.environ.get('QWEN_API_KEY', '') or os.environ.get('DASHSCOPE_API_KEY', '')
+    qwen3_80b_api_key = os.environ.get('QWEN3_80B_API_KEY', '') or qwen_api_key  # 复用qwen_api_key作为备选
 
     # 只有当API密钥存在时才启用相应的提供者
     llm_config = {
@@ -615,9 +636,18 @@ def create_default_rag_config() -> Dict[str, Any]:
         'qwen': {
             'api_key': qwen_api_key or 'your-qwen-api-key',
             'base_url': 'https://dashscope.aliyuncs.com/api/v1',
-            'model': 'qwen-max'
+            'model': 'qwen3-max'  # 正确的qwen3-max模型名称
         }
     }
+
+    # 添加千问3-80b模型配置（使用硅基流动API）
+    siliconflow_api_key = os.environ.get('SILICONFLOW_API_KEY', '')
+    if siliconflow_api_key and len(siliconflow_api_key) > 10:
+        llm_config['qwen-80b'] = {
+            'api_key': siliconflow_api_key,
+            'base_url': 'https://api.siliconflow.cn/v1',
+            'model': 'Qwen/Qwen3-Next-80B-A3B-Thinking'  # 硅基流动的qwen3-80b模型
+        }
 
     # 如果环境变量中有有效的API密钥，则设置为默认提供者
     if deepseek_api_key and len(deepseek_api_key) > 10:

@@ -248,13 +248,13 @@ class MedicalRetrievalManager:
             collection.load()
 
             search_params = {
-                "metric_type": "COSINE",  # 修复：使用与集合索引一致的度量类型
-                "params": {"nprobe": 16}
+                "metric_type": "L2",  # 修复：使用与medical_vectors_fixed集合索引一致的度量类型
+                "params": {"nprobe": 10}
             }
 
             results = collection.search(
                 data=[query_vector],
-                anns_field="vector",
+                anns_field="embedding",  # 修复：medical_vectors_fixed集合使用embedding字段
                 param=search_params,
                 limit=top_k,
                 output_fields=["id", "page_number"],

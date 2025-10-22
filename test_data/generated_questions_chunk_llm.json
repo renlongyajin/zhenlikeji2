@@ -1,0 +1,3003 @@
+[
+  {
+    "id": "med_q_0001",
+    "question": "在恶性肺脏疾病和肺脏少见病的快速现场评价（ROSE）中，ROSE组学图谱的核心作用是什么？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "general",
+    "expected_answer": "ROSE组学图谱在恶性肺脏疾病和肺脏少见病中的核心作用是通过快速现场细胞学评估，提供实时的细胞形态学信息，辅助判断样本 adequacy、初步诊断及指导后续分子或组学检测策略。",
+    "related_concepts": [
+      "快速现场评价（ROSE）",
+      "肺脏恶性疾病",
+      "细胞组学图谱"
+    ],
+    "source_chapter": "",
+    "source_section": "",
+    "expected_chunk_ids": [
+      "chunk_0001"
+    ],
+    "keywords": [
+      "ROSE",
+      "肺脏疾病",
+      "组学图谱"
+    ],
+    "created_at": "2025-10-22T12:08:42.201951"
+  },
+  {
+    "id": "med_q_0002",
+    "question": "《恶性肺脏疾病和肺脏少见病 快速现场评价组学图谱》一书的ISBN号是什么？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "general",
+    "expected_answer": "ISBN 978-7-5235-1470-2",
+    "related_concepts": [
+      "图书在版编目（CIP）数据",
+      "出版物标识"
+    ],
+    "source_chapter": "",
+    "source_section": "扉页和版权信息",
+    "expected_chunk_ids": [
+      "chunk_0002"
+    ],
+    "keywords": [
+      "ISBN",
+      "快速现场评价组学图谱",
+      "图书出版信息"
+    ],
+    "created_at": "2025-10-22T12:08:53.402268"
+  },
+  {
+    "id": "med_q_0003",
+    "question": "在介入肺脏病学领域，ROSE（快速现场评价）的理论和技术体系是由哪位专家构建并被业内公认为现代ROSE学的奠基人？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "general",
+    "expected_answer": "冯靖教授构建了介入肺脏病快速现场评价学的理论和技术体系，是业内公认的现代快速现场评价学的奠基人和积极倡导者。",
+    "related_concepts": [
+      "快速现场评价（ROSE）",
+      "介入肺脏病学",
+      "ROSE理论体系"
+    ],
+    "source_chapter": "",
+    "source_section": "主编简介",
+    "expected_chunk_ids": [
+      "chunk_0003"
+    ],
+    "keywords": [
+      "冯靖",
+      "ROSE",
+      "奠基人"
+    ],
+    "created_at": "2025-10-22T12:08:59.526952"
+  },
+  {
+    "id": "med_q_0004",
+    "question": "在介入呼吸病学中，ROSE（快速现场评价）结合哪些技术手段用于探究肺部疑难与危重感染？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "general",
+    "expected_answer": "ROSE结合胸部影像学、宏基因组第二代测序和介入呼吸病快速现场评价技术，用于探究肺部疑难与危重感染。",
+    "related_concepts": [
+      "快速现场评价（ROSE）",
+      "宏基因组第二代测序",
+      "介入呼吸病学"
+    ],
+    "source_chapter": "",
+    "source_section": "主编简介",
+    "expected_chunk_ids": [
+      "chunk_0004"
+    ],
+    "keywords": [
+      "ROSE",
+      "胸部影像学",
+      "宏基因组测序"
+    ],
+    "created_at": "2025-10-22T12:09:04.930582"
+  },
+  {
+    "id": "med_q_0005",
+    "question": "在快速现场评价（ROSE）细胞组学中，专用耗材的专利属性及其临床意义是什么？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "general",
+    "expected_answer": "ROSE专用耗材（如鳄齿型活体取样钳、一次性使用细胞刷、防污染细胞刷、一次性使用内窥镜活体取样针等）均具有国家新型实用专利，其临床意义在于支持术者在现场同步完成诊断与治疗，并推动多项ROSE延伸应用技术的发展。",
+    "related_concepts": [
+      "快速现场评价（ROSE）",
+      "介入肺脏病学专用耗材",
+      "诊断与治疗同步化"
+    ],
+    "source_chapter": "",
+    "source_section": "主编简介",
+    "expected_chunk_ids": [
+      "chunk_0005"
+    ],
+    "keywords": [
+      "专用耗材",
+      "国家新型实用专利",
+      "快速现场评价延伸应用技术"
+    ],
+    "created_at": "2025-10-22T12:09:14.597820"
+  },
+  {
+    "id": "med_q_0006",
+    "question": "根据主编简介，其在呼吸系统疾病及急危重症领域熟练掌握的核心临床技能包括哪些？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "general",
+    "expected_answer": "主编熟练掌握的核心临床技能包括肺部影像（含肺结节）的判读、支气管镜介入技术及重症相关临床技能。",
+    "related_concepts": [
+      "支气管镜介入技术",
+      "肺部影像判读"
+    ],
+    "source_chapter": "",
+    "source_section": "主编简介",
+    "expected_chunk_ids": [
+      "chunk_0006"
+    ],
+    "keywords": [
+      "肺部影像",
+      "支气管镜介入技术",
+      "重症临床技能"
+    ],
+    "created_at": "2025-10-22T12:09:19.698573"
+  },
+  {
+    "id": "med_q_0007",
+    "question": "在诊断性介入肺脏病学操作中，ROSE（快速现场评价）的细胞组学具体指什么？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "general",
+    "expected_answer": "ROSE的细胞组学是指通过快速现场评价所获得的细胞形态、背景以及细胞群三维构象的综合分析。它基于多个细胞（即细胞群）之间的空间构成关系，借助‘定位细胞’，在二维细胞学平铺中部分还原靶部位活检或针吸标本的细胞群三维结构。",
+    "related_concepts": [
+      "快速现场评价（ROSE）",
+      "细胞组学",
+      "细胞群三维构象"
+    ],
+    "source_chapter": "",
+    "source_section": "前言",
+    "expected_chunk_ids": [
+      "chunk_0007"
+    ],
+    "keywords": [
+      "ROSE",
+      "细胞组学",
+      "三维构象"
+    ],
+    "created_at": "2025-10-22T12:09:25.587635"
+  },
+  {
+    "id": "med_q_0008",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞学评估中，'细胞及其成分浓染'这一特征指的是什么？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "general",
+    "expected_answer": "'细胞及其成分浓染'是指在快速现场评价（ROSE）中，恶性肿瘤细胞的细胞核或细胞质染色加深，呈现出比正常细胞更明显的嗜碱性或深染现象，是肺部实体恶性肿瘤常见的细胞学特点之一。",
+    "related_concepts": [
+      "ROSE细胞学特点",
+      "细胞浓染",
+      "肺部实体恶性肿瘤"
+    ],
+    "source_chapter": "",
+    "source_section": "目录",
+    "expected_chunk_ids": [
+      "chunk_0008"
+    ],
+    "keywords": [
+      "浓染",
+      "ROSE",
+      "肺部恶性肿瘤"
+    ],
+    "created_at": "2025-10-22T12:09:31.376047"
+  },
+  {
+    "id": "med_q_0009",
+    "question": "在ROSE细胞组学评估中，肺泡蛋白沉积症属于哪一类肺部疾病的范畴？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "general",
+    "expected_answer": "肺泡蛋白沉积症属于肺脏少见病的范畴，具体在《第四章 肺脏少见病的ROSE组学特征》第一节中进行阐述。",
+    "related_concepts": [
+      "肺脏少见病",
+      "ROSE细胞组学特征",
+      "肺泡蛋白沉积症"
+    ],
+    "source_chapter": "",
+    "source_section": "目录",
+    "expected_chunk_ids": [
+      "chunk_0009"
+    ],
+    "keywords": [
+      "肺泡蛋白沉积症",
+      "肺脏少见病",
+      "ROSE"
+    ],
+    "created_at": "2025-10-22T12:09:38.364648"
+  },
+  {
+    "id": "med_q_0010",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞学评估中，哪些细胞学特征提示恶性可能？请结合细胞体积、核质比（N/C）及核仁变化进行说明。",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "恶性细胞常表现为：①细胞体积显著增大或大小不等，较大恶性细胞直径常为较小者的2倍以上；②细胞核增大，核质比（N/C）增加，N/C > 1/2提示恶性可能（正常一般<1/3）；③核仁增大或大小不等，核仁长径与核长径之比（m/N）>0.25提示恶性可能，且可出现多个核仁。",
+    "related_concepts": [
+      "核质比（N/C）",
+      "核仁长径/核长径比（m/N）",
+      "恶性细胞形态学特征"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第一节 细胞及其成分径线增加",
+    "expected_chunk_ids": [
+      "chunk_0010"
+    ],
+    "keywords": [
+      "ROSE",
+      "肺部恶性肿瘤",
+      "细胞体积增大",
+      "核质比",
+      "核仁增大"
+    ],
+    "created_at": "2025-10-22T12:09:45.979386"
+  },
+  {
+    "id": "med_q_0011",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞学评估中，'细胞及其成分成角度'这一特征具体表现在哪些方面？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "在肺部实体恶性肿瘤的ROSE评估中，'细胞及其成分成角度'表现为：①恶性细胞整体呈多边形、多角形及各种不规则形；②细胞核呈不规则圆形、肾形、芽状、结节性肿病状及各种不规则形，甚至突出于细胞质；③核仁奇形怪状且边缘不规则。",
+    "related_concepts": [
+      "ROSE细胞学评估",
+      "恶性细胞形态学特征",
+      "肺部实体恶性肿瘤"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第二节 细胞及其成分成角度",
+    "expected_chunk_ids": [
+      "chunk_0011"
+    ],
+    "keywords": [
+      "成角度",
+      "恶性细胞",
+      "核仁不规则"
+    ],
+    "created_at": "2025-10-22T12:09:51.214614"
+  },
+  {
+    "id": "med_q_0012",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞学评估中，恶性细胞在染色特征上通常表现出哪些‘浓染’特点？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "恶性细胞整体染色较深且细胞质不均匀浓染；细胞核染色质浓集不均匀并深染；核仁不均匀浓染。",
+    "related_concepts": [
+      "ROSE细胞学评估",
+      "恶性肿瘤细胞形态学"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第三节 细胞及其成分浓染",
+    "expected_chunk_ids": [
+      "chunk_0012"
+    ],
+    "keywords": [
+      "浓染",
+      "细胞质",
+      "核仁"
+    ],
+    "created_at": "2025-10-22T12:10:00.700250"
+  },
+  {
+    "id": "med_q_0013",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞学评估中，'细胞成分增多'常表现为哪些核型异常特征？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "可表现为双核甚至多核、核仁数目增多（3～4个及以上）、以及出现多倍体或异倍体。",
+    "related_concepts": [
+      "ROSE细胞学评估",
+      "肺部实体恶性肿瘤",
+      "核型异常"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第四节 细胞成分增多",
+    "expected_chunk_ids": [
+      "chunk_0013"
+    ],
+    "keywords": [
+      "多核",
+      "核仁增多",
+      "异倍体"
+    ],
+    "created_at": "2025-10-22T12:10:05.185701"
+  },
+  {
+    "id": "med_q_0014",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞学评估中，'细胞核膜厚而浆膜相对菲薄'这一特征具体表现为哪些细胞形态学改变？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "表现为核膜增厚或核轮廓不清、退化、裸核；同时细胞膜相对菲薄，外缘不清，形状不规则。",
+    "related_concepts": [
+      "ROSE细胞学评估",
+      "肺部实体恶性肿瘤",
+      "细胞核膜改变"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第五节 细胞核膜厚而浆膜相对菲薄",
+    "expected_chunk_ids": [
+      "chunk_0014"
+    ],
+    "keywords": [
+      "核膜增厚",
+      "浆膜菲薄",
+      "裸核"
+    ],
+    "created_at": "2025-10-22T12:10:12.135906"
+  },
+  {
+    "id": "med_q_0015",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞学评估中，'细胞及其成分拥挤层叠'这一现象的主要细胞学特征包括哪些？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "恶性细胞相互拥挤、常趋于相互重叠且边界不清；细胞核数目增多并相互拥挤；核仁增多、排列紊乱且相互融合拥挤；染色质向细胞核周边浓集。",
+    "related_concepts": [
+      "ROSE（快速现场评价）",
+      "肺部实体恶性肿瘤细胞学特征",
+      "细胞拥挤层叠现象"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第六节 细胞及其成分拥挤层叠",
+    "expected_chunk_ids": [
+      "chunk_0015"
+    ],
+    "keywords": [
+      "细胞拥挤",
+      "核仁融合",
+      "染色质浓集"
+    ],
+    "created_at": "2025-10-22T12:10:19.685692"
+  },
+  {
+    "id": "med_q_0016",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞学评估中，'细胞及其成分排列紊乱'这一概念主要包含哪些典型细胞学特征？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "包括：①恶性细胞可排列成乳头状、腺泡状、桑甚状等，甚至形成三维结构或出现恶性细胞“自吞噬”；②细胞核畸形、大小不等、排列紊乱；③核仁排列紊乱、相互融合拥挤；④可出现病理核分裂；⑤染色体排列紊乱、失极性，可呈碎片样。",
+    "related_concepts": [
+      "恶性细胞形态学",
+      "细胞极性丧失"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第七节 细胞及其成分排列紊乱",
+    "expected_chunk_ids": [
+      "chunk_0016"
+    ],
+    "keywords": [
+      "排列紊乱",
+      "核畸形",
+      "病理核分裂"
+    ],
+    "created_at": "2025-10-22T12:10:25.241899"
+  },
+  {
+    "id": "med_q_0017",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞学检查中，什么是‘肿瘤素质’或‘阳性背景’？其典型组成成分包括哪些？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "‘肿瘤素质’或‘阳性背景’是指在肺部实体恶性肿瘤的ROSE细胞学背景中可见红细胞、炎症细胞及大量坏死细胞残影；若合并感染，还可出现中性粒细胞浸润。",
+    "related_concepts": [
+      "ROSE细胞学背景",
+      "肿瘤素质"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第八节 细胞背景分析",
+    "expected_chunk_ids": [
+      "chunk_0017"
+    ],
+    "keywords": [
+      "肿瘤素质",
+      "阳性背景",
+      "坏死细胞残影"
+    ],
+    "created_at": "2025-10-22T12:10:33.469455"
+  },
+  {
+    "id": "med_q_0018",
+    "question": "在肺腺癌的ROSE细胞组学评估中，分化较高与分化较低的腺癌在细胞形态和排列方式上有哪些典型区别？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "分化较高的肺腺癌表现为：①癌细胞大小较一致，呈圆形或立方形；②细胞质丰富、有空泡，呈“高分泌样”或“印戒样”；③呈贴壁样、腺泡样或乳头样排列；④细胞核大，染色质呈粗颗粒状，核仁大而清楚，可见多个。分化较低的肺腺癌则表现为：①癌细胞大小不一，单个散在或成团，结构性脱落，界限不清；②细胞核可偏于边缘，边缘隆起；③细胞核大，呈圆形或不规则形；④染色质浓集不均，细胞质少而嗜碱，可有透明空泡。",
+    "related_concepts": [
+      "肺腺癌",
+      "肿瘤分化程度",
+      "ROSE细胞组学"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第一节 腺癌",
+    "expected_chunk_ids": [
+      "chunk_0018"
+    ],
+    "keywords": [
+      "肺腺癌",
+      "高分化",
+      "低分化"
+    ],
+    "created_at": "2025-10-22T12:10:46.268643"
+  },
+  {
+    "id": "med_q_0019",
+    "question": "在ROSE细胞组学评估中，分化较高的肺鳞状细胞癌具有哪些典型的细胞形态学特征？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "分化较高的肺鳞癌在ROSE中表现为：①癌细胞呈不规则形（如不圆、多角、梭形），畸形明显，边缘相对清楚；②细胞质呈‘角化’的‘均匀石膏样’，以红染为主，部分表现为少浆甚至裸核；③细胞核染色质浓集深染，核大小不规则、成角度，畸形明显；④背景呈阳性。",
+    "related_concepts": [
+      "ROSE（快速现场评价）",
+      "肺鳞状细胞癌",
+      "肿瘤细胞分化"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第二节 鳞癌",
+    "expected_chunk_ids": [
+      "chunk_0019"
+    ],
+    "keywords": [
+      "鳞癌",
+      "高分化",
+      "ROSE细胞组学"
+    ],
+    "created_at": "2025-10-22T12:10:54.800691"
+  },
+  {
+    "id": "med_q_0020",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞组学评估中，小细胞癌的典型细胞形态学特征包括哪些？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "小细胞癌的典型ROSE细胞形态学特征包括：细胞相对较小，细胞质少或呈裸核（高核质比），核仁模糊不清或缺如，核染色质呈颗粒块状、不均匀的“鬼脸”样分布，癌细胞常呈队列状或镶嵌样排列（类似“脊椎骨样”），并密集成团；此外，常见坏死和核丝。",
+    "related_concepts": [
+      "ROSE（快速现场评价）",
+      "小细胞肺癌细胞学特征",
+      "高核质比"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第三节 小细胞癌",
+    "expected_chunk_ids": [
+      "chunk_0020"
+    ],
+    "keywords": [
+      "小细胞癌",
+      "鬼脸样核染色质",
+      "镶嵌样排列"
+    ],
+    "created_at": "2025-10-22T12:11:01.101212"
+  },
+  {
+    "id": "med_q_0021",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞组学评估中，大细胞神经内分泌癌的典型细胞学特征可概括为哪五个字？请简述其具体表现。",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "典型特征概括为“三大一少伴镶嵌”。具体表现为：细胞体积大、细胞核大、核仁大、细胞质少或中等量（可偏嗜碱性），癌细胞排列呈镶嵌样；此外，核染色质丰富呈粗颗粒状，病理性核分裂常见，细胞常成团，坏死多见。",
+    "related_concepts": [
+      "ROSE细胞组学",
+      "大细胞神经内分泌癌",
+      "肺部恶性肿瘤细胞学特征"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第四节 大细胞神经内分泌癌",
+    "expected_chunk_ids": [
+      "chunk_0021"
+    ],
+    "keywords": [
+      "三大一少伴镶嵌",
+      "大细胞神经内分泌癌",
+      "ROSE"
+    ],
+    "created_at": "2025-10-22T12:11:17.345238"
+  },
+  {
+    "id": "med_q_0022",
+    "question": "在ROSE细胞组学评估中，典型类癌的癌细胞具有哪些形态学特征？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "典型类癌的癌细胞中等大小，呈圆形或卵圆形，大小较一致，异型性较小；核染色质呈细颗粒状且分布均匀，核仁不明显；核分裂象不见或少见；细胞质少至中等量。",
+    "related_concepts": [
+      "典型类癌",
+      "ROSE细胞组学",
+      "神经内分泌肿瘤"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第五节 典型类癌",
+    "expected_chunk_ids": [
+      "chunk_0022"
+    ],
+    "keywords": [
+      "典型类癌",
+      "细胞形态",
+      "核染色质"
+    ],
+    "created_at": "2025-10-22T12:11:22.495618"
+  },
+  {
+    "id": "med_q_0023",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞组学评估中，不典型类癌的细胞学核心特征包括哪些？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "不典型类癌的细胞学核心特征包括：①癌细胞大小一致但较典型类癌更大，常见坏死及病理性核分裂；②细胞核呈圆形或卵圆形，染色质呈高密度椒盐样，可有核仁，核质比较高；③细胞排列方式呈巢状、菊形团样或实性片状。",
+    "related_concepts": [
+      "典型类癌",
+      "病理性核分裂",
+      "核质比"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第六节 不典型类癌",
+    "expected_chunk_ids": [
+      "chunk_0023"
+    ],
+    "keywords": [
+      "不典型类癌",
+      "ROSE",
+      "细胞组学"
+    ],
+    "created_at": "2025-10-22T12:11:30.160645"
+  },
+  {
+    "id": "med_q_0024",
+    "question": "在肺部黏液表皮样癌的ROSE细胞组学分型中，构成肿瘤的三种主要细胞类型及其典型形态特征分别是什么？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "肺部黏液表皮样癌由三种主要细胞类型构成：（1）黏液细胞，呈杯状或柱状，细胞质透明，核位于基底；（2）中间型细胞，形态较小，呈基底样或立方形，常以镶嵌状排列在黏液细胞下方；（3）表皮样细胞，呈多边形。",
+    "related_concepts": [
+      "ROSE细胞组学分型",
+      "肺部实体恶性肿瘤",
+      "黏液表皮样癌组织学特征"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第七节 黏液表皮样癌",
+    "expected_chunk_ids": [
+      "chunk_0024"
+    ],
+    "keywords": [
+      "黏液细胞",
+      "表皮样细胞",
+      "中间型细胞"
+    ],
+    "created_at": "2025-10-22T12:11:42.962866"
+  },
+  {
+    "id": "med_q_0025",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞组学评估中，腺样囊性癌的典型细胞学特征包括哪些？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "腺样囊性癌的典型ROSE细胞学特征包括：①癌细胞体积较小，呈圆形或卵圆形，大小均匀，核深染，细胞质少，核质比增高；②可见体积不一、红染的黏液样基质，其周围有基底样细胞围绕排列；③肿瘤细胞稀疏，浮于球团状黏液样基质上。",
+    "related_concepts": [
+      "ROSE（快速现场评价）",
+      "腺样囊性癌细胞学特征",
+      "肺部实体恶性肿瘤细胞组学分型"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第八节 腺样囊性癌",
+    "expected_chunk_ids": [
+      "chunk_0025"
+    ],
+    "keywords": [
+      "腺样囊性癌",
+      "黏液样基质",
+      "基底样细胞"
+    ],
+    "created_at": "2025-10-22T12:11:54.484142"
+  },
+  {
+    "id": "med_q_0026",
+    "question": "在肺部黏液腺癌的ROSE细胞组学检查中，癌细胞的主要形态学特征包括哪些？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "癌细胞体积小，呈柱状或立方形，核膜明显，小核仁；细胞单层排列，细胞质丰富，可见大小不一的分泌泡，细胞核比红细胞略大，呈圆形或椭圆形；常在黏液湖中紧密聚集成团。",
+    "related_concepts": [
+      "ROSE细胞组学",
+      "肺腺癌亚型",
+      "黏液湖"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第九节 黏液腺癌",
+    "expected_chunk_ids": [
+      "chunk_0026"
+    ],
+    "keywords": [
+      "黏液腺癌",
+      "癌细胞形态",
+      "ROSE"
+    ],
+    "created_at": "2025-10-22T12:12:00.550121"
+  },
+  {
+    "id": "med_q_0027",
+    "question": "腺泡细胞癌在ROSE细胞组学中的典型细胞形态和排列特征是什么？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "腺泡细胞癌的癌细胞呈圆形或多角形，细胞质丰富，呈嗜酸性或嗜碱性颗粒状；细胞核居中，多为圆形或卵圆形，核仁明显。癌细胞排列呈片状、巢状或腺泡状。",
+    "related_concepts": [
+      "腺泡细胞癌",
+      "ROSE细胞组学",
+      "涎腺肿瘤细胞学特征"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第十节 腺泡细胞癌",
+    "expected_chunk_ids": [
+      "chunk_0027"
+    ],
+    "keywords": [
+      "腺泡细胞癌",
+      "细胞质嗜酸性/嗜碱性",
+      "腺泡状排列"
+    ],
+    "created_at": "2025-10-22T12:12:05.840031"
+  },
+  {
+    "id": "med_q_0028",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞组学评估中，肉瘤样癌的典型细胞形态学特征包括哪些？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "肉瘤样癌的典型细胞形态学特征包括：癌细胞异型性明显，可见巨细胞样和梭形细胞样形态；细胞质丰富，部分呈泡沫样；细胞核大，可见大核仁；细胞常呈巢状或片状分布。",
+    "related_concepts": [
+      "肉瘤样癌",
+      "ROSE细胞组学分型",
+      "肺部恶性肿瘤细胞形态"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第十一节 肉瘤样癌",
+    "expected_chunk_ids": [
+      "chunk_0028"
+    ],
+    "keywords": [
+      "肉瘤样癌",
+      "巨细胞样",
+      "梭形细胞样"
+    ],
+    "created_at": "2025-10-22T12:12:12.177277"
+  },
+  {
+    "id": "med_q_0029",
+    "question": "在ROSE细胞组学检查中，分化好的转移性平滑肌肉瘤细胞具有哪些典型的形态学特征？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "metastatic_tumor",
+    "expected_answer": "分化好的转移性平滑肌肉瘤细胞在ROSE中通常散在或成片分布，细胞大小基本一致，呈较大的长梭形，细胞核细长、两端钝圆，核仁不明显，形态类似上皮样。",
+    "related_concepts": [
+      "ROSE（快速现场评价）",
+      "平滑肌肉瘤细胞形态",
+      "肿瘤细胞分化程度"
+    ],
+    "source_chapter": "第三章 其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点",
+    "source_section": "第一节 转移性平滑肌肉瘤",
+    "expected_chunk_ids": [
+      "chunk_0029"
+    ],
+    "keywords": [
+      "转移性平滑肌肉瘤",
+      "ROSE",
+      "分化好"
+    ],
+    "created_at": "2025-10-22T12:12:18.531839"
+  },
+  {
+    "id": "med_q_0030",
+    "question": "在ROSE细胞组学检查中，转移性肾透明细胞癌的典型细胞形态学特征包括哪些？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "metastatic_tumor",
+    "expected_answer": "转移性肾透明细胞癌在ROSE中表现为癌细胞较大，呈圆形或多边形，细胞质丰富且呈透明或弱嗜酸性，核仁隐显不一，肿瘤细胞常呈单片状分布。",
+    "related_concepts": [
+      "ROSE（快速现场评价）",
+      "转移性肿瘤细胞学特征",
+      "肾透明细胞癌肺转移"
+    ],
+    "source_chapter": "第三章 其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点",
+    "source_section": "第二节 转移性肾透明细胞癌",
+    "expected_chunk_ids": [
+      "chunk_0030"
+    ],
+    "keywords": [
+      "肾透明细胞癌",
+      "ROSE",
+      "透明细胞质"
+    ],
+    "created_at": "2025-10-22T12:12:26.389021"
+  },
+  {
+    "id": "med_q_0031",
+    "question": "在ROSE细胞组学检查中，转移性宫颈绒毛腺管状腺癌的典型细胞形态和结构特征是什么？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "metastatic_tumor",
+    "expected_answer": "肿瘤细胞呈低柱状，细胞核呈圆形，具有轻中度异型性，并可形成绒毛状和腺管状结构。",
+    "related_concepts": [
+      "ROSE细胞组学",
+      "转移性肺肿瘤",
+      "宫颈绒毛腺管状腺癌"
+    ],
+    "source_chapter": "第三章 其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点",
+    "source_section": "第三节 转移性宫颈绒毛腺管状腺癌",
+    "expected_chunk_ids": [
+      "chunk_0031"
+    ],
+    "keywords": [
+      "低柱状细胞",
+      "圆形细胞核",
+      "绒毛状和腺管状结构"
+    ],
+    "created_at": "2025-10-22T12:12:40.140345"
+  },
+  {
+    "id": "med_q_0032",
+    "question": "在急性髓系白血病肺浸润的ROSE细胞组学检查中，髓系原始细胞的典型形态学特征包括哪些？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "metastatic_tumor",
+    "expected_answer": "髓系原始细胞呈中等大小，圆形或类圆形；细胞质较少，呈透明的天蓝色或深蓝色，部分可见少量颗粒；细胞核较大，呈圆形或类圆形，居中或稍偏位，呈淡紫红色，核染色质呈细颗粒状，核仁隐显不一。",
+    "related_concepts": [
+      "髓系原始细胞",
+      "ROSE细胞组学",
+      "肺浸润"
+    ],
+    "source_chapter": "第三章 其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点",
+    "source_section": "第四节 急性髓系白血病肺浸润",
+    "expected_chunk_ids": [
+      "chunk_0032"
+    ],
+    "keywords": [
+      "急性髓系白血病",
+      "肺浸润",
+      "髓系原始细胞形态"
+    ],
+    "created_at": "2025-10-22T12:12:47.686036"
+  },
+  {
+    "id": "med_q_0033",
+    "question": "在ROSE细胞组学检查中，弥漫性大B细胞淋巴瘤的瘤细胞具有哪些典型形态学特征？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "metastatic_tumor",
+    "expected_answer": "瘤细胞核比正常淋巴细胞大两倍，呈卵圆形、圆形或多角形，核仁明显，细胞质少，可见多形性细胞核，部分细胞形态类似霍奇金细胞。",
+    "related_concepts": [
+      "ROSE细胞组学",
+      "弥漫性大B细胞淋巴瘤",
+      "淋巴瘤细胞形态学"
+    ],
+    "source_chapter": "第三章 其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点",
+    "source_section": "第五节 弥漫性大B细胞淋巴瘤",
+    "expected_chunk_ids": [
+      "chunk_0033"
+    ],
+    "keywords": [
+      "大B细胞",
+      "核仁明显",
+      "多形性细胞核"
+    ],
+    "created_at": "2025-10-22T12:12:53.398713"
+  },
+  {
+    "id": "med_q_0034",
+    "question": "套细胞淋巴瘤在ROSE细胞组学中的典型细胞形态特征是什么？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "metastatic_tumor",
+    "expected_answer": "套细胞淋巴瘤在ROSE细胞组学中表现为由小至中等大小、形态单一的瘤细胞组成，细胞质少，细胞核形态不规则，染色质浓集或较为分散，核仁不明显。",
+    "related_concepts": [
+      "小B细胞非霍奇金淋巴瘤",
+      "ROSE细胞组学",
+      "肺脏累及性淋巴瘤"
+    ],
+    "source_chapter": "第三章 其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点",
+    "source_section": "第六节 套细胞淋巴瘤",
+    "expected_chunk_ids": [
+      "chunk_0034"
+    ],
+    "keywords": [
+      "套细胞淋巴瘤",
+      "ROSE",
+      "细胞形态"
+    ],
+    "created_at": "2025-10-22T12:12:58.839972"
+  },
+  {
+    "id": "med_q_0035",
+    "question": "在ROSE细胞组学检查中，肺原发性黏膜相关淋巴组织结外边缘区淋巴瘤（MALT淋巴瘤）的典型细胞学特征是什么？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "metastatic_tumor",
+    "expected_answer": "低倍镜下表现为小至中等大小的淋巴样细胞弥漫性分布；高倍镜下瘤细胞形态类似单核细胞样细胞和小淋巴细胞，可伴有少量散在的免疫母细胞和中心母细胞，部分病例可见浆细胞分化。",
+    "related_concepts": [
+      "MALT淋巴瘤",
+      "ROSE细胞组学",
+      "肺原发性淋巴瘤"
+    ],
+    "source_chapter": "第三章 其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点",
+    "source_section": "第七节 黏膜相关淋巴组织结外边缘区淋巴瘤（MALT淋巴瘤）",
+    "expected_chunk_ids": [
+      "chunk_0035"
+    ],
+    "keywords": [
+      "MALT淋巴瘤",
+      "单核细胞样细胞",
+      "浆细胞分化"
+    ],
+    "created_at": "2025-10-22T12:13:04.246213"
+  },
+  {
+    "id": "med_q_0036",
+    "question": "在ROSE细胞组学检查中，转移性结肠腺癌的典型细胞形态学特征包括哪些？",
+    "question_type": "concept",
+    "difficulty": "basic",
+    "disease_category": "metastatic_tumor",
+    "expected_answer": "转移性结肠腺癌的癌细胞多呈柱形或杯状，细胞核呈圆形或椭圆形、深染且大小不一，细胞质内可见大量黏液。",
+    "related_concepts": [
+      "ROSE（快速现场评价）",
+      "转移性肺肿瘤细胞学特征",
+      "结肠腺癌细胞形态"
+    ],
+    "source_chapter": "第三章 其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点",
+    "source_section": "第八节 转移性结肠腺癌",
+    "expected_chunk_ids": [
+      "chunk_0036"
+    ],
+    "keywords": [
+      "柱形细胞",
+      "杯状细胞",
+      "细胞质黏液"
+    ],
+    "created_at": "2025-10-22T12:13:13.324310"
+  },
+  {
+    "id": "med_q_0037",
+    "question": "在ROSE细胞组学检查中，上皮型间皮瘤的典型细胞形态特征是什么？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "metastatic_tumor",
+    "expected_answer": "癌细胞形态基本一致，相对较小，呈立方状或多边形，细胞核多呈圆形。",
+    "related_concepts": [
+      "上皮型间皮瘤",
+      "ROSE细胞组学",
+      "肺部恶性肿瘤细胞形态"
+    ],
+    "source_chapter": "第三章 其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点",
+    "source_section": "第九节 上皮型间皮瘤",
+    "expected_chunk_ids": [
+      "chunk_0037"
+    ],
+    "keywords": [
+      "上皮型间皮瘤",
+      "立方状",
+      "圆形细胞核"
+    ],
+    "created_at": "2025-10-22T12:13:18.827057"
+  },
+  {
+    "id": "med_q_0038",
+    "question": "在肺泡蛋白沉积症（PAP）的ROSE检查中，光镜下典型的细胞组学特征是什么？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "rare_disease",
+    "expected_answer": "ROSE光镜下可见粉染颗粒状或云絮状的蛋白样物质；PAS染色呈阳性，经淀粉酶消化后PAS仍呈阳性，黏液卡红染色呈阴性。",
+    "related_concepts": [
+      "肺泡蛋白沉积症",
+      "ROSE细胞组学特征",
+      "PAS染色"
+    ],
+    "source_chapter": "第四章 肺脏少见病的ROSE组学特征",
+    "source_section": "第一节 肺泡蛋白沉积症",
+    "expected_chunk_ids": [
+      "chunk_0038"
+    ],
+    "keywords": [
+      "肺泡蛋白沉积症",
+      "ROSE",
+      "粉染颗粒状物质"
+    ],
+    "created_at": "2025-10-22T12:13:24.942465"
+  },
+  {
+    "id": "med_q_0039",
+    "question": "在ROSE光镜检查中，肺淀粉样物质沉积症的典型形态学特征是什么？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "rare_disease",
+    "expected_answer": "ROSE光镜下可见淀粉样物质为致密无定形、云絮状嗜氰物质聚集。",
+    "related_concepts": [
+      "淀粉样变性",
+      "快速现场评价（ROSE）",
+      "肺间质病变"
+    ],
+    "source_chapter": "第四章 肺脏少见病的ROSE组学特征",
+    "source_section": "第二节 肺淀粉样物质沉积症",
+    "expected_chunk_ids": [
+      "chunk_0039"
+    ],
+    "keywords": [
+      "淀粉样物质",
+      "ROSE",
+      "嗜氰物质"
+    ],
+    "created_at": "2025-10-22T12:13:29.127007"
+  },
+  {
+    "id": "med_q_0040",
+    "question": "在肉芽肿性多血管炎（GPA）的ROSE光镜检查中，以下哪项是最具特征性的细胞学表现？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "rare_disease",
+    "expected_answer": "不规则坏死区域内可见大量中性粒细胞和碎裂的细胞核，伴混杂的炎症细胞（包括淋巴细胞）。",
+    "related_concepts": [
+      "肉芽肿性多血管炎",
+      "ROSE细胞组学特征",
+      "中性粒细胞在GPA中的作用"
+    ],
+    "source_chapter": "第四章 肺脏少见病的ROSE组学特征",
+    "source_section": "第三节 肉芽肿性多血管炎",
+    "expected_chunk_ids": [
+      "chunk_0040"
+    ],
+    "keywords": [
+      "肉芽肿性多血管炎",
+      "ROSE",
+      "中性粒细胞"
+    ],
+    "created_at": "2025-10-22T12:13:35.011066"
+  },
+  {
+    "id": "med_q_0041",
+    "question": "在过敏性肺炎（hypersensitivity pneumonitis, HP）的亚急性期，ROSE光镜下最典型的细胞学特征是什么？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "rare_disease",
+    "expected_answer": "淋巴细胞优势分布，伴松散的非坏死性肉芽肿，主要由上皮样组织细胞聚集和淋巴细胞组成。",
+    "related_concepts": [
+      "过敏性肺炎",
+      "ROSE细胞学特征",
+      "非坏死性肉芽肿"
+    ],
+    "source_chapter": "第四章 肺脏少见病的ROSE组学特征",
+    "source_section": "第四节 过敏性肺炎",
+    "expected_chunk_ids": [
+      "chunk_0041"
+    ],
+    "keywords": [
+      "过敏性肺炎",
+      "ROSE",
+      "淋巴细胞",
+      "上皮样组织细胞",
+      "非坏死性肉芽肿"
+    ],
+    "created_at": "2025-10-22T12:13:40.412520"
+  },
+  {
+    "id": "med_q_0042",
+    "question": "在快速现场评价（ROSE）中，变态反应性支气管肺曲菌病（ABPA）最具特征性的细胞学和结构表现包括以下哪项？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "rare_disease",
+    "expected_answer": "嗜酸性粒细胞、嗜碱性粒细胞、夏科-莱登结晶和曲霉菌丝",
+    "related_concepts": [
+      "变态反应性支气管肺曲菌病",
+      "ROSE细胞组学特征",
+      "夏科-莱登结晶"
+    ],
+    "source_chapter": "第四章 肺脏少见病的ROSE组学特征",
+    "source_section": "第五节 变态反应性支气管肺曲菌病",
+    "expected_chunk_ids": [
+      "chunk_0042"
+    ],
+    "keywords": [
+      "ABPA",
+      "ROSE",
+      "曲霉菌丝",
+      "嗜酸性粒细胞",
+      "夏科-莱登结晶"
+    ],
+    "created_at": "2025-10-22T12:13:47.636284"
+  },
+  {
+    "id": "med_q_0043",
+    "question": "在急性纤维素性机化性肺炎（AFOP）的ROSE光镜检查中，以下哪项是其典型细胞组学特征？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "rare_disease",
+    "expected_answer": "纤维素样物质沉积，伴泡沫样巨噬细胞聚集、成纤维细胞聚集、Ⅱ型肺泡上皮细胞增生及淋巴细胞浸润。",
+    "related_concepts": [
+      "急性纤维素性机化性肺炎",
+      "ROSE光镜特征",
+      "机化性肺泡损伤"
+    ],
+    "source_chapter": "第四章 肺脏少见病的ROSE组学特征",
+    "source_section": "第六节 急性纤维素性机化性肺炎",
+    "expected_chunk_ids": [
+      "chunk_0043"
+    ],
+    "keywords": [
+      "AFOP",
+      "纤维素样物质",
+      "ROSE"
+    ],
+    "created_at": "2025-10-22T12:13:55.117899"
+  },
+  {
+    "id": "med_q_0044",
+    "question": "在急性纤维素性机化性肺炎（AFOP）的ROSE细胞组学检查中，最具特征性的镜下表现是什么？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "rare_disease",
+    "expected_answer": "ROSE涂片中可见大量纤维素样渗出物伴成纤维细胞聚集，形成机化性肺炎的典型表现，但缺乏典型闭塞性细支气管炎伴机化性肺炎（BOOP）中的Masson小体。",
+    "related_concepts": [
+      "急性纤维素性机化性肺炎",
+      "ROSE细胞组学特征",
+      "机化性肺炎"
+    ],
+    "source_chapter": "第四章 肺脏少见病的ROSE组学特征",
+    "source_section": "第六节 急性纤维素性机化性肺炎",
+    "expected_chunk_ids": [
+      "chunk_0044"
+    ],
+    "keywords": [
+      "急性纤维素性机化性肺炎",
+      "ROSE",
+      "纤维素样渗出"
+    ],
+    "created_at": "2025-10-22T12:14:01.955743"
+  },
+  {
+    "id": "med_q_0045",
+    "question": "在ROSE（快速现场评价）中，恶性肺脏疾病最常见的细胞学特征是什么？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "general",
+    "expected_answer": "恶性肺脏疾病在ROSE中最常见的细胞学特征包括细胞核增大、核浆比增高、核仁明显、核膜不规则以及细胞异型性显著。",
+    "related_concepts": [
+      "ROSE（快速现场评价）",
+      "肺脏恶性肿瘤细胞学特征"
+    ],
+    "source_chapter": "",
+    "source_section": "",
+    "expected_chunk_ids": [
+      "chunk_0001"
+    ],
+    "keywords": [
+      "ROSE",
+      "恶性肺脏疾病",
+      "细胞异型性"
+    ],
+    "created_at": "2025-10-22T12:14:07.239133"
+  },
+  {
+    "id": "med_q_0046",
+    "question": "根据《恶性肺脏疾病和肺脏少见病 快速现场评价组学图谱》一书的出版信息，该书的ISBN编号是多少？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "general",
+    "expected_answer": "ISBN 978-7-5235-1470-2",
+    "related_concepts": [
+      "图书在版编目（CIP）数据",
+      "出版物标识"
+    ],
+    "source_chapter": "",
+    "source_section": "扉页和版权信息",
+    "expected_chunk_ids": [
+      "chunk_0002"
+    ],
+    "keywords": [
+      "ISBN",
+      "快速现场评价组学图谱",
+      "出版信息"
+    ],
+    "created_at": "2025-10-22T12:14:14.712045"
+  },
+  {
+    "id": "med_q_0047",
+    "question": "根据提供的资料，冯靖教授在快速现场评价（ROSE）领域的主要学术贡献是什么？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "general",
+    "expected_answer": "冯靖教授构建了介入肺脏病快速现场评价学的理论和技术体系，是现代快速现场评价学的奠基人和积极倡导者，并主持编写了《诊断性介入肺脏病学快速现场评价临床实施指南》及相关报告模板和标准取材技术文献。",
+    "related_concepts": [
+      "快速现场评价（ROSE）",
+      "介入肺脏病学"
+    ],
+    "source_chapter": "",
+    "source_section": "主编简介",
+    "expected_chunk_ids": [
+      "chunk_0003"
+    ],
+    "keywords": [
+      "冯靖",
+      "ROSE",
+      "介入肺脏病学"
+    ],
+    "created_at": "2025-10-22T12:14:21.241210"
+  },
+  {
+    "id": "med_q_0048",
+    "question": "在介入呼吸病学中，ROSE（快速现场评价）结合哪些技术手段用于诊断肺部疑难与危重感染性疾病？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "general",
+    "expected_answer": "ROSE结合胸部影像学、宏基因组第二代测序（metagenomic next-generation sequencing）用于诊断肺部疑难与危重感染性疾病。",
+    "related_concepts": [
+      "快速现场评价（ROSE）",
+      "宏基因组第二代测序",
+      "介入呼吸病学"
+    ],
+    "source_chapter": "",
+    "source_section": "主编简介",
+    "expected_chunk_ids": [
+      "chunk_0004"
+    ],
+    "keywords": [
+      "ROSE",
+      "宏基因组测序",
+      "胸部影像学"
+    ],
+    "created_at": "2025-10-22T12:14:31.740117"
+  },
+  {
+    "id": "med_q_0049",
+    "question": "在快速现场评价（ROSE）指导下，以下哪种专用耗材可用于经支气管镜获取细胞学样本并具有国家新型实用专利？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "general",
+    "expected_answer": "一次性使用细胞刷（超细针刷）",
+    "related_concepts": [
+      "快速现场评价（ROSE）",
+      "介入肺脏病学"
+    ],
+    "source_chapter": "",
+    "source_section": "主编简介",
+    "expected_chunk_ids": [
+      "chunk_0005"
+    ],
+    "keywords": [
+      "一次性使用细胞刷",
+      "超细针刷",
+      "国家新型实用专利"
+    ],
+    "created_at": "2025-10-22T12:14:37.326701"
+  },
+  {
+    "id": "med_q_0050",
+    "question": "根据主编的临床专长描述，其在呼吸系统疾病诊治中特别强调对哪类影像学表现的判读能力？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "general",
+    "expected_answer": "肺部影像（含肺结节）的判读",
+    "related_concepts": [
+      "肺结节",
+      "肺部影像判读",
+      "呼吸系统疾病诊断"
+    ],
+    "source_chapter": "",
+    "source_section": "主编简介",
+    "expected_chunk_ids": [
+      "chunk_0006"
+    ],
+    "keywords": [
+      "肺部影像",
+      "肺结节",
+      "判读"
+    ],
+    "created_at": "2025-10-22T12:14:43.188095"
+  },
+  {
+    "id": "med_q_0051",
+    "question": "在诊断性介入肺脏病学操作中，ROSE（快速现场评价）技术所获取的细胞组学信息主要包括哪些要素？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "general",
+    "expected_answer": "ROSE判读所得的细胞形态、背景及细胞群三维构象即为ROSE的细胞组学。",
+    "related_concepts": [
+      "快速现场评价（ROSE）",
+      "细胞组学",
+      "细胞群三维构象"
+    ],
+    "source_chapter": "",
+    "source_section": "前言",
+    "expected_chunk_ids": [
+      "chunk_0007"
+    ],
+    "keywords": [
+      "ROSE",
+      "细胞形态",
+      "细胞组学"
+    ],
+    "created_at": "2025-10-22T12:14:48.038640"
+  },
+  {
+    "id": "med_q_0052",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞学评估中，以下哪一项是腺癌最常表现出的基本细胞学特点？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "general",
+    "expected_answer": "细胞及其成分径线增加、细胞成分增多、细胞核膜厚而浆膜相对菲薄，以及细胞排列紊乱等特征常见于腺癌，但根据第一章所述，这些属于肺部实体恶性肿瘤的共性ROSE特点；而腺癌的具体分型要点详见第二章第一节。因此，本题考察的是对肺部恶性肿瘤共性ROSE特征的掌握，正确答案应为第一章中列出的任一基本特点，如‘细胞及其成分径线增加’。",
+    "related_concepts": [
+      "ROSE细胞学特点",
+      "肺腺癌",
+      "细胞径线增加"
+    ],
+    "source_chapter": "",
+    "source_section": "目录",
+    "expected_chunk_ids": [
+      "chunk_0008"
+    ],
+    "keywords": [
+      "ROSE",
+      "肺部实体恶性肿瘤",
+      "腺癌"
+    ],
+    "created_at": "2025-10-22T12:14:57.305196"
+  },
+  {
+    "id": "med_q_0053",
+    "question": "在ROSE细胞组学检查中，急性髓系白血病肺浸润的典型表现最可能出现在以下哪一章节内容中？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "general",
+    "expected_answer": "第三章第四节（急性髓系白血病肺浸润，页码119）",
+    "related_concepts": [
+      "急性髓系白血病",
+      "肺浸润",
+      "ROSE细胞组学"
+    ],
+    "source_chapter": "",
+    "source_section": "目录",
+    "expected_chunk_ids": [
+      "chunk_0009"
+    ],
+    "keywords": [
+      "急性髓系白血病",
+      "肺浸润",
+      "ROSE"
+    ],
+    "created_at": "2025-10-22T12:15:03.838773"
+  },
+  {
+    "id": "med_q_0054",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞学评估中，以下哪项细胞学特征最直接提示恶性可能？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "核质比（N/C）>1/2",
+    "related_concepts": [
+      "核质比（N/C）",
+      "恶性细胞形态学特征",
+      "ROSE快速现场评价"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第一节 细胞及其成分径线增加",
+    "expected_chunk_ids": [
+      "chunk_0010"
+    ],
+    "keywords": [
+      "核质比",
+      "恶性细胞",
+      "ROSE"
+    ],
+    "created_at": "2025-10-22T12:15:09.792876"
+  },
+  {
+    "id": "med_q_0055",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞学评估中，以下哪项最能反映恶性细胞的典型形态学特征？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "恶性细胞整体呈多边形、多角形或不规则形，细胞核呈不规则圆形、肾形、芽状或结节性肿病状，核仁奇形怪状且边缘不规则。",
+    "related_concepts": [
+      "ROSE细胞学评估",
+      "肺部实体恶性肿瘤细胞形态"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第二节 细胞及其成分成角度",
+    "expected_chunk_ids": [
+      "chunk_0011"
+    ],
+    "keywords": [
+      "恶性细胞成角度",
+      "核仁不规则",
+      "细胞核不规则形"
+    ],
+    "created_at": "2025-10-22T12:15:16.959489"
+  },
+  {
+    "id": "med_q_0056",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞学评估中，以下哪项最符合恶性细胞的典型染色特征？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "恶性细胞整体染色较深，细胞质不均匀浓染；细胞核染色质浓集不均匀并深染；核仁不均匀浓染。",
+    "related_concepts": [
+      "ROSE细胞学评估",
+      "恶性肿瘤细胞染色特征"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第三节 细胞及其成分浓染",
+    "expected_chunk_ids": [
+      "chunk_0012"
+    ],
+    "keywords": [
+      "浓染",
+      "细胞质不均匀浓染",
+      "核仁不均匀浓染"
+    ],
+    "created_at": "2025-10-22T12:15:24.426569"
+  },
+  {
+    "id": "med_q_0057",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞学检查中，以下哪项细胞学特征最符合恶性肿瘤细胞成分增多的表现？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "细胞可出现双核甚至多核，核仁数目达3～4个及以上，并可见多倍体或异倍体。",
+    "related_concepts": [
+      "ROSE细胞学评估",
+      "肺部恶性肿瘤细胞特征"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第四节 细胞成分增多",
+    "expected_chunk_ids": [
+      "chunk_0013"
+    ],
+    "keywords": [
+      "多核",
+      "核仁增多",
+      "异倍体"
+    ],
+    "created_at": "2025-10-22T12:15:30.143858"
+  },
+  {
+    "id": "med_q_0058",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞学评估中，若观察到细胞核膜增厚、核轮廓不清或出现裸核，同时细胞膜相对菲薄、外缘不清且形状不规则，这一形态学特征最符合以下哪项描述？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "肺部实体恶性肿瘤的典型ROSE细胞学特点，表现为核膜增厚或核轮廓不清、退化、裸核，以及细胞膜相对菲薄、外缘不清、形状不规则。",
+    "related_concepts": [
+      "ROSE细胞学评估",
+      "肺部实体恶性肿瘤",
+      "细胞核膜改变"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第五节 细胞核膜厚而浆膜相对菲薄",
+    "expected_chunk_ids": [
+      "chunk_0014"
+    ],
+    "keywords": [
+      "核膜增厚",
+      "细胞膜菲薄",
+      "裸核"
+    ],
+    "created_at": "2025-10-22T12:15:35.847588"
+  },
+  {
+    "id": "med_q_0059",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞学检查中，以下哪项最典型地反映了恶性细胞的拥挤层叠特征？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "恶性细胞相互拥挤、重叠，边界不清，细胞核数目增多且相互拥挤，核仁增多、排列紊乱并相互融合，染色质向核周边浓集。",
+    "related_concepts": [
+      "ROSE细胞学评估",
+      "肺部恶性肿瘤细胞形态学"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第六节 细胞及其成分拥挤层叠",
+    "expected_chunk_ids": [
+      "chunk_0015"
+    ],
+    "keywords": [
+      "细胞拥挤",
+      "核重叠",
+      "染色质周边浓集"
+    ],
+    "created_at": "2025-10-22T12:15:43.138462"
+  },
+  {
+    "id": "med_q_0060",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞学评估中，以下哪项最典型地反映了恶性细胞的排列紊乱特征？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "恶性细胞可排列成乳头状、腺泡状、桑甚状等，甚至形成三维结构或出现恶性细胞“自吞噬”；同时细胞核大小不等、排列紊乱，核仁相互融合拥挤，染色体失极性并呈碎片样。",
+    "related_concepts": [
+      "细胞排列紊乱",
+      "核异型性",
+      "ROSE细胞学特征"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第七节 细胞及其成分排列紊乱",
+    "expected_chunk_ids": [
+      "chunk_0016"
+    ],
+    "keywords": [
+      "排列紊乱",
+      "恶性细胞",
+      "ROSE"
+    ],
+    "created_at": "2025-10-22T12:15:49.665067"
+  },
+  {
+    "id": "med_q_0061",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞学检查中，以下哪项背景特征最支持‘肿瘤素质或阳性背景’的判断？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "背景可见红细胞、炎症细胞及大量坏死细胞残影。",
+    "related_concepts": [
+      "肿瘤素质",
+      "阳性背景",
+      "ROSE细胞学背景分析"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第八节 细胞背景分析",
+    "expected_chunk_ids": [
+      "chunk_0017"
+    ],
+    "keywords": [
+      "红细胞",
+      "炎症细胞",
+      "坏死细胞残影"
+    ],
+    "created_at": "2025-10-22T12:15:54.103011"
+  },
+  {
+    "id": "med_q_0062",
+    "question": "在ROSE细胞组学检查中，肺腺癌分化较高时的典型细胞学特征不包括以下哪一项？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "细胞大小不一，界限不清",
+    "related_concepts": [
+      "肺腺癌",
+      "ROSE快速现场评价",
+      "肿瘤分化程度"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第一节 腺癌",
+    "expected_chunk_ids": [
+      "chunk_0018"
+    ],
+    "keywords": [
+      "肺腺癌",
+      "高分化",
+      "ROSE细胞学特征"
+    ],
+    "created_at": "2025-10-22T12:16:09.678806"
+  },
+  {
+    "id": "med_q_0063",
+    "question": "在ROSE细胞组学检查中，分化较高的肺鳞癌细胞最典型的细胞质特征是什么？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "细胞质呈“角化”的“均匀石膏样”，红染为主，部分表现为“少浆”甚至“裸核”。",
+    "related_concepts": [
+      "肺鳞状细胞癌",
+      "ROSE快速现场评价",
+      "肿瘤细胞分化"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第二节 鳞癌",
+    "expected_chunk_ids": [
+      "chunk_0019"
+    ],
+    "keywords": [
+      "鳞癌",
+      "分化较高",
+      "角化",
+      "石膏样细胞质",
+      "ROSE"
+    ],
+    "created_at": "2025-10-22T12:16:14.487353"
+  },
+  {
+    "id": "med_q_0064",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞组学评估中，以下哪项细胞学特征最典型地提示小细胞癌？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "癌细胞体积小，细胞质少或呈裸核（高核质比），核仁模糊或缺如，核染色质呈颗粒块状、不均匀‘鬼脸’样分布，细胞常呈镶嵌样或队列状排列，并密集成团。",
+    "related_concepts": [
+      "ROSE快速现场评价",
+      "小细胞癌细胞学特征",
+      "高核质比"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第三节 小细胞癌",
+    "expected_chunk_ids": [
+      "chunk_0020"
+    ],
+    "keywords": [
+      "小细胞癌",
+      "鬼脸样核",
+      "镶嵌样排列"
+    ],
+    "created_at": "2025-10-22T12:16:20.405929"
+  },
+  {
+    "id": "med_q_0065",
+    "question": "在ROSE细胞组学检查中，大细胞神经内分泌癌最具特征性的细胞形态学表现是什么？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "“三大一少伴镶嵌”：即细胞体积大、细胞核大、核仁大、细胞质少，癌细胞排列呈镶嵌样。",
+    "related_concepts": [
+      "ROSE细胞组学",
+      "大细胞神经内分泌癌",
+      "细胞形态学特征"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第四节 大细胞神经内分泌癌",
+    "expected_chunk_ids": [
+      "chunk_0021"
+    ],
+    "keywords": [
+      "三大一少",
+      "镶嵌样排列",
+      "核仁大"
+    ],
+    "created_at": "2025-10-22T12:16:25.521149"
+  },
+  {
+    "id": "med_q_0066",
+    "question": "在ROSE细胞组学检查中，典型类癌的癌细胞通常具有以下哪项形态学特征？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "癌细胞中等大小，呈圆形或卵圆形，大小较一致，异型性较小，核染色质呈细颗粒状且分布均匀，核仁不明显，核分裂象不见或少见，细胞质少至中等量。",
+    "related_concepts": [
+      "典型类癌",
+      "ROSE细胞组学",
+      "肺部神经内分泌肿瘤"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第五节 典型类癌",
+    "expected_chunk_ids": [
+      "chunk_0022"
+    ],
+    "keywords": [
+      "典型类癌",
+      "ROSE",
+      "细胞形态"
+    ],
+    "created_at": "2025-10-22T12:16:35.152648"
+  },
+  {
+    "id": "med_q_0067",
+    "question": "在ROSE细胞组学检查中，以下哪项特征最符合肺部不典型类癌的细胞学表现？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "癌细胞大小一致但较典型类癌大，常见坏死及病理性核分裂；细胞核呈圆形或卵圆形，染色质呈高密度椒盐样，可有核仁，核质比较高；细胞排列呈巢状、菊形团样或实性片状。",
+    "related_concepts": [
+      "不典型类癌",
+      "ROSE细胞组学",
+      "肺部神经内分泌肿瘤"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第六节 不典型类癌",
+    "expected_chunk_ids": [
+      "chunk_0023"
+    ],
+    "keywords": [
+      "不典型类癌",
+      "ROSE",
+      "病理性核分裂"
+    ],
+    "created_at": "2025-10-22T12:16:44.669700"
+  },
+  {
+    "id": "med_q_0068",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞组学评估中，若观察到由黏液细胞、表皮样细胞及中间型细胞共同组成的细胞群，其中黏液细胞呈杯状或柱状、胞质透明、核位于基底，中间型细胞呈基底样或立方形并镶嵌排列于黏液细胞下方，表皮样细胞呈多边形，最可能的诊断是什么？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "黏液表皮样癌",
+    "related_concepts": [
+      "ROSE细胞组学",
+      "肺部实体恶性肿瘤",
+      "细胞形态学特征"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第七节 黏液表皮样癌",
+    "expected_chunk_ids": [
+      "chunk_0024"
+    ],
+    "keywords": [
+      "黏液表皮样癌",
+      "黏液细胞",
+      "表皮样细胞"
+    ],
+    "created_at": "2025-10-22T12:16:50.426608"
+  },
+  {
+    "id": "med_q_0069",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞组学检查中，以下哪项特征最符合腺样囊性癌的典型表现？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "癌细胞体积较小，呈圆形或卵圆形，大小均匀，核深染，细胞质少，核质比增高；可见体积不一、红染的黏液样基质周围有基底样细胞围绕排列；肿瘤细胞稀疏，浮于球团状黏液样基质上。",
+    "related_concepts": [
+      "ROSE（快速现场评价）",
+      "腺样囊性癌细胞学特征",
+      "肺部实体恶性肿瘤细胞组学分型"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第八节 腺样囊性癌",
+    "expected_chunk_ids": [
+      "chunk_0025"
+    ],
+    "keywords": [
+      "腺样囊性癌",
+      "黏液样基质",
+      "基底样细胞"
+    ],
+    "created_at": "2025-10-22T12:16:56.714283"
+  },
+  {
+    "id": "med_q_0070",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞组学检查中，以下哪项最符合黏液腺癌的典型细胞学特征？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "癌细胞在黏液湖中紧密聚集成团，体积小，呈柱状或立方形，核膜明显，具小核仁；或癌细胞呈单层排列，细胞质丰富，含大小不一的分泌泡，细胞核比红细胞略大，呈圆形或椭圆形。",
+    "related_concepts": [
+      "ROSE快速现场评价",
+      "肺黏液腺癌细胞学特征",
+      "分泌性腺癌细胞形态"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第九节 黏液腺癌",
+    "expected_chunk_ids": [
+      "chunk_0026"
+    ],
+    "keywords": [
+      "黏液湖",
+      "柱状或立方形癌细胞",
+      "分泌泡"
+    ],
+    "created_at": "2025-10-22T12:17:02.294173"
+  },
+  {
+    "id": "med_q_0071",
+    "question": "在ROSE细胞组学检查中，腺泡细胞癌的典型细胞学特征包括以下哪项？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "癌细胞呈圆形或多角形，细胞质丰富呈嗜酸性或嗜碱性颗粒状，细胞核居中、多为圆形或卵圆形，核仁明显，细胞排列呈片状、巢状或腺泡状。",
+    "related_concepts": [
+      "腺泡细胞癌",
+      "ROSE细胞组学",
+      "涎腺肿瘤"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第十节 腺泡细胞癌",
+    "expected_chunk_ids": [
+      "chunk_0027"
+    ],
+    "keywords": [
+      "腺泡细胞癌",
+      "嗜酸性颗粒",
+      "腺泡状排列"
+    ],
+    "created_at": "2025-10-22T12:17:15.679053"
+  },
+  {
+    "id": "med_q_0072",
+    "question": "在肺部实体恶性肿瘤的ROSE细胞组学评估中，肉瘤样癌的典型细胞形态学特征包括以下哪项？",
+    "question_type": "diagnosis",
+    "difficulty": "basic",
+    "disease_category": "lung_cancer",
+    "expected_answer": "癌细胞异型明显，可见巨细胞样和梭形细胞样形态；细胞质丰富，部分呈泡沫样；细胞核大，可见大核仁，呈巢状或片状分布。",
+    "related_concepts": [
+      "肉瘤样癌",
+      "ROSE细胞组学",
+      "肺部恶性肿瘤细胞形态"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第十一节 肉瘤样癌",
+    "expected_chunk_ids": [
+      "chunk_0028"
+    ],
+    "keywords": [
+      "肉瘤样癌",
+      "巨细胞样",
+      "梭形细胞"
+    ],
+    "created_at": "2025-10-22T12:17:24.591346"
+  },
+  {
+    "id": "med_q_0073",
+    "question": "在ROSE细胞学检查中，观察到肺部转移性肿瘤细胞呈散在或成片分布，细胞较大，呈长梭形，细胞核细长、两端钝圆，核仁不明显。根据这些形态学特征，最可能的原发肿瘤类型是什么？",
+    "question_type": "diagnosis",
+    "difficulty": "medium",
+    "disease_category": "metastatic_tumor",
+    "expected_answer": "转移性平滑肌肉瘤（分化好的类型）",
+    "related_concepts": [
+      "ROSE细胞组学",
+      "转移性平滑肌肉瘤",
+      "肺部转移性肿瘤细胞形态"
+    ],
+    "source_chapter": "第三章 其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点",
+    "source_section": "第一节 转移性平滑肌肉瘤",
+    "expected_chunk_ids": [
+      "chunk_0029"
+    ],
+    "keywords": [
+      "平滑肌肉瘤",
+      "长梭形细胞",
+      "核细长两端钝圆"
+    ],
+    "created_at": "2025-10-22T12:17:32.263399"
+  },
+  {
+    "id": "med_q_0074",
+    "question": "在肺部ROSE（快速现场评价）涂片中，观察到癌细胞体积较大，呈圆形或多边形，胞质丰富且呈透明或弱嗜酸性，核仁隐显不一，肿瘤细胞呈单片状分布。最可能的诊断是什么？",
+    "question_type": "diagnosis",
+    "difficulty": "medium",
+    "disease_category": "metastatic_tumor",
+    "expected_answer": "转移性肾透明细胞癌",
+    "related_concepts": [
+      "ROSE细胞形态学",
+      "转移性肺肿瘤",
+      "肾透明细胞癌细胞学特征"
+    ],
+    "source_chapter": "第三章 其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点",
+    "source_section": "第二节 转移性肾透明细胞癌",
+    "expected_chunk_ids": [
+      "chunk_0030"
+    ],
+    "keywords": [
+      "透明胞质",
+      "单片状分布",
+      "肾透明细胞癌"
+    ],
+    "created_at": "2025-10-22T12:17:42.395627"
+  },
+  {
+    "id": "med_q_0075",
+    "question": "在肺部ROSE细胞学检查中，观察到肿瘤细胞呈低柱状、细胞核圆形、轻中度异型，并形成绒毛状和腺管状结构，最可能提示哪种转移性肿瘤？",
+    "question_type": "diagnosis",
+    "difficulty": "medium",
+    "disease_category": "metastatic_tumor",
+    "expected_answer": "转移性宫颈绒毛腺管状腺癌",
+    "related_concepts": [
+      "ROSE细胞组学",
+      "转移性肺肿瘤",
+      "宫颈腺癌细胞形态学"
+    ],
+    "source_chapter": "第三章 其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点",
+    "source_section": "第三节 转移性宫颈绒毛腺管状腺癌",
+    "expected_chunk_ids": [
+      "chunk_0031"
+    ],
+    "keywords": [
+      "低柱状细胞",
+      "绒毛状结构",
+      "腺管状结构"
+    ],
+    "created_at": "2025-10-22T12:17:51.695161"
+  },
+  {
+    "id": "med_q_0076",
+    "question": "在ROSE细胞学检查中，若观察到肺组织样本中存在中等大小、圆形或类圆形的细胞，胞质较少、呈透明天蓝色或深蓝色，部分含少量颗粒；细胞核较大、居中或稍偏位，核染色质呈细颗粒状，核仁隐显不一，最可能提示哪种疾病？",
+    "question_type": "diagnosis",
+    "difficulty": "medium",
+    "disease_category": "metastatic_tumor",
+    "expected_answer": "急性髓系白血病肺浸润",
+    "related_concepts": [
+      "ROSE快速现场评价",
+      "髓系原始细胞形态学特征",
+      "肺脏髓外浸润"
+    ],
+    "source_chapter": "第三章 其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点",
+    "source_section": "第四节 急性髓系白血病肺浸润",
+    "expected_chunk_ids": [
+      "chunk_0032"
+    ],
+    "keywords": [
+      "急性髓系白血病",
+      "肺浸润",
+      "髓系原始细胞"
+    ],
+    "created_at": "2025-10-22T12:17:59.282354"
+  },
+  {
+    "id": "med_q_0077",
+    "question": "在肺部病变的ROSE细胞学检查中，若观察到瘤细胞核体积约为正常淋巴细胞的两倍，呈弥漫性生长，细胞核形态为卵圆形、圆形或多角形，核仁明显，胞质较少，并可见多形性细胞核，部分细胞形态类似霍奇金细胞，最可能的诊断是什么？",
+    "question_type": "diagnosis",
+    "difficulty": "medium",
+    "disease_category": "metastatic_tumor",
+    "expected_answer": "弥漫性大B细胞淋巴瘤",
+    "related_concepts": [
+      "ROSE快速现场评价",
+      "肺部淋巴瘤细胞学特征",
+      "大B细胞肿瘤形态学"
+    ],
+    "source_chapter": "第三章 其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点",
+    "source_section": "第五节 弥漫性大B细胞淋巴瘤",
+    "expected_chunk_ids": [
+      "chunk_0033"
+    ],
+    "keywords": [
+      "弥漫性大B细胞淋巴瘤",
+      "核仁明显",
+      "多形性细胞核"
+    ],
+    "created_at": "2025-10-22T12:18:05.801935"
+  },
+  {
+    "id": "med_q_0078",
+    "question": "在肺部病变的ROSE细胞学检查中，若观察到由小至中等大小、形态单一的细胞组成，细胞质少，细胞核形态不规则，染色质浓集或较为分散，且核仁不明显，最可能提示哪种恶性肿瘤？",
+    "question_type": "diagnosis",
+    "difficulty": "medium",
+    "disease_category": "metastatic_tumor",
+    "expected_answer": "套细胞淋巴瘤",
+    "related_concepts": [
+      "套细胞淋巴瘤",
+      "ROSE细胞组学",
+      "小B细胞非霍奇金淋巴瘤"
+    ],
+    "source_chapter": "第三章 其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点",
+    "source_section": "第六节 套细胞淋巴瘤",
+    "expected_chunk_ids": [
+      "chunk_0034"
+    ],
+    "keywords": [
+      "套细胞淋巴瘤",
+      "ROSE",
+      "细胞核不规则"
+    ],
+    "created_at": "2025-10-22T12:18:12.164108"
+  },
+  {
+    "id": "med_q_0079",
+    "question": "在肺部ROSE细胞学检查中，观察到以小至中等大小淋巴样细胞弥漫性分布，高倍镜下瘤细胞呈单核细胞样和小淋巴细胞形态，并可见散在免疫母细胞、中心母细胞及部分浆细胞分化，最可能的诊断是什么？",
+    "question_type": "diagnosis",
+    "difficulty": "medium",
+    "disease_category": "metastatic_tumor",
+    "expected_answer": "黏膜相关淋巴组织结外边缘区淋巴瘤（MALT淋巴瘤）",
+    "related_concepts": [
+      "MALT淋巴瘤",
+      "ROSE细胞组学",
+      "肺原发性淋巴瘤"
+    ],
+    "source_chapter": "第三章 其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点",
+    "source_section": "第七节 黏膜相关淋巴组织结外边缘区淋巴瘤（MALT淋巴瘤）",
+    "expected_chunk_ids": [
+      "chunk_0035"
+    ],
+    "keywords": [
+      "MALT淋巴瘤",
+      "单核细胞样细胞",
+      "浆细胞分化"
+    ],
+    "created_at": "2025-10-22T12:18:32.265076"
+  },
+  {
+    "id": "med_q_0080",
+    "question": "在肺部ROSE（快速现场评价）涂片中，观察到癌细胞呈柱形或杯状，细胞核圆形或椭圆形、深染且大小不一，细胞质内含有大量黏液。该细胞学表现最符合下列哪种转移性肿瘤？",
+    "question_type": "diagnosis",
+    "difficulty": "medium",
+    "disease_category": "metastatic_tumor",
+    "expected_answer": "转移性结肠腺癌",
+    "related_concepts": [
+      "ROSE细胞组学",
+      "转移性肺肿瘤",
+      "腺癌细胞形态学"
+    ],
+    "source_chapter": "第三章 其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点",
+    "source_section": "第八节 转移性结肠腺癌",
+    "expected_chunk_ids": [
+      "chunk_0036"
+    ],
+    "keywords": [
+      "柱形细胞",
+      "细胞质黏液",
+      "核深染"
+    ],
+    "created_at": "2025-10-22T12:18:49.540060"
+  },
+  {
+    "id": "med_q_0081",
+    "question": "在ROSE细胞组学检查中，上皮型间皮瘤的典型细胞形态特征包括以下哪项？",
+    "question_type": "diagnosis",
+    "difficulty": "medium",
+    "disease_category": "metastatic_tumor",
+    "expected_answer": "癌细胞形态基本一致，相对较小，呈立方状或多边形，细胞核多呈圆形。",
+    "related_concepts": [
+      "上皮型间皮瘤",
+      "ROSE细胞组学",
+      "肺部恶性肿瘤细胞形态"
+    ],
+    "source_chapter": "第三章 其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点",
+    "source_section": "第九节 上皮型间皮瘤",
+    "expected_chunk_ids": [
+      "chunk_0037"
+    ],
+    "keywords": [
+      "上皮型间皮瘤",
+      "立方状细胞",
+      "圆形细胞核"
+    ],
+    "created_at": "2025-10-22T12:19:05.085557"
+  },
+  {
+    "id": "med_q_0082",
+    "question": "在肺泡蛋白沉积症（PAP）的ROSE检查中，以下哪项组织化学染色结果最有助于其诊断？",
+    "question_type": "diagnosis",
+    "difficulty": "medium",
+    "disease_category": "rare_disease",
+    "expected_answer": "PAS染色阳性，且经淀粉酶消化后仍为阳性，黏液卡红染色阴性。",
+    "related_concepts": [
+      "肺泡蛋白沉积症",
+      "ROSE组学特征",
+      "组织化学染色"
+    ],
+    "source_chapter": "第四章 肺脏少见病的ROSE组学特征",
+    "source_section": "第一节 肺泡蛋白沉积症",
+    "expected_chunk_ids": [
+      "chunk_0038"
+    ],
+    "keywords": [
+      "肺泡蛋白沉积症",
+      "ROSE",
+      "PAS染色"
+    ],
+    "created_at": "2025-10-22T12:19:11.785679"
+  },
+  {
+    "id": "med_q_0083",
+    "question": "在ROSE（快速现场评价）光镜检查中，肺淀粉样物质沉积症的典型细胞组学特征是什么？结合特殊染色结果，如何确认淀粉样物质的存在？",
+    "question_type": "diagnosis",
+    "difficulty": "medium",
+    "disease_category": "rare_disease",
+    "expected_answer": "ROSE光镜下，肺淀粉样物质表现为致密无定形、云絮状的嗜氰物质聚集。确诊依赖特殊染色：淀粉样物质对甲紫或结晶紫染色呈异染性；刚果红染色在偏光显微镜下具有双折光性——在偏光暗视野下呈苹果绿色，明视野下呈橘红色。",
+    "related_concepts": [
+      "淀粉样变性",
+      "ROSE细胞组学特征",
+      "刚果红染色双折光性"
+    ],
+    "source_chapter": "第四章 肺脏少见病的ROSE组学特征",
+    "source_section": "第二节 肺淀粉样物质沉积症",
+    "expected_chunk_ids": [
+      "chunk_0039"
+    ],
+    "keywords": [
+      "肺淀粉样物质沉积症",
+      "ROSE",
+      "刚果红染色"
+    ],
+    "created_at": "2025-10-22T12:19:23.607540"
+  },
+  {
+    "id": "med_q_0084",
+    "question": "在肺脏少见病的ROSE（快速现场评价）检查中，若光镜下观察到不规则坏死区域，内含大量中性粒细胞及碎裂细胞核，并伴有混杂的炎症细胞（包括中性粒细胞和淋巴细胞），同时临床表现为上呼吸道、肺和肾脏三联征，最可能提示哪种疾病？",
+    "question_type": "diagnosis",
+    "difficulty": "medium",
+    "disease_category": "rare_disease",
+    "expected_answer": "肉芽肿性多血管炎（GPA）",
+    "related_concepts": [
+      "肉芽肿性多血管炎",
+      "ROSE组学特征",
+      "坏死性血管炎"
+    ],
+    "source_chapter": "第四章 肺脏少见病的ROSE组学特征",
+    "source_section": "第三节 肉芽肿性多血管炎",
+    "expected_chunk_ids": [
+      "chunk_0040"
+    ],
+    "keywords": [
+      "肉芽肿性多血管炎",
+      "中性粒细胞",
+      "ROSE"
+    ],
+    "created_at": "2025-10-22T12:19:35.370952"
+  },
+  {
+    "id": "med_q_0085",
+    "question": "在过敏性肺炎（hypersensitivity pneumonitis, HP）的亚急性期，ROSE光镜下最典型的细胞学特征是什么？",
+    "question_type": "diagnosis",
+    "difficulty": "medium",
+    "disease_category": "rare_disease",
+    "expected_answer": "淋巴细胞优势分布，伴松散的非坏死性肉芽肿，主要由上皮样组织细胞聚集和淋巴细胞组成。",
+    "related_concepts": [
+      "过敏性肺炎",
+      "ROSE细胞学特征",
+      "非坏死性肉芽肿"
+    ],
+    "source_chapter": "第四章 肺脏少见病的ROSE组学特征",
+    "source_section": "第四节 过敏性肺炎",
+    "expected_chunk_ids": [
+      "chunk_0041"
+    ],
+    "keywords": [
+      "过敏性肺炎",
+      "ROSE",
+      "淋巴细胞优势分布"
+    ],
+    "created_at": "2025-10-22T12:19:41.154410"
+  },
+  {
+    "id": "med_q_0086",
+    "question": "在ROSE（快速现场评价）光镜检查中，以下哪一组细胞学和结构特征最支持变态反应性支气管肺曲菌病（ABPA）的诊断？",
+    "question_type": "diagnosis",
+    "difficulty": "medium",
+    "disease_category": "rare_disease",
+    "expected_answer": "嗜酸性粒细胞、嗜碱性粒细胞、夏科-莱登结晶和曲霉菌丝。",
+    "related_concepts": [
+      "变态反应性支气管肺曲菌病（ABPA）",
+      "ROSE细胞组学特征",
+      "夏科-莱登结晶"
+    ],
+    "source_chapter": "第四章 肺脏少见病的ROSE组学特征",
+    "source_section": "第五节 变态反应性支气管肺曲菌病",
+    "expected_chunk_ids": [
+      "chunk_0042"
+    ],
+    "keywords": [
+      "ABPA",
+      "ROSE",
+      "曲霉菌丝"
+    ],
+    "created_at": "2025-10-22T12:19:48.178619"
+  },
+  {
+    "id": "med_q_0087",
+    "question": "在ROSE（快速现场评价）光镜检查中，急性纤维素性机化性肺炎（AFOP）最具特征性的细胞组学表现包括以下哪项？",
+    "question_type": "diagnosis",
+    "difficulty": "medium",
+    "disease_category": "rare_disease",
+    "expected_answer": "纤维素样物质沉积，成纤维细胞聚集，泡沫样巨噬细胞聚集，Ⅱ型肺泡上皮细胞增生及淋巴细胞浸润。",
+    "related_concepts": [
+      "急性纤维素性机化性肺炎",
+      "ROSE细胞组学特征",
+      "机化性肺泡损伤"
+    ],
+    "source_chapter": "第四章 肺脏少见病的ROSE组学特征",
+    "source_section": "第六节 急性纤维素性机化性肺炎",
+    "expected_chunk_ids": [
+      "chunk_0043"
+    ],
+    "keywords": [
+      "AFOP",
+      "纤维素样物质",
+      "ROSE"
+    ],
+    "created_at": "2025-10-22T12:19:55.215141"
+  },
+  {
+    "id": "med_q_0088",
+    "question": "在急性纤维素性机化性肺炎（AFOP）的ROSE（快速现场评价）细胞组学检查中，最具特征性的细胞学表现是什么？",
+    "question_type": "diagnosis",
+    "difficulty": "medium",
+    "disease_category": "rare_disease",
+    "expected_answer": "ROSE检查中可见肺泡腔内大量纤维素样渗出物，伴少量炎性细胞浸润，缺乏典型机化性肺炎中的Masson小体，且无明显嗜酸性粒细胞或肉芽肿结构。",
+    "related_concepts": [
+      "急性纤维素性机化性肺炎",
+      "ROSE细胞组学特征",
+      "纤维素性渗出"
+    ],
+    "source_chapter": "第四章 肺脏少见病的ROSE组学特征",
+    "source_section": "第六节 急性纤维素性机化性肺炎",
+    "expected_chunk_ids": [
+      "chunk_0044"
+    ],
+    "keywords": [
+      "急性纤维素性机化性肺炎",
+      "ROSE",
+      "纤维素样渗出"
+    ],
+    "created_at": "2025-10-22T12:20:01.678262"
+  },
+  {
+    "id": "med_q_0089",
+    "question": "在对肺部病变进行快速现场评价（ROSE）时，若细胞学涂片显示大量异型性显著的细胞团，细胞核大、深染、核仁明显，且可见病理性核分裂象，最可能提示的诊断是什么？",
+    "question_type": "diagnosis",
+    "difficulty": "medium",
+    "disease_category": "general",
+    "expected_answer": "恶性肺脏疾病（如原发性肺癌）",
+    "related_concepts": [
+      "快速现场评价（ROSE）",
+      "肺部恶性肿瘤细胞学特征",
+      "细胞异型性"
+    ],
+    "source_chapter": "",
+    "source_section": "",
+    "expected_chunk_ids": [
+      "chunk_0001"
+    ],
+    "keywords": [
+      "ROSE",
+      "恶性肺脏疾病",
+      "细胞异型性"
+    ],
+    "created_at": "2025-10-22T12:20:07.894482"
+  },
+  {
+    "id": "med_q_0090",
+    "question": "根据《恶性肺脏疾病和肺脏少见病 快速现场评价组学图谱》一书的出版信息，该书的ISBN编号是多少？",
+    "question_type": "diagnosis",
+    "difficulty": "medium",
+    "disease_category": "general",
+    "expected_answer": "ISBN 978-7-5235-1470-2",
+    "related_concepts": [
+      "图书在版编目（CIP）数据",
+      "出版物标识"
+    ],
+    "source_chapter": "",
+    "source_section": "扉页和版权信息",
+    "expected_chunk_ids": [
+      "chunk_0002"
+    ],
+    "keywords": [
+      "ISBN",
+      "快速现场评价组学图谱",
+      "恶性肺脏疾病"
+    ],
+    "created_at": "2025-10-22T12:20:14.375895"
+  },
+  {
+    "id": "med_q_0091",
+    "question": "一位62岁男性患者，因持续咳嗽、体重下降和胸部CT显示右肺门肿块伴纵隔淋巴结肿大就诊。临床怀疑肺癌，拟行支气管内超声引导经支气管针吸活检（EBUS-TBNA）。在操作过程中，术者计划结合快速现场评价（ROSE）技术以提高诊断效率。请结合ROSE在诊断性介入肺脏病学中的理论体系、专用耗材选择及延伸应用技术，分析在该病例中如何通过ROSE实现诊断与潜在治疗策略的同步优化，并说明其相较于传统方法的优势。",
+    "question_type": "differential",
+    "difficulty": "medium",
+    "disease_category": "general",
+    "expected_answer": "在该病例中，ROSE技术可由现场病理医师（如靳芳医师）对EBUS-TBNA获取的样本进行即时细胞学评估，判断样本是否具有足够诊断价值（如肿瘤细胞存在与否），从而决定是否需要追加取材或调整穿刺部位，显著提高首次操作的诊断阳性率。根据冯靖教授构建的ROSE理论体系及其主编的《诊断性介入肺脏病学快速现场评价临床实施指南》，术者可依据ROSE结果即时区分肿瘤性病变（对应ROSE专著第3卷）与其他可能性（如感染或间质性肺病，分别对应第1、2卷），并指导后续分子检测或宏基因组测序（第4卷）。此外，使用具有国家新型实用专利的专用耗材（如EBUS TBNB涂层带鞘短基座专用活检钳、防污染细胞刷）可提升取材质量与安全性。若ROSE确认为恶性肿瘤且存在局部侵犯，还可考虑同步实施ROSE延伸技术，如气管内超声引导纵隔肿瘤激光多点消融（见chunk_0005）。相较于传统方法，ROSE避免了因样本不足导致的重复操作，缩短诊断时间，并为个体化治疗（如导向注药或局部消融）提供即时决策依据，尤其适用于高龄或危重患者。",
+    "related_concepts": [
+      "快速现场评价（ROSE）在介入肺脏病学中的应用",
+      "EBUS-TBNA专用耗材与取材技术",
+      "ROSE指导下的诊断-治疗一体化策略"
+    ],
+    "source_chapter": "",
+    "source_section": "主编简介",
+    "expected_chunk_ids": [
+      "chunk_0003",
+      "chunk_0004",
+      "chunk_0005",
+      "chunk_0006"
+    ],
+    "keywords": [
+      "ROSE",
+      "EBUS-TBNA",
+      "冯靖",
+      "专用活检耗材"
+    ],
+    "created_at": "2025-10-22T12:20:36.140241"
+  },
+  {
+    "id": "med_q_0092",
+    "question": "在诊断性介入肺脏病学操作中，一位65岁男性患者因肺部实性结节接受经支气管针吸活检（TBNA），术中行快速现场评价（ROSE）。ROSE细胞组学显示细胞群呈三维巢状排列，细胞核大、异型明显，胞质丰富，背景可见坏死碎片。结合该患者的ROSE细胞组学特征、ROSE技术原理及其在肺部肿瘤鉴别诊断中的应用，请分析该表现最可能提示哪类肺部恶性肿瘤，并说明ROSE细胞组学如何区别于其他可累及肺脏的转移性或少见恶性肿瘤。",
+    "question_type": "differential",
+    "difficulty": "medium",
+    "disease_category": "general",
+    "expected_answer": "该ROSE细胞组学特征（三维巢状排列、明显核异型性、丰富胞质、坏死背景）高度提示肺原发性非小细胞肺癌，尤其是肺腺癌或大细胞神经内分泌癌。ROSE细胞组学通过分析细胞群的空间构象（如巢状、乳头状、实性等）、定位细胞分布及背景特征，可初步区分肺原发肿瘤与其他累及肺脏的恶性肿瘤。例如，转移性乳腺癌常呈腺腔样或条索状排列，细胞黏附性强；淋巴瘤则多为弥漫性单形性小细胞，缺乏明显三维结构；而肺部少见病如肺肉瘤样癌则可能表现为梭形细胞与上皮样细胞混合，背景纤维化明显。ROSE作为组学技术，其核心在于通过二维涂片还原靶部位的三维细胞群构成，从而在取材现场提供形态学与组织构象的综合判读，指导后续精准取材和诊断路径。",
+    "related_concepts": [
+      "ROSE细胞组学",
+      "肺部实体恶性肿瘤细胞学分型",
+      "细胞群三维构象还原"
+    ],
+    "source_chapter": "",
+    "source_section": "前言",
+    "expected_chunk_ids": [
+      "chunk_0007",
+      "chunk_0003",
+      "chunk_0004",
+      "chunk_0001"
+    ],
+    "keywords": [
+      "快速现场评价",
+      "细胞组学",
+      "肺腺癌",
+      "三维构象"
+    ],
+    "created_at": "2025-10-22T12:21:05.806567"
+  },
+  {
+    "id": "med_q_0093",
+    "question": "在ROSE（快速现场评价）过程中，一位65岁男性患者经支气管镜下肺活检获得细胞学标本，镜下可见细胞核膜明显增厚、胞浆相对菲薄，细胞排列紊乱且呈拥挤层叠状，背景中可见坏死碎屑及炎性细胞。结合这些细胞学特点，以下哪组肺部原发性恶性肿瘤最需要进行鉴别诊断？并简述各自最具特征性的ROSE细胞组学表现。",
+    "question_type": "differential",
+    "difficulty": "medium",
+    "disease_category": "general",
+    "expected_answer": "根据ROSE细胞学特点（核膜厚、浆膜菲薄、排列紊乱、拥挤层叠、坏死背景），需重点鉴别肺鳞状细胞癌、小细胞肺癌和大细胞神经内分泌癌。鳞癌典型表现为细胞角化、细胞间桥、核深染且大小不一，常伴明显坏死；小细胞癌细胞小、核质比极高、染色质细腻呈“盐-胡椒”样，细胞常呈 molding（塑形）排列，背景可有坏死但细胞浆极少；大细胞神经内分泌癌细胞较大，核仁明显，呈器官样或菊形团样排列，核膜厚但胞浆较丰富，坏死常见。此外，若考虑转移性肿瘤（如转移性结肠腺癌），则需注意其腺腔形成、黏液分泌及柱状细胞形态，但通常缺乏上述原发肺神经内分泌或鳞状特征。",
+    "related_concepts": [
+      "ROSE细胞学恶性特征",
+      "肺原发性恶性肿瘤细胞组学分型",
+      "转移性肿瘤与原发肺肿瘤的鉴别"
+    ],
+    "source_chapter": "",
+    "source_section": "目录",
+    "expected_chunk_ids": [
+      "chunk_0008",
+      "chunk_0009",
+      "chunk_0002",
+      "chunk_0003"
+    ],
+    "keywords": [
+      "ROSE",
+      "鳞状细胞癌",
+      "小细胞肺癌",
+      "大细胞神经内分泌癌"
+    ],
+    "created_at": "2025-10-22T12:21:23.552004"
+  },
+  {
+    "id": "med_q_0094",
+    "question": "在ROSE（快速现场评估）细胞学检查中，观察到一例细胞样本具有显著的体积增大（最大细胞直径为最小恶性细胞的2倍以上）、核质比（N/C）>1/2、核仁长径/核长径（m/N）>0.25，并伴有多个（≥3个）核仁。此外，部分细胞呈多角形、不规则形，细胞核呈肾形或芽状突起，染色质深染且分布不均，细胞质浓染不均。基于上述形态学特征，最可能的诊断是什么？请结合恶性细胞的典型细胞学特征进行鉴别分析。",
+    "question_type": "differential",
+    "difficulty": "medium",
+    "disease_category": "lung_cancer",
+    "expected_answer": "该细胞样本高度提示恶性肿瘤。综合判断依据包括：（1）细胞体积显著增大且大小不等（chunk_0010）；（2）核质比（N/C）>1/2，提示核增殖快于胞质（chunk_0010）；（3）核仁增大（m/N>0.25）且数量≥3个（chunk_0010与chunk_0013）；（4）细胞及细胞核形态不规则，呈多角形、肾形、芽状等（chunk_0011）；（5）染色质及细胞质浓染不均（chunk_0012）；（6）可能存在多核或多倍体（chunk_0013）。这些特征共同构成恶性细胞的典型ROSE细胞组学表现，需与反应性增生或良性病变鉴别，后者通常细胞大小较一致、N/C比正常（<1/3）、核仁小且单一、形态规则、染色均匀。",
+    "related_concepts": [
+      "核质比（N/C）异常",
+      "恶性细胞形态不规则性",
+      "核仁数量与比例异常"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第一节 细胞及其成分径线增加",
+    "expected_chunk_ids": [
+      "chunk_0010",
+      "chunk_0011",
+      "chunk_0012",
+      "chunk_0013"
+    ],
+    "keywords": [
+      "ROSE细胞学",
+      "核质比",
+      "核仁增大",
+      "细胞异型性"
+    ],
+    "created_at": "2025-10-22T12:21:49.869620"
+  },
+  {
+    "id": "med_q_0095",
+    "question": "在ROSE（Rapid On-Site Evaluation）细胞组学评估中，一名细胞病理技师观察到一组细胞呈现以下特征：细胞体积显著增大且大小不一，核质比（N/C）明显增高（>1/2），核膜增厚且轮廓不清，部分细胞出现裸核；细胞膜菲薄、外缘模糊、形状不规则；细胞核呈多角形或芽状，核仁增大（m/N > 0.25）且边缘不规则；细胞整体及核染色质均呈不均匀深染。基于这些形态学特征，最可能的诊断是什么？并请从细胞整体形态、核特征及染色特性三个方面综合解释支持该诊断的关键依据。",
+    "question_type": "differential",
+    "difficulty": "medium",
+    "disease_category": "lung_cancer",
+    "expected_answer": "最可能的诊断是恶性肿瘤细胞。支持依据包括：（1）细胞整体形态方面：体积显著增大且大小不等（chunk_0010）、形状不规则、多边形或多角形（chunk_0011），细胞膜菲薄、外缘不清（主要内容）；（2）核特征方面：核质比>1/2（chunk_0010），核膜增厚、轮廓不清、裸核（主要内容），核呈肾形、芽状等不规则形态并可突出于胞质（chunk_0011），核仁增大（m/N>0.25）、数量增多且边缘不规则（chunk_0010与chunk_0011）；（3）染色特性方面：细胞质不均匀浓染，核染色质浓集深染且分布不均，核仁亦呈不均匀浓染（chunk_0012）。这些特征综合提示高度异型性，符合恶性细胞的典型ROSE细胞组学表现。",
+    "related_concepts": [
+      "核质比（N/C）异常",
+      "细胞核异型性",
+      "恶性细胞形态学特征"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第五节 细胞核膜厚而浆膜相对菲薄",
+    "expected_chunk_ids": [
+      "chunk_0014",
+      "chunk_0010",
+      "chunk_0011",
+      "chunk_0012"
+    ],
+    "keywords": [
+      "ROSE细胞组学",
+      "核膜增厚",
+      "核质比增高",
+      "不规则核仁"
+    ],
+    "created_at": "2025-10-22T12:22:11.159090"
+  },
+  {
+    "id": "med_q_0096",
+    "question": "在ROSE细胞组学快速评估中，观察到一例细胞样本呈现细胞相互拥挤、边界不清，核质比显著增高（>1/2），细胞核呈不规则肾形并伴有多个增大且边缘不规则的核仁，同时染色质向核膜浓集、核仁深染不均。下列哪项最能综合解释这些形态学特征并支持恶性诊断？",
+    "question_type": "differential",
+    "difficulty": "medium",
+    "disease_category": "lung_cancer",
+    "expected_answer": "这些特征综合反映了恶性细胞的典型形态学改变：细胞拥挤重叠与边界不清（chunk_0015）提示细胞失去正常极性和生长控制；核质比>1/2（chunk_0010）表明核增殖快于胞质；不规则肾形核及多形性核仁（chunk_0011）体现核与核仁结构紊乱；染色质周边浓集与不均匀深染（chunk_0015与chunk_0012）进一步支持高度异型性。上述多维度异常共同构成恶性细胞的诊断依据。",
+    "related_concepts": [
+      "核质比（N/C）异常",
+      "细胞核与核仁多形性",
+      "染色质分布与染色特征"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第六节 细胞及其成分拥挤层叠",
+    "expected_chunk_ids": [
+      "chunk_0015",
+      "chunk_0010",
+      "chunk_0011",
+      "chunk_0012"
+    ],
+    "keywords": [
+      "恶性细胞",
+      "核质比",
+      "核仁多形性",
+      "染色质浓集"
+    ],
+    "created_at": "2025-10-22T12:22:32.548837"
+  },
+  {
+    "id": "med_q_0097",
+    "question": "在ROSE快速现场评估中，观察到一簇细胞呈现三维乳头状排列，细胞体积显著增大且大小不等，核质比明显增高（>1/2），细胞核呈肾形并伴有突出，核仁多个、边缘不规则且m/N比值超过0.25，同时细胞整体染色深、核染色质浓集不均。以下哪组特征最能支持该细胞群为恶性而非反应性增生？",
+    "question_type": "differential",
+    "difficulty": "medium",
+    "disease_category": "lung_cancer",
+    "expected_answer": "该细胞群表现出典型的恶性细胞形态学特征：（1）三维乳头状结构及细胞自组织排列（来自主要内容）；（2）细胞体积显著增大、大小不等，核质比>1/2，核仁m/N>0.25（chunk_0010）；（3）细胞及细胞核呈不规则多角形、肾形并有核突出（chunk_0011）；（4）细胞整体及核染色深染、染色质浓集不均（chunk_0012）。这些综合特征显著区别于良性反应性细胞增生，后者通常保持极性、核形态规则、核质比正常且无三维结构形成。",
+    "related_concepts": [
+      "核质比（N/C）异常",
+      "恶性细胞三维结构形成",
+      "核仁形态与比例异常"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第七节 细胞及其成分排列紊乱",
+    "expected_chunk_ids": [
+      "chunk_0016",
+      "chunk_0010",
+      "chunk_0011",
+      "chunk_0012"
+    ],
+    "keywords": [
+      "ROSE",
+      "恶性细胞形态学",
+      "核质比",
+      "三维乳头状结构"
+    ],
+    "created_at": "2025-10-22T12:22:58.610962"
+  },
+  {
+    "id": "med_q_0098",
+    "question": "在ROSE细胞组学快速评估中，观察到涂片背景富含红细胞、炎症细胞及大量坏死细胞残影（即‘肿瘤素质’），并伴有中性粒细胞浸润。同时发现部分细胞体积显著增大，大小不一，核质比（N/C）明显增高（>1/2），核呈不规则形（如肾形、芽状），核仁增大且边缘不规则，m/N比值超过0.25，细胞质与核均呈不均匀深染。以下哪项最能支持该样本为恶性病变而非反应性改变？",
+    "question_type": "differential",
+    "difficulty": "medium",
+    "disease_category": "lung_cancer",
+    "expected_answer": "该样本最可能为恶性病变，因其同时具备多项恶性细胞形态学特征：（1）细胞体积显著增大且大小不等（chunk_0010）；（2）核质比>1/2、核仁m/N>0.25（chunk_0010）；（3）细胞及核形态不规则、成角度（如肾形、芽状）（chunk_0011）；（4）细胞质、核及核仁均呈不均匀深染（chunk_0012）；（5）背景呈现‘肿瘤素质’（坏死残影、红细胞、炎症细胞）并伴中性粒细胞浸润提示可能存在继发感染（chunk_0017）。这些特征综合排除了单纯反应性或炎性改变，高度提示恶性肿瘤。",
+    "related_concepts": [
+      "核质比（N/C）异常",
+      "肿瘤素质背景",
+      "恶性细胞形态不规则性"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第八节 细胞背景分析",
+    "expected_chunk_ids": [
+      "chunk_0017",
+      "chunk_0010",
+      "chunk_0011",
+      "chunk_0012"
+    ],
+    "keywords": [
+      "ROSE细胞组学",
+      "核质比",
+      "肿瘤素质",
+      "恶性细胞形态"
+    ],
+    "created_at": "2025-10-22T12:23:19.832431"
+  },
+  {
+    "id": "med_q_0099",
+    "question": "在ROSE细胞组学快速评估中，一名患者细针穿刺样本显示癌细胞呈圆形或立方形，细胞质丰富、含空泡，呈‘高分泌样’甚至‘印戒样’，细胞核大、核仁明显，染色质呈粗颗粒状，并呈腺泡样或乳头样排列。与此同时，另一区域可见部分细胞呈多角形或梭形，细胞质呈嗜酸性‘石膏样’红染，核畸形明显、染色质深染浓集。结合这些细胞学特征，最可能的鉴别诊断包括哪些肿瘤类型？请根据分化程度和组织来源进行分析。",
+    "question_type": "differential",
+    "difficulty": "medium",
+    "disease_category": "lung_cancer",
+    "expected_answer": "该样本同时呈现两种不同的细胞学模式：①圆形/立方形细胞、丰富含空泡的细胞质、‘高分泌样’或‘印戒样’形态、腺泡样/乳头样排列、粗颗粒状染色质及明显核仁——这些特征高度提示为高分化的腺癌（源自chunk_0018）；②多角形/梭形细胞、嗜酸性‘石膏样’细胞质、深染畸形核、角化倾向——符合高分化的鳞状细胞癌（源自chunk_0019）。此外，若存在泡沫样细胞质、巨细胞样或梭形细胞、巢片状分布，则需考虑肉瘤样癌（源自chunk_0028）；而若细胞呈圆形/多角形、细胞质含嗜酸性或嗜碱性颗粒、核居中、呈腺泡状排列，则腺泡细胞癌（一种低度恶性涎腺肿瘤）也应纳入鉴别（源自chunk_0027）。因此，综合鉴别诊断应包括：高分化腺癌、高分化鳞癌、肉瘤样癌及腺泡细胞癌，需结合临床部位、免疫组化及影像学进一步区分。",
+    "related_concepts": [
+      "肿瘤细胞分化程度",
+      "细胞形态学特征",
+      "组织来源鉴别诊断"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第一节 腺癌",
+    "expected_chunk_ids": [
+      "chunk_0018",
+      "chunk_0019",
+      "chunk_0028",
+      "chunk_0027"
+    ],
+    "keywords": [
+      "高分泌样",
+      "石膏样细胞质",
+      "腺泡样排列",
+      "肉瘤样癌"
+    ],
+    "created_at": "2025-10-22T12:23:41.170343"
+  },
+  {
+    "id": "med_q_0100",
+    "question": "在ROSE细胞组学快速现场评估中，观察到一例肺部病变的细胞学涂片呈现细胞体积小、核质比极高、核染色质呈不均匀颗粒块状（“鬼脸样”）、核仁缺如、细胞呈密集成团的镶嵌或队列样排列，并伴有坏死及核丝分裂象。另一例涂片则显示细胞体积大、核大仁大、细胞质少、核染色质粗颗粒状、病理性核分裂常见，同样呈镶嵌样排列和成团分布。第三例涂片中癌细胞中等大小、形态较一致、核染色质细颗粒状且分布均匀、核仁不明显、核分裂罕见。请结合上述特征，分别判断这三种涂片最可能对应的神经内分泌肿瘤类型，并说明其细胞学特征如何反映肿瘤的分化程度与生物学行为。",
+    "question_type": "differential",
+    "difficulty": "medium",
+    "disease_category": "lung_cancer",
+    "expected_answer": "第一例涂片特征符合小细胞肺癌（SCLC）：细胞体积小、高核质比（“无质、无仁、鬼脸、镶嵌”）、核染色质呈块状不均、“鬼脸样”，密集成团伴坏死和核丝，提示高度恶性、低分化、增殖活跃。第二例符合大细胞神经内分泌癌（LCNEC）：细胞“三大一少伴镶嵌”（个大、核大、仁大、质少），核染色质粗颗粒状，病理性核分裂常见，亦为低分化但细胞体积明显大于SCLC。第三例符合典型类癌（TC）：细胞中等大小、形态一致、核染色质细颗粒均匀、核仁不明显、核分裂罕见，提示高分化、生长缓慢、生物学行为相对惰性。这三种神经内分泌肿瘤在ROSE中可通过细胞大小、核质比、染色质结构、核仁可见性、核分裂象及排列方式等特征进行鉴别，反映其从高分化（类癌）到低分化（SCLC/LCNEC）的谱系变化。",
+    "related_concepts": [
+      "神经内分泌肿瘤分级",
+      "细胞核质比与分化程度关系",
+      "ROSE细胞组学鉴别诊断"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第三节 小细胞癌",
+    "expected_chunk_ids": [
+      "chunk_0020",
+      "chunk_0021",
+      "chunk_0022",
+      "chunk_0018"
+    ],
+    "keywords": [
+      "小细胞肺癌",
+      "大细胞神经内分泌癌",
+      "典型类癌",
+      "核质比"
+    ],
+    "created_at": "2025-10-22T12:24:06.892857"
+  },
+  {
+    "id": "med_q_0101",
+    "question": "在ROSE细胞组学快速现场评估中，一例肺部肿物穿刺标本显示：肿瘤细胞呈巢状及菊形团样排列，细胞体积较大且大小相对一致，核呈圆形或卵圆形，染色质呈高密度椒盐样，核仁可见，核质比较高，并伴有坏死及病理性核分裂象。请结合细胞形态、排列方式及分化特征，与高分化鳞癌、高分化腺癌及腺样囊性癌进行鉴别诊断，并说明关键鉴别点。",
+    "question_type": "differential",
+    "difficulty": "medium",
+    "disease_category": "lung_cancer",
+    "expected_answer": "该病例最符合不典型类癌的细胞学特征：细胞较大、大小较一致，呈巢状/菊形团样排列，核呈圆形或卵圆形，染色质为高密度椒盐样，核仁可见，核质比增高，并伴坏死及病理性核分裂——这些特征区别于典型类癌，符合不典型类癌（chunk_0023）。与高分化鳞癌（chunk_0019）鉴别：后者细胞呈不规则多角形或梭形，胞质呈角化性红染（石膏样），常有明显阳性背景，而本例无角化、无多形性。与高分化腺癌（chunk_0018）鉴别：后者细胞质丰富、含空泡或呈印戒样，排列呈腺泡、乳头或贴壁样，核仁大而多个，染色质为粗颗粒状，而本例无分泌性胞质及腺样结构。与腺样囊性癌（chunk_0025）鉴别：后者细胞体积小、核深染、胞质少，典型表现为基底样细胞围绕黏液样基质呈筛状或球团状漂浮，而本例无黏液基质及小圆细胞特征。因此，综合形态、排列及分化特征，应诊断为不典型类癌。",
+    "related_concepts": [
+      "不典型类癌细胞学特征",
+      "高分化鳞状细胞癌的ROSE表现",
+      "高分化腺癌的细胞形态与排列模式",
+      "腺样囊性癌的基质与细胞特征"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第六节 不典型类癌",
+    "expected_chunk_ids": [
+      "chunk_0023",
+      "chunk_0019",
+      "chunk_0018",
+      "chunk_0025"
+    ],
+    "keywords": [
+      "不典型类癌",
+      "ROSE细胞组学",
+      "鉴别诊断",
+      "核质比"
+    ],
+    "created_at": "2025-10-22T12:24:29.964810"
+  },
+  {
+    "id": "med_q_0102",
+    "question": "在细针穿刺细胞学（ROSE）检查中，观察到一例肺部肿物标本含有大量体积较大的癌细胞，细胞核大、核仁明显、染色质呈粗颗粒状，细胞质少而偏嗜碱性，呈镶嵌样排列，并可见坏死及病理性核分裂。同时，部分区域可见杯状或柱状细胞，细胞质透明、核位于基底，其下方有小而基底样的中间型细胞。请结合细胞形态学特征，鉴别该病变最可能属于以下哪种肿瘤类型，并说明与其他三种肿瘤（高分化鳞癌、低分化鳞癌、不典型类癌）的关键鉴别点。",
+    "question_type": "differential",
+    "difficulty": "medium",
+    "disease_category": "lung_cancer",
+    "expected_answer": "该病变最可能为黏液表皮样癌。其典型特征包括三种细胞成分：黏液细胞（杯状/柱状，透明胞质，基底核）、中间型细胞（小、基底样或立方形，镶嵌排列于黏液细胞下方）和表皮样细胞（多边形）。题干中描述的‘体积大、核大、仁大、质少、镶嵌’及坏死、病理性核分裂等特征虽也见于大细胞神经内分泌癌（chunk_0021），但结合存在典型黏液细胞和中间型细胞的双相/三相结构，可明确指向黏液表皮样癌（chunk_0024）。与高分化鳞癌（chunk_0019）鉴别：后者细胞呈多角形、角化明显、胞质红染如石膏样，无黏液细胞；与低分化鳞癌鉴别：虽可呈圆形、成团、少浆，但缺乏黏液分泌及中间型细胞；与不典型类癌（chunk_0023）鉴别：后者细胞大小较一致，核呈椒盐样染色质，排列呈巢状或菊形团，无黏液细胞及表皮样分化。",
+    "related_concepts": [
+      "黏液表皮样癌的三相细胞组成",
+      "大细胞神经内分泌癌的‘三大一少伴镶嵌’特征",
+      "鳞状细胞癌的分化程度与细胞学差异",
+      "不典型类癌的核染色质与排列模式"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第七节 黏液表皮样癌",
+    "expected_chunk_ids": [
+      "chunk_0024",
+      "chunk_0019",
+      "chunk_0021",
+      "chunk_0023"
+    ],
+    "keywords": [
+      "黏液表皮样癌",
+      "ROSE细胞学",
+      "中间型细胞",
+      "三大一少伴镶嵌"
+    ],
+    "created_at": "2025-10-22T12:25:02.382462"
+  },
+  {
+    "id": "med_q_0103",
+    "question": "在细针穿刺细胞学（ROSE）检查中，观察到一例涎腺肿瘤样本，其细胞学特征包括：癌细胞在黏液湖中紧密聚集成团，细胞体积小，呈柱状或立方形，核膜清晰，可见小核仁；另见部分区域癌细胞单层排列，胞质丰富，含大小不一的分泌泡，细胞核略大于红细胞，呈圆形或椭圆形。结合其他可能的涎腺恶性肿瘤类型，应如何与腺泡细胞癌、肉瘤样癌及高/低分化腺癌进行鉴别诊断？请从细胞形态、排列方式、胞质特征及核特点等方面进行综合分析。",
+    "question_type": "differential",
+    "difficulty": "medium",
+    "disease_category": "lung_cancer",
+    "expected_answer": "该病例最符合黏液腺癌的细胞学特征：①癌细胞在黏液湖中聚集成团或呈单层排列；②细胞呈柱状/立方形，体积较小；③胞质含分泌泡，核略大于红细胞，核膜清晰，小核仁。与之鉴别：腺泡细胞癌（chunk_0027）细胞呈圆形或多角形，胞质丰富呈嗜酸性或嗜碱性颗粒状，排列为片状、巢状或腺泡状，核居中、核仁明显，无黏液湖背景；肉瘤样癌（chunk_0028）细胞异型性显著，可见巨细胞样或梭形细胞，胞质可呈泡沫状，核大、核仁明显，呈巢状或片状分布，但无黏液分泌及腺样结构；高分化腺癌（chunk_0018）细胞大小较一致，胞质有空泡，可呈“印戒样”或“高分泌样”，排列呈贴壁样、腺泡样或乳头样，核仁大而清楚；低分化腺癌则细胞大小不一，结构松散，胞质少而嗜碱，核偏位或不规则，染色质浓集。综上，黏液湖背景、分泌泡及柱状/立方形小细胞是黏液腺癌的关键鉴别点。",
+    "related_concepts": [
+      "黏液腺癌细胞学特征",
+      "涎腺肿瘤的细胞形态鉴别",
+      "ROSE快速现场评估中的腺癌亚型区分"
+    ],
+    "source_chapter": "第二章 肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+    "source_section": "第九节 黏液腺癌",
+    "expected_chunk_ids": [
+      "chunk_0026",
+      "chunk_0027",
+      "chunk_0028",
+      "chunk_0018"
+    ],
+    "keywords": [
+      "黏液湖",
+      "分泌泡",
+      "腺泡细胞癌",
+      "肉瘤样癌"
+    ],
+    "created_at": "2025-10-22T12:25:21.899761"
+  },
+  {
+    "id": "med_q_0104",
+    "question": "在细针穿刺细胞学（ROSE）检查中，观察到一例转移性肿瘤细胞呈散在或成片分布，细胞较大，呈长梭形，细胞核细长、两端钝圆，核仁不明显；另见部分区域细胞形态大小不一，呈圆形、卵圆形或多边形。结合以下其他可能的转移性肿瘤细胞学特征：（1）低柱状细胞伴绒毛状和腺管状结构，核轻中度异型；（2）柱状或杯状细胞含大量黏液，核深染、大小不一；（3）多边形大细胞，胞质透明或弱嗜酸性，呈单片状分布。请从细胞形态学角度鉴别该病例最可能的原发肿瘤类型，并说明排除其他三种肿瘤的关键细胞学依据。",
+    "question_type": "differential",
+    "difficulty": "medium",
+    "disease_category": "metastatic_tumor",
+    "expected_answer": "该病例最可能为转移性平滑肌肉瘤。其典型细胞学特征包括：细胞呈长梭形，核细长、两端钝圆，核仁不明显（分化好型），或细胞形态大小不一、呈圆形/卵圆形/多边形（分化差型），符合chunk_0029描述。需与以下肿瘤鉴别：（1）转移性宫颈绒毛腺管状腺癌（chunk_0031）：表现为低柱状细胞、腺管或绒毛结构，而平滑肌肉瘤无腺样结构；（2）转移性结肠腺癌（chunk_0036）：细胞含大量黏液，呈杯状或柱状，核深染且常形成腺腔，而平滑肌肉瘤无黏液分泌及腺腔形成；（3）转移性肾透明细胞癌（chunk_0030）：细胞多边形、胞质透明或弱嗜酸性，呈单片状分布，缺乏梭形细胞特征及平滑肌样核形态。因此，结合细胞形态、排列方式及缺乏上皮性结构或黏液，可支持平滑肌肉瘤诊断。",
+    "related_concepts": [
+      "平滑肌肉瘤细胞形态学特征",
+      "转移性腺癌的细胞学鉴别",
+      "ROSE细胞组学在肿瘤鉴别诊断中的应用"
+    ],
+    "source_chapter": "第三章 其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点",
+    "source_section": "第一节 转移性平滑肌肉瘤",
+    "expected_chunk_ids": [
+      "chunk_0029",
+      "chunk_0031",
+      "chunk_0036",
+      "chunk_0030"
+    ],
+    "keywords": [
+      "平滑肌肉瘤",
+      "宫颈绒毛腺管状腺癌",
+      "结肠腺癌",
+      "肾透明细胞癌"
+    ],
+    "created_at": "2025-10-22T12:25:45.977235"
+  },
+  {
+    "id": "med_q_0105",
+    "question": "在肺部细针穿刺细胞学检查中，发现大量中等大小、圆形或类圆形细胞，胞质少、呈天蓝色，核大居中、染色质细颗粒状、核仁隐显不一。结合临床病史，患者为已知急性髓系白血病（AML）患者。然而，需与以下哪些转移性肿瘤进行鉴别诊断？请从细胞形态学角度分析AML肺浸润与转移性平滑肌肉瘤、转移性肾透明细胞癌及转移性宫颈绒毛腺管状腺癌的关键区别点。",
+    "question_type": "differential",
+    "difficulty": "medium",
+    "disease_category": "metastatic_tumor",
+    "expected_answer": "AML肺浸润的原始髓系细胞通常中等大小，胞质少、呈天蓝色，核大、染色质细颗粒状，核仁可见但不突出。与之鉴别：(1) 转移性平滑肌肉瘤细胞多呈长梭形（分化好）或形态多样（分化差），核细长、两端钝圆，核仁不明显；(2) 转移性肾透明细胞癌细胞较大，胞质丰富、透明或弱嗜酸性，核仁明显，常呈单片状分布；(3) 转移性宫颈绒毛腺管状腺癌细胞呈低柱状，具腺管或绒毛结构，核轻中度异型，整体呈组织性排列。AML细胞缺乏上皮或间叶肿瘤的结构特征和胞质丰富性，且背景中常伴骨髓相关细胞成分，有助于鉴别。",
+    "related_concepts": [
+      "急性髓系白血病肺浸润的细胞形态特征",
+      "转移性平滑肌肉瘤的细胞学表现",
+      "转移性肾透明细胞癌与宫颈腺癌的细胞学鉴别"
+    ],
+    "source_chapter": "第三章 其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点",
+    "source_section": "第四节 急性髓系白血病肺浸润",
+    "expected_chunk_ids": [
+      "chunk_0032",
+      "chunk_0029",
+      "chunk_0030",
+      "chunk_0031"
+    ],
+    "keywords": [
+      "髓系原始细胞",
+      "肺浸润",
+      "细胞形态学鉴别",
+      "转移性肿瘤"
+    ],
+    "created_at": "2025-10-22T12:26:07.486939"
+  },
+  {
+    "id": "med_q_0106",
+    "question": "在细针穿刺细胞学检查中，观察到一例肿瘤细胞呈弥漫性分布，细胞体积大，核为卵圆形或多角形，核仁明显，胞质较少，并可见部分细胞核呈多形性，个别形态类似霍奇金细胞。请结合细胞形态学特征，与转移性平滑肌肉瘤、转移性肾透明细胞癌及转移性宫颈绒毛腺管状腺癌进行鉴别诊断，并说明关键鉴别点。",
+    "question_type": "differential",
+    "difficulty": "medium",
+    "disease_category": "metastatic_tumor",
+    "expected_answer": "该病例最符合弥漫性大B细胞淋巴瘤（DLBCL）的细胞学特征：瘤细胞体积大（约为正常淋巴细胞两倍），核呈卵圆形、圆形或多角形，核仁明显，胞质少，呈弥漫性生长，部分细胞核具多形性，偶见类似霍奇金细胞的形态。与之鉴别：（1）转移性平滑肌肉瘤通常呈梭形细胞，分化好者细胞大小一致、核细长两端钝圆、核仁不明显；分化差者虽可呈多形性，但常保留一定梭形特征，且无明显核仁突出；（2）转移性肾透明细胞癌细胞多为圆形或多边形，胞质丰富、透明或弱嗜酸性，常呈单片状分布，核仁隐显不一，但胞质特征明显不同于DLBCL的少胞质表现；（3）转移性宫颈绒毛腺管状腺癌具有腺样结构（如绒毛状或腺管状），细胞呈低柱状，核轻中度异型，排列方式和组织结构与DLBCL的弥漫无结构分布明显不同。因此，结合细胞大小、核仁显著性、胞质多少、排列方式及有无腺样/梭形结构，可有效鉴别上述肿瘤。",
+    "related_concepts": [
+      "弥漫性大B细胞淋巴瘤的细胞形态学特征",
+      "转移性平滑肌肉瘤的分化差异与细胞形态",
+      "转移性肾透明细胞癌的胞质特征与排列方式",
+      "转移性宫颈绒毛腺管状腺癌的组织结构特点"
+    ],
+    "source_chapter": "第三章 其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点",
+    "source_section": "第五节 弥漫性大B细胞淋巴瘤",
+    "expected_chunk_ids": [
+      "chunk_0033",
+      "chunk_0029",
+      "chunk_0030",
+      "chunk_0031"
+    ],
+    "keywords": [
+      "弥漫性大B细胞淋巴瘤",
+      "核仁明显",
+      "少胞质",
+      "鉴别诊断"
+    ],
+    "created_at": "2025-10-22T12:26:38.189001"
+  },
+  {
+    "id": "med_q_0107",
+    "question": "在细针穿刺细胞学（FNA）标本中，观察到一群形态单一、细胞体积小至中等、胞质稀少、核形不规则、染色质浓集或较分散、核仁不明显的淋巴oid细胞。请结合以下四种可能病变的细胞学特征进行鉴别诊断：套细胞淋巴瘤、分化良好的平滑肌肉瘤、转移性肾透明细胞癌和转移性宫颈绒毛腺管状腺癌，并说明各自最关键的细胞形态学鉴别点。",
+    "question_type": "differential",
+    "difficulty": "medium",
+    "disease_category": "metastatic_tumor",
+    "expected_answer": "套细胞淋巴瘤表现为小至中等大小的B淋巴细胞，形态单一，胞质少，核不规则，染色质浓集或较分散，核仁不明显；分化良好的平滑肌肉瘤细胞呈长梭形，核细长、两端钝圆，大小较一致，无明显核仁；转移性肾透明细胞癌细胞较大，圆形或多边形，胞质丰富、透明或弱嗜酸性，核仁隐显不一，呈单片状分布；转移性宫颈绒毛腺管状腺癌细胞呈低柱状，核圆形、轻中度异型，常形成绒毛状或腺管状结构。鉴别关键在于细胞大小、形态一致性、胞质特征、核形及组织结构模式。",
+    "related_concepts": [
+      "套细胞淋巴瘤细胞形态学",
+      "平滑肌肉瘤细胞分化特征",
+      "肾透明细胞癌细胞学表现",
+      "宫颈绒毛腺管状腺癌结构特征"
+    ],
+    "source_chapter": "第三章 其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点",
+    "source_section": "第六节 套细胞淋巴瘤",
+    "expected_chunk_ids": [
+      "chunk_0034",
+      "chunk_0029",
+      "chunk_0030",
+      "chunk_0031"
+    ],
+    "keywords": [
+      "套细胞淋巴瘤",
+      "平滑肌肉瘤",
+      "肾透明细胞癌",
+      "宫颈绒毛腺管状腺癌"
+    ],
+    "created_at": "2025-10-22T12:27:00.357090"
+  },
+  {
+    "id": "med_q_0108",
+    "question": "在肺部细针穿刺细胞学检查中，发现一例以小至中等大小淋巴样细胞弥漫性分布为主的病变，高倍镜下可见单核细胞样细胞、小淋巴细胞，并散在少量免疫母细胞和中心母细胞，部分区域呈现浆细胞分化。请结合细胞形态学特征，与以下三种转移性肿瘤进行鉴别诊断：(1) 转移性平滑肌肉瘤，(2) 转移性肾透明细胞癌，(3) 转移性宫颈绒毛腺管状腺癌。分别说明各病变的关键细胞学鉴别点。",
+    "question_type": "differential",
+    "difficulty": "medium",
+    "disease_category": "metastatic_tumor",
+    "expected_answer": "MALT淋巴瘤的细胞学特征为小至中等大小的淋巴样细胞弥漫分布，高倍镜下可见单核细胞样细胞、小淋巴细胞，伴少量免疫母细胞、中心母细胞及浆细胞分化，细胞核形态相对规则，无明显异型性。与之鉴别：(1) 转移性平滑肌肉瘤表现为散在或成片的梭形细胞，分化好者细胞大小一致、核细长钝圆，分化差者则细胞多形性明显，呈圆形、卵圆形或多边形，与淋巴瘤的圆形小细胞形态明显不同；(2) 转移性肾透明细胞癌的癌细胞较大，呈圆形或多边形，胞质丰富、透明或弱嗜酸性，核仁明显，常呈单片状分布，缺乏淋巴细胞样背景；(3) 转移性宫颈绒毛腺管状腺癌的肿瘤细胞呈低柱状，核圆形、轻中度异型，具有特征性的绒毛状或腺管状结构，细胞排列方式与弥漫性淋巴样浸润截然不同。综合细胞形态、排列方式、背景特征及有无浆细胞分化等，可有效区分MALT淋巴瘤与其他转移性肿瘤。",
+    "related_concepts": [
+      "MALT淋巴瘤细胞形态学",
+      "转移性平滑肌肉瘤细胞学特征",
+      "转移性肾透明细胞癌细胞学鉴别",
+      "转移性宫颈腺癌结构特征"
+    ],
+    "source_chapter": "第三章 其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点",
+    "source_section": "第七节 黏膜相关淋巴组织结外边缘区淋巴瘤（MALT淋巴瘤）",
+    "expected_chunk_ids": [
+      "chunk_0035",
+      "chunk_0029",
+      "chunk_0030",
+      "chunk_0031"
+    ],
+    "keywords": [
+      "MALT淋巴瘤",
+      "浆细胞分化",
+      "平滑肌肉瘤",
+      "肾透明细胞癌"
+    ],
+    "created_at": "2025-10-22T12:27:25.426756"
+  },
+  {
+    "id": "med_q_0109",
+    "question": "在ROSE（快速现场评估）细胞组学检查中，一例胸腔积液样本显示肿瘤细胞呈相对一致的立方状或多边形，细胞核圆形，无明显核仁，细胞排列呈片状。结合形态学特征，以下哪组肿瘤最需纳入鉴别诊断？并说明各自的关键细胞形态学差异。",
+    "question_type": "differential",
+    "difficulty": "hard",
+    "disease_category": "metastatic_tumor",
+    "expected_answer": "需重点鉴别上皮型间皮瘤、转移性肾透明细胞癌和转移性平滑肌肉瘤（尤其是分化好的上皮样亚型）。上皮型间皮瘤（chunk_0037）细胞形态基本一致，相对较小，呈立方状或多边形，核圆形，常见于胸膜来源；转移性肾透明细胞癌（chunk_0030）细胞较大，胞质丰富、透明或弱嗜酸性，核仁隐显不一，呈单片状分布；而分化好的平滑肌肉瘤（chunk_0029）可呈上皮样，细胞较大、长梭形，核细长两端钝圆，核仁不明显，但分化差者可呈多形性，与上皮样肿瘤重叠。此外，若观察到低柱状细胞、轻中度异型性及腺管/绒毛结构（chunk_0031），还需考虑转移性宫颈绒毛腺管状腺癌，但其结构特征在细胞学涂片中较难完整保留。因此，综合细胞大小、核形态、胞质特征及排列方式对鉴别至关重要。",
+    "related_concepts": [
+      "上皮型间皮瘤细胞形态",
+      "转移性肾透明细胞癌细胞学特征",
+      "平滑肌肉瘤的上皮样变异与分化程度相关形态",
+      "宫颈绒毛腺管状腺癌的细胞结构特征"
+    ],
+    "source_chapter": "第三章 其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点",
+    "source_section": "第九节 上皮型间皮瘤",
+    "expected_chunk_ids": [
+      "chunk_0037",
+      "chunk_0029",
+      "chunk_0030",
+      "chunk_0031"
+    ],
+    "keywords": [
+      "ROSE细胞学",
+      "上皮型间皮瘤",
+      "肾透明细胞癌",
+      "平滑肌肉瘤"
+    ],
+    "created_at": "2025-10-22T12:27:44.673860"
+  },
+  {
+    "id": "med_q_0110",
+    "question": "一位52岁男性因进行性呼吸困难和低氧血症就诊，胸部高分辨率CT显示双肺弥漫性磨玻璃影伴“铺路石”征。支气管肺泡灌洗液（BALF）行ROSE快速现场评估（ROSE）见大量粉染颗粒状或云絮状物质。进一步组织病理学检查显示该物质PAS染色阳性，淀粉酶消化后仍为阳性，黏液卡红染色阴性；刚果红染色阴性，无苹果绿色双折光。血清检测发现高滴度抗GM-CSF自身抗体。患者无已知血液系统疾病、粉尘暴露史或慢性感染。下列哪项疾病最符合该患者的临床、影像学及病理特征？并请鉴别诊断肺淀粉样变性和肉芽肿性多血管炎（GPA）在ROSE表现、特异性染色及血清学标志物方面的关键差异。",
+    "question_type": "differential",
+    "difficulty": "hard",
+    "disease_category": "rare_disease",
+    "expected_answer": "该患者最可能诊断为自身免疫性肺泡蛋白沉积症（autoimmune PAP）。其依据包括：（1）临床表现为隐匿性进行性呼吸困难和低氧血症；（2）HRCT典型“铺路石”征；（3）ROSE显示粉染颗粒状/云絮状物质；（4）病理特染：PAS阳性且淀粉酶消化后仍阳性（提示非糖原性物质），黏液卡红阴性，排除黏液性病变；（5）刚果红染色阴性，无苹果绿色双折光，排除淀粉样变性；（6）血清抗GM-CSF自身抗体阳性，是自身免疫性PAP的特异性标志。鉴别诊断方面：肺淀粉样变性在ROSE中表现为无定形嗜氰云絮状物质，刚果红染色阳性且偏光显微镜下呈苹果绿色双折光，甲紫/结晶紫染色具异染性，无抗GM-CSF抗体；而肉芽肿性多血管炎（GPA）ROSE可见坏死性肉芽肿伴中性粒细胞浸润和核碎裂，血清ANCA（尤其是抗PR3）常阳性，影像学多表现为结节、空洞或出血，而非弥漫性磨玻璃影。三者病因、病理机制及实验室标志物截然不同，需结合临床、影像、ROSE、特染及血清学综合判断。",
+    "related_concepts": [
+      "肺泡蛋白沉积症的发病机制与GM-CSF通路",
+      "肺淀粉样变性的组织化学特征与染色反应",
+      "肉芽肿性多血管炎的ANCA相关血管炎病理与ROSE表现"
+    ],
+    "source_chapter": "第四章 肺脏少见病的ROSE组学特征",
+    "source_section": "第一节 肺泡蛋白沉积症",
+    "expected_chunk_ids": [
+      "chunk_0038",
+      "chunk_0044",
+      "chunk_0039",
+      "chunk_0040"
+    ],
+    "keywords": [
+      "ROSE",
+      "PAS染色",
+      "抗GM-CSF抗体",
+      "刚果红染色"
+    ],
+    "created_at": "2025-10-22T12:28:16.954472"
+  },
+  {
+    "id": "med_q_0111",
+    "question": "一名58岁男性因进行性呼吸困难、干咳和低氧血症就诊，既往有长期接触发霉干草史。胸部高分辨率CT显示弥漫性磨玻璃影伴小叶中心性结节，无明显蜂窝肺。支气管肺泡灌洗液ROSE细胞学检查显示以淋巴细胞为主，伴松散的非坏死性肉芽肿结构。血清抗GM-CSF抗体阴性，ANCA（抗PR3）阴性。刚果红染色未见苹果绿色双折光沉积物。结合临床、影像与ROSE细胞学特征，最可能的诊断是什么？并请从病理机制、ROSE细胞学表现及鉴别诊断角度，解释为何可排除肺泡蛋白沉积症（PAP）、淀粉样变性和肉芽肿性多血管炎（GPA）。",
+    "question_type": "differential",
+    "difficulty": "hard",
+    "disease_category": "rare_disease",
+    "expected_answer": "最可能的诊断是过敏性肺炎（hypersensitivity pneumonitis, HP），具体为亚急性或慢性非纤维化型。理由如下：\n\n1. **支持HP的依据**：患者有明确有机抗原（发霉干草）暴露史，临床表现为进行性呼吸困难和干咳；HRCT显示磨玻璃影和小叶中心性结节，符合HP典型影像；ROSE细胞学见淋巴细胞优势及松散非坏死性肉芽肿，由上皮样组织细胞和淋巴细胞构成，是HP亚急性期的典型表现。\n\n2. **排除PAP**：PAP的ROSE特征为肺泡腔内大量嗜酸性颗粒状磷脂蛋白样物质，肺泡巨噬细胞常呈泡沫样或“满载”外观；而本例无此类物质，且抗GM-CSF抗体阴性，不支持获得性PAP；亦无先天性或继发性PAP的其他线索（如血液病、感染等）。\n\n3. **排除淀粉样变性**：肺淀粉样变的ROSE或组织学特征为无定形、云絮状嗜氰物质沉积，刚果红染色在偏光显微镜下呈苹果绿色双折光；本例刚果红染色阴性，且无结节性、弥漫性间质增厚或气道狭窄等淀粉样变典型表现。\n\n4. **排除GPA**：GPA的ROSE/组织学特征为坏死性肉芽肿伴大量中性粒细胞浸润及核碎裂（“地理样坏死”），常伴ANCA（尤其是抗PR3）阳性；本例肉芽肿为非坏死性、无中性粒细胞优势，且ANCA阴性，不符合GPA病理特征。\n\n综上，该病例的暴露史、免疫病理机制（Th1介导的细胞免疫反应）、ROSE细胞学表现及排除其他肉芽肿性/沉积性疾病，共同指向过敏性肺炎。",
+    "related_concepts": [
+      "过敏性肺炎的免疫病理机制",
+      "ROSE细胞学在间质性肺病鉴别诊断中的应用",
+      "肉芽肿性肺疾病的鉴别诊断"
+    ],
+    "source_chapter": "第四章 肺脏少见病的ROSE组学特征",
+    "source_section": "第四节 过敏性肺炎",
+    "expected_chunk_ids": [
+      "chunk_0041",
+      "chunk_0038",
+      "chunk_0039",
+      "chunk_0040"
+    ],
+    "keywords": [
+      "过敏性肺炎",
+      "ROSE细胞学",
+      "非坏死性肉芽肿",
+      "鉴别诊断"
+    ],
+    "created_at": "2025-10-22T12:28:45.938535"
+  },
+  {
+    "id": "med_q_0112",
+    "question": "一名45岁男性哮喘患者因反复咳嗽、喘息和发热就诊，胸部高分辨率CT显示中心性支气管扩张和游走性肺部浸润影。支气管肺泡灌洗液（BALF）行ROSE（Rapid On-Site Evaluation）快速现场评估，光镜下可见大量嗜酸性粒细胞、夏科-莱登结晶及分隔、呈45度角分枝的透明菌丝。血清总IgE显著升高，烟曲霉特异性IgE阳性。鉴别诊断需排除肺泡蛋白沉积症（PAP）、肺淀粉样变性和肉芽肿性多血管炎（GPA）。请结合ROSE细胞组学特征、免疫机制及临床-影像表现，分析为何该病例最符合变态反应性支气管肺曲菌病（ABPA），并说明与其他三种疾病在ROSE表现和发病机制上的关键区别。",
+    "question_type": "differential",
+    "difficulty": "hard",
+    "disease_category": "rare_disease",
+    "expected_answer": "该病例最符合ABPA，依据包括：（1）基础疾病为哮喘；（2）影像学见中心性支气管扩张和游走性浸润；（3）血清总IgE及烟曲霉特异性IgE升高；（4）ROSE显示嗜酸性粒细胞、夏科-莱登结晶（嗜酸性粒细胞脱颗粒产物）及典型分隔、45度角分枝的透明曲霉菌丝——这是ABPA的标志性细胞组学特征。与PAP鉴别：PAP的ROSE表现为肺泡腔内均质、嗜酸性、颗粒状‘磨砂玻璃样’脂蛋白样物质，无嗜酸性粒细胞浸润或真菌结构，机制为GM-CSF信号通路障碍致巨噬细胞清除功能受损。与肺淀粉样变性鉴别：ROSE可见无定形、云絮状嗜氰物质，刚果红染色呈苹果绿色双折光，无炎症细胞或菌丝，机制为错误折叠蛋白沉积。与GPA鉴别：ROSE可见坏死性肉芽肿、中性粒细胞浸润及碎裂核（核尘），无嗜酸性粒细胞优势或真菌菌丝，且ANCA（尤其抗PR3）常阳性，属小血管炎而非真菌抗原驱动的Ⅰ型/Ⅲ型超敏反应。因此，结合细胞组学、免疫机制和临床背景，ABPA为最可能诊断。",
+    "related_concepts": [
+      "变态反应性支气管肺曲菌病（ABPA）",
+      "肺泡蛋白沉积症（PAP）",
+      "肉芽肿性多血管炎（GPA）",
+      "肺淀粉样变性"
+    ],
+    "source_chapter": "第四章 肺脏少见病的ROSE组学特征",
+    "source_section": "第五节 变态反应性支气管肺曲菌病",
+    "expected_chunk_ids": [
+      "chunk_0042",
+      "chunk_0038",
+      "chunk_0039",
+      "chunk_0040"
+    ],
+    "keywords": [
+      "ROSE细胞组学",
+      "嗜酸性粒细胞",
+      "夏科-莱登结晶",
+      "曲霉菌丝"
+    ],
+    "created_at": "2025-10-22T12:29:17.648851"
+  },
+  {
+    "id": "med_q_0113",
+    "question": "一位58岁男性患者因进行性呼吸困难和干咳2周就诊，既往有类风湿关节炎病史。胸部高分辨率CT显示双肺弥漫性磨玻璃影伴小叶间隔增厚。支气管肺泡灌洗液（BALF）ROSE快速现场评估显示肺泡腔内大量无定形嗜酸性物质，伴泡沫样巨噬细胞聚集、成纤维细胞灶及轻度淋巴细胞浸润，未见明显透明膜。刚果红染色阴性，GM-CSF自身抗体检测阳性。下列哪项诊断最符合该患者的临床、影像与ROSE细胞组学特征？并请解释如何通过ROSE细胞学特征、免疫学检查及组织病理学染色对急性纤维素性机化性肺炎（AFOP）、肺泡蛋白沉积症（PAP）和肺淀粉样变性进行鉴别？",
+    "question_type": "differential",
+    "difficulty": "hard",
+    "disease_category": "rare_disease",
+    "expected_answer": "最可能的诊断是自身免疫性肺泡蛋白沉积症（PAP）。理由如下：（1）ROSE显示肺泡腔内大量无定形嗜酸性物质及泡沫样巨噬细胞聚集，符合PAP典型表现；而成纤维细胞聚集和轻度淋巴细胞浸润虽可见于AFOP，但AFOP典型特征为肺泡腔内纤维素样物质沉积且无透明膜，且通常不伴显著的嗜酸性颗粒状蛋白样物质；（2）GM-CSF自身抗体阳性是自身免疫性PAP的特异性标志，强烈支持该诊断；（3）刚果红染色阴性排除了肺淀粉样变性，后者ROSE下可见云絮状嗜氰物质，刚果红染色在偏光显微镜下呈苹果绿色双折光；（4）AFOP虽可继发于结缔组织病（如类风湿关节炎），但其ROSE特征以纤维素沉积和机化性肉芽组织为主，而非大量脂蛋白样物质堆积。因此，结合ROSE细胞组学、免疫学和特殊染色结果，可明确鉴别三者。",
+    "related_concepts": [
+      "急性纤维素性机化性肺炎（AFOP）",
+      "肺泡蛋白沉积症（PAP）",
+      "肺淀粉样变性"
+    ],
+    "source_chapter": "第四章 肺脏少见病的ROSE组学特征",
+    "source_section": "第六节 急性纤维素性机化性肺炎",
+    "expected_chunk_ids": [
+      "chunk_0043",
+      "chunk_0044",
+      "chunk_0038",
+      "chunk_0039"
+    ],
+    "keywords": [
+      "ROSE细胞组学",
+      "GM-CSF自身抗体",
+      "刚果红染色",
+      "泡沫样巨噬细胞"
+    ],
+    "created_at": "2025-10-22T12:29:37.570227"
+  },
+  {
+    "id": "med_q_0114",
+    "question": "一名58岁男性肺移植术后3个月患者，因持续发热、咳嗽伴新发肺部结节就诊。胸部CT显示右肺上叶多发磨玻璃影及实变影，临床高度怀疑侵袭性肺曲霉病。拟行支气管镜下介入诊疗并结合快速现场评价（ROSE）技术进行诊断与治疗决策。在操作过程中，若需同步获取组织学、细胞学及微生物宏基因组测序样本，同时考虑避免标本交叉污染并实现局部靶向给药，应如何选择专用耗材、操作技术及ROSE支持下的多模态整合策略？请结合介入肺脏病ROSE理论体系、相关专利耗材特性及专家共识进行阐述。",
+    "question_type": "differential",
+    "difficulty": "hard",
+    "disease_category": "general",
+    "expected_answer": "应综合运用ROSE指导下的多模态介入策略：首先，使用具有国家新型实用专利的鳄齿型活体取样钳（EBUS TBNB涂层带鞘短基座专用活检钳）获取组织样本用于组织病理学评估；其次，采用防污染细胞刷或一次性超细针刷采集细胞学样本，避免上呼吸道菌群污染，确保后续宏基因组二代测序（mNGS）结果的准确性；若需局部治疗，可依据《经支气管镜喷注药物治疗肺移植与造血干细胞移植受者肺部霉菌病专家共识》及《导向注药套管经鼻悬吊留置伴或不伴锚定治疗肺部霉菌病的操作流程》，在ROSE实时确认病灶定位后，通过导向注药套管实施靶向抗真菌药物喷注。整个过程需由熟悉ROSE标准取材技术的团队（如冯靖教授构建的理论体系所规范）执行，并参考《诊断性介入肺脏病学快速现场评价临床实施指南》进行现场判读，实现诊断-治疗一体化。该策略整合了ROSE在肿瘤、间质性肺病及感染性疾病（如Volume 2–4专著所述）中的应用，尤其适用于免疫抑制宿主的复杂肺部感染。",
+    "related_concepts": [
+      "快速现场评价（ROSE）多模态整合诊断",
+      "专利介入耗材在防污染取样中的应用",
+      "肺移植术后侵袭性霉菌病的靶向介入治疗"
+    ],
+    "source_chapter": "",
+    "source_section": "主编简介",
+    "expected_chunk_ids": [
+      "chunk_0005",
+      "chunk_0003",
+      "chunk_0004",
+      "chunk_0006"
+    ],
+    "keywords": [
+      "ROSE",
+      "防污染细胞刷",
+      "EBUS TBNB活检钳",
+      "宏基因组测序"
+    ],
+    "created_at": "2025-10-22T12:30:09.631072"
+  },
+  {
+    "id": "med_q_0115",
+    "question": "一位68岁男性患者，因持续性咳嗽和体重下降就诊，胸部CT显示右肺上叶一3.5 cm不规则实性结节，伴纵隔淋巴结肿大。临床拟行CT引导下经皮肺穿刺活检，并同步实施快速现场评价（ROSE）。ROSE涂片经迪夫快速染色（1000倍）显示：细胞群呈三维巢状构象，细胞核大、深染、异型明显，核仁突出，胞质丰富，部分细胞可见胞质内黏液空泡；背景中可见坏死碎片及少量炎性细胞。结合ROSE细胞组学特征，该病例最可能的诊断是什么？请从ROSE细胞组学的视角，阐述如何通过‘定位细胞’和细胞群空间构象区分肺腺癌与其他肺部恶性肿瘤（如肺鳞癌或小细胞肺癌），并说明该判读对后续分子检测和治疗策略的指导意义。",
+    "question_type": "case_analysis",
+    "difficulty": "hard",
+    "disease_category": "general",
+    "expected_answer": "该病例ROSE细胞组学特征（三维巢状构象、核大深染、明显异型、胞质内黏液空泡）高度提示肺腺癌。在ROSE细胞组学框架下，‘定位细胞’（如具有极性排列的腺样结构细胞）可帮助还原原始组织的三维空间关系：肺腺癌常表现为腺腔样、乳头状或实性巢状构象，胞质丰富且可含黏液；肺鳞癌则多呈合体样片状排列，细胞边界清晰，可见角化珠或细胞间桥；小细胞肺癌细胞小、核质比极高，呈弥漫性或菊形团样排列，染色质细腻，常伴挤压假象。准确的ROSE细胞组学分型不仅可实时指导取材是否充足，还可预判组织学亚型，从而优化后续免疫组化和分子检测路径（如EGFR、ALK检测优先用于腺癌）。此判读体系基于冯靖教授构建的ROSE理论技术体系，体现《恶性肺脏疾病和肺脏少见病快速现场评价组学图谱》及《ROSE in Diagnostic Interventional Pulmonology-Volume 3: Neoplastic Diseases》中对肺部实体恶性肿瘤ROSE细胞组学分型的核心原则。",
+    "related_concepts": [
+      "ROSE细胞组学",
+      "定位细胞与三维构象还原",
+      "肺部恶性肿瘤ROSE细胞学分型"
+    ],
+    "source_chapter": "",
+    "source_section": "前言",
+    "expected_chunk_ids": [
+      "chunk_0007",
+      "chunk_0003",
+      "chunk_0004",
+      "chunk_0001"
+    ],
+    "keywords": [
+      "快速现场评价（ROSE）",
+      "肺腺癌",
+      "细胞群空间构象",
+      "迪夫快速染色"
+    ],
+    "created_at": "2025-10-22T12:30:35.772678"
+  },
+  {
+    "id": "med_q_0116",
+    "question": "一位62岁男性，有40年吸烟史，因持续性咳嗽、咯血及体重下降就诊。胸部CT显示右肺上叶一3.5 cm分叶状肿块，伴纵隔淋巴结肿大。行支气管镜下经支气管针吸活检（TBNA），现场由ROSE（快速现场评价）团队进行细胞组学评估。ROSE涂片显示：细胞成分显著增多，细胞核膜厚而胞浆相对菲薄，细胞核浓染、径线增大，细胞排列紊乱且呈拥挤层叠状；背景中可见坏死碎屑及少量中性粒细胞，未见明显角化物或腺样结构。免疫细胞化学初步提示TTF-1阴性、p40阳性。请结合ROSE细胞组学特征、细胞形态学要点及可能的组织学分型，分析最可能的诊断，并说明如何通过ROSE特征与其他肺部恶性肿瘤（如腺癌、小细胞癌、转移性肿瘤）进行鉴别。",
+    "question_type": "case_analysis",
+    "difficulty": "hard",
+    "disease_category": "general",
+    "expected_answer": "根据ROSE细胞组学特征：细胞成分增多、核膜厚而胞浆菲薄、核浓染、径线增大、排列紊乱及拥挤层叠，符合肺部实体恶性肿瘤的典型ROSE表现（第一章第一至八节）。结合TTF-1阴性、p40阳性，高度提示鳞状细胞癌。鳞癌在ROSE中常表现为细胞团块边缘不规则、核浆比增高、胞浆可呈嗜酸性或空泡状，但缺乏腺癌的腺腔结构或黏液分泌（第二章第二节）。与腺癌鉴别：腺癌常呈三维立体乳头状或腺泡状排列，胞浆丰富、含空泡，TTF-1阳性；与小细胞癌鉴别：小细胞癌细胞体积小、核深染呈“胡椒盐样”，染色质细腻，细胞呈弥漫性弥散分布而非层叠拥挤（第二章第三节）；与转移性肿瘤（如结肠腺癌）鉴别：后者常保留原发灶特征（如柱状细胞、明显黏液），且临床有肠癌病史（第三章第八节）。此外，背景中坏死碎屑支持鳞癌的高侵袭性特征，而无肉芽肿、淀粉样物或蛋白沉积等少见病表现（第四章），进一步排除非肿瘤性病变。",
+    "related_concepts": [
+      "ROSE细胞组学恶性特征",
+      "肺鳞状细胞癌的细胞形态学与免疫表型",
+      "肺部恶性肿瘤的ROSE鉴别诊断"
+    ],
+    "source_chapter": "",
+    "source_section": "目录",
+    "expected_chunk_ids": [
+      "chunk_0008",
+      "chunk_0009",
+      "chunk_0002",
+      "chunk_0003"
+    ],
+    "keywords": [
+      "ROSE",
+      "鳞状细胞癌",
+      "细胞拥挤层叠",
+      "p40阳性"
+    ],
+    "created_at": "2025-10-22T12:31:03.648017"
+  },
+  {
+    "id": "med_q_0117",
+    "question": "在ROSE（Rapid On-Site Evaluation）细胞组学检查中，一位细胞病理医师观察到一例肺部细针穿刺标本中的异常细胞群，其特征包括：细胞体积显著增大且大小不一，部分细胞直径为其他细胞的2倍以上；细胞核明显增大，核质比（N/C）普遍超过1/2；核仁数目达3～4个，部分核仁长径与核长径之比（m/N）>0.25，且核仁形态不规则、边缘模糊；细胞整体呈多边形或不规则形，核呈肾形或芽状突起；细胞质及核染色质均呈不均匀深染；此外，部分细胞呈现双核甚至多核现象，并伴有明显的多倍体和异倍体特征。请结合上述细胞形态学表现，分析这些特征如何共同支持恶性肿瘤的诊断，并解释每一类特征在细胞病理学判读中的意义。",
+    "question_type": "case_analysis",
+    "difficulty": "hard",
+    "disease_category": "lung_cancer",
+    "expected_answer": "该病例中观察到的多种细胞形态学异常高度提示恶性肿瘤。首先，细胞体积显著增大且大小不等（chunk_0010①）以及核质比（N/C）>1/2（chunk_0010②）表明细胞核增殖活跃，是恶性转化的典型表现。其次，核仁数目增多（≥3～4个）、m/N比值>0.25及核仁形态不规则（chunk_0010③与chunk_0011③）反映核糖体生物合成增强，常见于高代谢活性的恶性细胞。细胞整体及细胞核呈多边形、肾形、芽状等不规则形态（chunk_0011①②）提示细胞骨架和核膜结构紊乱，是恶性细胞失去正常极性和组织结构的表现。染色质及细胞质不均匀深染（chunk_0012）说明DNA含量异常及蛋白质合成紊乱，进一步支持恶性可能。此外，双核/多核现象以及多倍体、异倍体（主要内容①③）直接反映染色体不稳定性和有丝分裂异常，是恶性肿瘤基因组不稳定的细胞学证据。综上，这些特征从细胞大小、核质比、核仁形态、细胞/核轮廓、染色特性及倍性状态等多个维度共同构成恶性细胞的综合判读依据，在ROSE快速评估中具有重要诊断价值。",
+    "related_concepts": [
+      "核质比（N/C ratio）",
+      "核仁形态与数量异常",
+      "染色体倍性异常与多核现象"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第四节 细胞成分增多",
+    "expected_chunk_ids": [
+      "chunk_0013",
+      "chunk_0010",
+      "chunk_0011",
+      "chunk_0012"
+    ],
+    "keywords": [
+      "ROSE细胞组学",
+      "恶性细胞形态学",
+      "核仁m/N比值",
+      "异倍体"
+    ],
+    "created_at": "2025-10-22T12:31:37.021019"
+  },
+  {
+    "id": "med_q_0118",
+    "question": "在ROSE（Rapid On-Site Evaluation）细胞学检查中，一位细胞病理技师观察到一例肺部穿刺标本中存在一群异常细胞，其特征包括：细胞体积显著增大且大小不等，部分大细胞直径约为小细胞的2.5倍；核质比明显增高（估算>1/2）；细胞核轮廓不清、核膜增厚，部分呈裸核状态；细胞核形态不规则，可见肾形、芽状突起；核仁多个、增大（核仁长径/核长径≈0.3），边缘不规则且染色深浓；细胞整体呈多角形，胞膜菲薄、外缘模糊，胞质染色不均且深染。请结合ROSE细胞组学的恶性细胞判读标准，系统分析这些形态学特征如何共同支持恶性肿瘤的诊断，并指出哪些特征分别对应核、胞质及整体细胞层面的异常。",
+    "question_type": "case_analysis",
+    "difficulty": "hard",
+    "disease_category": "lung_cancer",
+    "expected_answer": "该病例中的细胞形态学表现高度提示恶性肿瘤。综合分析如下：（1）细胞体积显著增大且大小不等（chunk_0010①）以及核质比>1/2（chunk_0010②）是恶性细胞的重要指标；（2）核仁增大（m/N≈0.3>0.25）、多个且边缘不规则（chunk_0010③、chunk_0011③）进一步支持恶性可能；（3）细胞核轮廓不清、核膜增厚、裸核（主要内容①）与核形态不规则（如肾形、芽状、结节状，chunk_0011②）反映核结构紊乱；（4）细胞整体呈多角形、形状不规则（chunk_0011①），胞膜菲薄、外缘不清（主要内容②），提示细胞极性和黏附性丧失；（5）胞质及核染色深浓、不均匀（chunk_0012①②③）体现代谢活跃与DNA异常增殖。上述特征在核（结构、大小、染色质）、胞质（厚度、染色、边界）及整体细胞（形态、极性、异型性）三个层面均符合恶性细胞的ROSE判读标准，综合支持恶性肿瘤诊断。",
+    "related_concepts": [
+      "核质比（N/C ratio）",
+      "恶性细胞形态异型性",
+      "ROSE快速现场评估标准"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第五节 细胞核膜厚而浆膜相对菲薄",
+    "expected_chunk_ids": [
+      "chunk_0014",
+      "chunk_0010",
+      "chunk_0011",
+      "chunk_0012"
+    ],
+    "keywords": [
+      "核膜增厚",
+      "核质比增高",
+      "核仁增大",
+      "细胞膜菲薄"
+    ],
+    "created_at": "2025-10-22T12:32:07.537386"
+  },
+  {
+    "id": "med_q_0119",
+    "question": "在ROSE（Rapid On-Site Evaluation）细胞组学快速评估中，一位病理医师观察到一例细针穿刺涂片中存在大量异型细胞，表现为细胞体积显著增大且大小不等，部分细胞直径是其他恶性细胞的2倍以上；细胞整体呈多边形、不规则形，相互拥挤重叠，边界不清；细胞核明显增大，核质比（N/C）>1/2，核形态不规则，呈肾形、芽状甚至结节状突起；核仁多个、大小不等，m/N比值>0.25，且核仁边缘不规则、排列紊乱，部分相互融合；细胞质染色不均匀浓染，核染色质浓集于核膜周边并深染。请结合ROSE细胞组学恶性细胞的典型形态学特征，系统分析该涂片中支持恶性诊断的关键细胞学依据，并解释这些特征如何共同反映肿瘤细胞的生物学行为异常。",
+    "question_type": "case_analysis",
+    "difficulty": "hard",
+    "disease_category": "lung_cancer",
+    "expected_answer": "该涂片中的细胞学表现高度提示恶性病变，其依据综合了多个ROSE恶性细胞的核心形态学特征：（1）细胞层面：体积显著增大且大小不等（chunk_0010），整体呈多边形或不规则形（chunk_0011），相互拥挤重叠、边界不清（chunk_0015），反映细胞极性丧失和失控增殖；（2）核层面：核明显增大，核质比>1/2（chunk_0010），核形态不规则（如肾形、芽状、结节状）甚至核突出（chunk_0011），染色质浓集于核膜周边并深染（chunk_0015、chunk_0012），提示染色质结构紊乱和基因组不稳定性；（3）核仁层面：多个核仁、大小不等、m/N>0.25、边缘不规则且排列紊乱、相互融合（chunk_0010、chunk_0011、chunk_0015），反映核糖体生物合成活跃和转录失控；（4）染色特征：细胞质不均匀浓染、核与核仁均深染且染色不均（chunk_0012），体现代谢异常和蛋白质合成亢进。这些特征共同指向肿瘤细胞的去分化、高增殖活性、基因组不稳定性和细胞间黏附丧失，是恶性肿瘤在细胞组学层面的典型表现。",
+    "related_concepts": [
+      "核质比（N/C）异常",
+      "恶性细胞形态多形性",
+      "核仁异型性与融合"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第六节 细胞及其成分拥挤层叠",
+    "expected_chunk_ids": [
+      "chunk_0015",
+      "chunk_0010",
+      "chunk_0011",
+      "chunk_0012"
+    ],
+    "keywords": [
+      "ROSE细胞组学",
+      "恶性细胞拥挤重叠",
+      "核质比>1/2",
+      "核仁m/N比值>0.25"
+    ],
+    "created_at": "2025-10-22T12:32:37.739024"
+  },
+  {
+    "id": "med_q_0120",
+    "question": "在ROSE（Rapid On-Site Evaluation）细胞组学检查中，一位患者细针穿刺样本显示：细胞整体呈多边形、不规则形，部分细胞体积显著增大（最大细胞直径约为最小细胞的2.5倍）；细胞核呈肾形、芽状，核质比（N/C）约为0.6；核仁多个、大小不等，最大核仁长径与核长径之比为0.3，且核仁边缘不规则、相互融合；细胞核染色质浓集不均、深染，部分区域呈碎片样排列；高倍镜下可见细胞排列成三维乳头状结构，并有病理核分裂象。请结合ROSE细胞组学恶性细胞的典型形态学特征，系统分析该样本支持恶性诊断的关键依据，并解释这些特征在细胞病理学中的意义。",
+    "question_type": "case_analysis",
+    "difficulty": "hard",
+    "disease_category": "lung_cancer",
+    "expected_answer": "该样本支持恶性诊断的关键依据包括：（1）细胞整体形态不规则（多边形、多角形）且体积显著增大（最大为最小的2.5倍），符合恶性细胞大小不等及异型性特征（chunk_0011, chunk_0010）；（2）核质比（N/C）达0.6（>1/2），提示细胞核成分异常增殖快于细胞质（chunk_0010）；（3）核形态异常（肾形、芽状、结节状）并突出于胞质，核染色质浓集不均、深染，符合恶性核异型性（chunk_0011, chunk_0012）；（4）核仁多个、大小不等，m/N比值0.3（>0.25），且边缘不规则、相互融合拥挤，提示核仁功能活跃与失控（chunk_0010, chunk_0011, chunk_0016）；（5）出现病理核分裂、染色体排列紊乱呈碎片样、失极性，以及三维乳头状结构，均为高级别恶性肿瘤的典型组织构型异常（chunk_0016）。这些特征共同反映细胞增殖失控、分化障碍及基因组不稳定性，具有高度恶性潜能，支持恶性肿瘤诊断。",
+    "related_concepts": [
+      "核质比（N/C）异常",
+      "核仁形态与比例异常",
+      "三维结构与病理核分裂"
+    ],
+    "source_chapter": "第一章 肺部实体恶性肿瘤的ROSE细胞学特点",
+    "source_section": "第七节 细胞及其成分排列紊乱",
+    "expected_chunk_ids": [
+      "chunk_0016",
+      "chunk_0010",
+      "chunk_0011",
+      "chunk_0012"
+    ],
+    "keywords": [
+      "ROSE细胞组学",
+      "恶性细胞异型性",
+      "核质比",
+      "病理核分裂"
+    ],
+    "created_at": "2025-10-22T12:33:05.701708"
+  }
+]

@@ -179,59 +179,94 @@ class DeepSeekProvider(BaseLLMProvider):
         )
 
 class QwenProvider(BaseLLMProvider):
-    """千问API提供者"""
+    """千问API提供者 - 支持阿里云DashScope和硅基流动API"""
 
-    def __init__(self, api_key: str, base_url: str = "https://dashscope.aliyuncs.com/api/v1"):
-        """初始化千问提供者"""
+    def __init__(self, api_key: str, base_url: str = "https://dashscope.aliyuncs.com/api/v1", model_name: str = None):
+        """初始化千问提供者
+
+        Args:
+            api_key: API密钥
+            base_url: API基础URL
+            model_name: 模型名称，支持qwen-max、qwen3-80b等，默认为qwen-max
+        """
         self.api_key = api_key
         self.base_url = base_url
+        self.model_name = model_name or os.getenv("QWEN3_MODEL", "qwen-max")  # 支持环境变量配置
         self.headers = {
             'Authorization': f'Bearer {api_key}',
             'Content-Type': 'application/json'
         }
+        # 检测是否为硅基流动API
+        self.is_siliconflow = 'siliconflow' in base_url or 'api.siliconflow.cn' in base_url
 
     async def generate_response(self, messages: List[Dict[str, str]], **kwargs) -> LLMResponse:
         """异步生成响应"""
         start_time = datetime.now()
 
         try:
-            payload = {
-                'model': kwargs.get('model', 'qwen-max'),
-                'input': {
-                    'messages': messages
-                },
-                'parameters': {
+            if self.is_siliconflow:
+                # 硅基流动API使用OpenAI兼容格式
+                payload = {
+                    'model': kwargs.get('model', self.model_name),
+                    'messages': messages,
                     'temperature': kwargs.get('temperature', 0.7),
                     'max_tokens': kwargs.get('max_tokens', 2000)
                 }
-            }
 
-            response = requests.post(
-                f'{self.base_url}/services/aigc/text-generation/generation',
-                headers=self.headers,
-                json=payload,
-                timeout=60
-            )
+                response = requests.post(
+                    f'{self.base_url}/chat/completions',
+                    headers=self.headers,
+                    json=payload,
+                    timeout=60
+                )
+            else:
+                # 阿里云DashScope API使用原始格式
+                payload = {
+                    'model': kwargs.get('model', self.model_name),
+                    'input': {
+                        'messages': messages
+                    },
+                    'parameters': {
+                        'temperature': kwargs.get('temperature', 0.7),
+                        'max_tokens': kwargs.get('max_tokens', 2000)
+                    }
+                }
+
+                response = requests.post(
+                    f'{self.base_url}/services/aigc/text-generation/generation',
+                    headers=self.headers,
+                    json=payload,
+                    timeout=60
+                )
 
             response_time = (datetime.now() - start_time).total_seconds()
 
             if response.status_code == 200:
                 result = response.json()
-                # 修复：处理千问API的不同响应格式
-                if 'output' in result and 'text' in result['output']:
-                    # 新的响应格式
-                    content = result['output']['text']
-                elif 'output' in result and 'choices' in result['output'] and len(result['output']['choices']) > 0:
-                    # 旧的响应格式
-                    content = result['output']['choices'][0]['message']['content']
+
+                if self.is_siliconflow:
+                    # 硅基流动API响应格式（OpenAI兼容）
+                    content = result['choices'][0]['message']['content']
+                    usage = result.get('usage', {})
+                    model_name = result.get('model', self.model_name)
                 else:
-                    # 其他格式，尝试直接访问
-                    content = str(result.get('output', result))
+                    # 阿里云DashScope API响应格式
+                    if 'output' in result and 'text' in result['output']:
+                        # 新的响应格式
+                        content = result['output']['text']
+                    elif 'output' in result and 'choices' in result['output'] and len(result['output']['choices']) > 0:
+                        # 旧的响应格式
+                        content = result['output']['choices'][0]['message']['content']
+                    else:
+                        # 其他格式，尝试直接访问
+                        content = str(result.get('output', result))
+                    usage = result.get('usage', {})
+                    model_name = result.get('model', self.model_name)
 
                 return LLMResponse(
                     content=content,
-                    model=result.get('model', 'qwen-max'),
-                    usage=result.get('usage', {}),
+                    model=model_name,
+                    usage=usage,
                     response_time=response_time,
                     timestamp=datetime.now().isoformat()
                 )
@@ -244,8 +279,17 @@ class QwenProvider(BaseLLMProvider):
 
     def generate_response_sync(self, messages: List[Dict[str, str]], **kwargs) -> LLMResponse:
         """同步生成响应"""
-        # 千问API使用同步调用
-        return asyncio.run(self.generate_response(messages, **kwargs))
+        # 避免在已有事件循环中使用asyncio.run()
+        import concurrent.futures
+
+        def run_async():
+            """在单独线程中运行异步函数"""
+            return asyncio.run(self.generate_response(messages, **kwargs))
+
+        # 使用线程池在单独线程中运行异步代码
+        with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
+            future = executor.submit(run_async)
+            return future.result()
 
 class MockLLMProvider(BaseLLMProvider):
     """模拟LLM提供者（用于测试）"""
@@ -304,16 +348,29 @@ class LLMManager:
             except Exception as e:
                 logger.error(f"❌ DeepSeek提供者初始化失败: {e}")
 
-        # 千问提供者
+        # 千问提供者 (qwen-max)
         if 'qwen' in self.config:
             try:
                 self.providers['qwen'] = QwenProvider(
                     api_key=self.config['qwen']['api_key'],
-                    base_url=self.config['qwen'].get('base_url', 'https://dashscope.aliyuncs.com/api/v1')
+                    base_url=self.config['qwen'].get('base_url', 'https://dashscope.aliyuncs.com/api/v1'),
+                    model_name='qwen3-max'  # 明确指定qwen3-max模型
                 )
-                logger.info("✅ 千问提供者初始化成功")
+                logger.info("✅ 千问提供者 (qwen-max) 初始化成功")
             except Exception as e:
                 logger.error(f"❌ 千问提供者初始化失败: {e}")
+
+        # 千问3-80b提供者
+        if 'qwen-80b' in self.config:
+            try:
+                self.providers['qwen-80b'] = QwenProvider(
+                    api_key=self.config['qwen-80b']['api_key'],
+                    base_url=self.config['qwen-80b'].get('base_url', 'https://dashscope.aliyuncs.com/api/v1'),
+                    model_name='Qwen/Qwen3-Next-80B-A3B-Thinking'  # 硅基流动的qwen3-80b模型名称
+                )
+                logger.info("✅ 千问3-80b提供者初始化成功")
+            except Exception as e:
+                logger.error(f"❌ 千问3-80b提供者初始化失败: {e}")
 
         # 模拟提供者（默认）
         self.providers['mock'] = MockLLMProvider()
@@ -470,19 +527,37 @@ class LLMManager:
 # 创建默认配置
 def create_default_llm_config() -> Dict[str, Any]:
     """创建默认LLM配置"""
-    return {
+    import os
+
+    # 从环境变量读取API密钥
+    deepseek_api_key = os.environ.get('DEEPSEEK_API_KEY', '')
+    qwen_api_key = os.environ.get('QWEN_API_KEY', '') or os.environ.get('DASHSCOPE_API_KEY', '')
+    qwen3_80b_api_key = os.environ.get('QWEN3_80B_API_KEY', '') or qwen_api_key  # 复用qwen_api_key作为备选
+
+    config = {
         'default_provider': 'mock',
         'deepseek': {
-            'api_key': 'your-deepseek-api-key',
+            'api_key': deepseek_api_key or 'your-deepseek-api-key',
             'base_url': 'https://api.deepseek.com',
             'model': 'deepseek-reasoner'
         },
         'qwen': {
-            'api_key': 'your-qwen-api-key',
+            'api_key': qwen_api_key or 'your-qwen-api-key',
             'base_url': 'https://dashscope.aliyuncs.com/api/v1',
-            'model': 'qwen-max'
+            'model': 'qwen3-max'  # 正确的qwen3-max模型名称
         }
     }
+
+    # 添加千问3-80b模型配置（使用硅基流动API）
+    siliconflow_api_key = os.environ.get('SILICONFLOW_API_KEY', '')
+    if siliconflow_api_key and len(siliconflow_api_key) > 10:
+        config['qwen-80b'] = {
+            'api_key': siliconflow_api_key,
+            'base_url': 'https://api.siliconflow.cn/v1',
+            'model': 'Qwen/Qwen3-Next-80B-A3B-Thinking'  # 硅基流动的qwen3-80b模型
+        }
+
+    return config
 
 def create_llm_manager(config: Optional[Dict[str, Any]] = None) -> LLMManager:
     """创建LLM管理器"""

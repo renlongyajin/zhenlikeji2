@@ -237,10 +237,10 @@ class ChapterIntelligence:
         enhanced_queries.append(entity)
 
         # 2. 添加章节标题模式查询（关键：直接匹配章节标题）
-        enhanced_queries.append(f"第一节 {entity}")
-        enhanced_queries.append(f"第二节 {entity}")
+        # enhanced_queries.append(f"第一节 {entity}")
+        # enhanced_queries.append(f"第二节 {entity}")
         enhanced_queries.append(f"第.*节 {entity}")
-        enhanced_queries.append(f"第.*章.*{entity}")
+        # enhanced_queries.append(f"第.*章.*{entity}")
 
         # 3. 如果找到章节信息，构建章节路径查询
         if chapter_info:
@@ -952,12 +952,12 @@ class EnhancedMedicalReActAgent:
                 # 1. 基础实体搜索
                 search_queries.append(f"{current_entity}")
 
-                # 2. 章节结构搜索（特别针对黏液腺癌）
-                if current_entity == "黏液腺癌":
-                    search_queries.append(f"第九节 {current_entity}")
-                    search_queries.append(f"第二章 肺部实体恶性肿瘤 {current_entity}")
-                    search_queries.append(f"{current_entity} 黏液湖 癌细胞")
-                    search_queries.append(f"{current_entity} 柱状 立方形 核膜")
+                # # 2. 章节结构搜索（特别针对黏液腺癌）
+                # if current_entity == "黏液腺癌":
+                #     search_queries.append(f"第九节 {current_entity}")
+                #     search_queries.append(f"第二章 肺部实体恶性肿瘤 {current_entity}")
+                #     search_queries.append(f"{current_entity} 黏液湖 癌细胞")
+                #     search_queries.append(f"{current_entity} 柱状 立方形 核膜")
 
                 # 3. 基于问题类型的专业搜索
                 if "图像特征" in original_question or "影像学" in original_question:
@@ -1018,23 +1018,23 @@ class EnhancedMedicalReActAgent:
 
         # 3. 基于问题类型的专业搜索
         if "图像特征" in original_question or "影像学" in original_question:
-            search_queries.append(f"{entity} 图像特征 细胞形态")
+            # search_queries.append(f"{entity} 图像特征 细胞形态")
             search_queries.append(f"{entity} 细胞学表现 形态特征")
-            search_queries.append(f"{entity} 病理描述 细胞形态")
+            # search_queries.append(f"{entity} 病理描述 细胞形态")
         elif "病理" in original_question or "细胞" in original_question:
             search_queries.append(f"{entity} 病理特征 细胞学表现")
-            search_queries.append(f"{entity} 组织学特征 病理表现")
-            search_queries.append(f"{entity} 显微镜下表现")
+            # search_queries.append(f"{entity} 组织学特征 病理表现")
+            # search_queries.append(f"{entity} 显微镜下表现")
         else:
             # 对于一般查询，构建更具体的搜索词
             search_queries.append(f"{entity} 细胞形态 结构特征")
-            search_queries.append(f"{entity} 病理描述 细胞学")
-            search_queries.append(f"{entity} 诊断要点 细胞特征")
+            # search_queries.append(f"{entity} 病理描述 细胞学")
+            # search_queries.append(f"{entity} 诊断要点 细胞特征")
 
         # 4. 特别针对描述性内容的搜索
-        if "描述" in original_question or "特征" in original_question:
-            search_queries.append(f"{entity} 详细描述 细胞形态")
-            search_queries.append(f"{entity} 结构特征 组织学")
+        # if "描述" in original_question or "特征" in original_question:
+        #     search_queries.append(f"{entity} 详细描述 细胞形态")
+        #     search_queries.append(f"{entity} 结构特征 组织学")
 
         return search_queries if len(search_queries) > 1 else []
 
