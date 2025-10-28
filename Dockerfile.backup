@@ -10,24 +10,11 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONPATH=/app \
     DEBIAN_FRONTEND=noninteractive
 
-# 换国内源 - 兼容 debian.sources
-RUN <<EOF
-cat > /etc/apt/sources.list.d/debian.sources <<'SRC'
-Types: deb
-URIs: https://mirrors.tuna.tsinghua.edu.cn/debian
-Suites: trixie
-Components: main
-Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
-SRC
-EOF
-
-
 # 安装系统依赖
 RUN apt-get update && apt-get install -y \
     gcc \
     g++ \
     curl \
-    netcat-traditional \ 
     && rm -rf /var/lib/apt/lists/*
 
 # 复制依赖文件

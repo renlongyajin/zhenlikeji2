@@ -1,0 +1,1210 @@
+{
+  "chapters": {
+    "第一章": {
+      "title": "肺部实体恶性肿瘤的ROSE细胞学特点",
+      "sections": [
+        {
+          "section_num": "第一节",
+          "title": "细胞及其成分径线增加 (2)"
+        },
+        {
+          "section_num": "第一节",
+          "title": "腺癌 (6)"
+        },
+        {
+          "section_num": "第一节",
+          "title": "转移性平滑肌肉瘤 (98)"
+        },
+        {
+          "section_num": "第一节",
+          "title": "肺泡蛋白沉积症 (154)"
+        }
+      ]
+    },
+    "第二章": {
+      "title": "肺部实体恶性肿瘤的ROSE细胞组学分型要点",
+      "sections": [
+        {
+          "section_num": "第二节",
+          "title": "细胞及其成分成角度 (2)"
+        },
+        {
+          "section_num": "第二节",
+          "title": "鳞癌 (15)"
+        },
+        {
+          "section_num": "第二节",
+          "title": "转移性肾透明细胞癌 (104)"
+        },
+        {
+          "section_num": "第二节",
+          "title": "肺淀粉样物质沉积症 (160)"
+        }
+      ]
+    },
+    "第三章": {
+      "title": "其他一些可累及肺脏的恶性肿瘤ROSE细胞组学特点 (97)",
+      "sections": [
+        {
+          "section_num": "第三节",
+          "title": "细胞及其成分浓染 (2)"
+        },
+        {
+          "section_num": "第三节",
+          "title": "小细胞癌 (22)"
+        },
+        {
+          "section_num": "第三节",
+          "title": "转移性宫颈绒毛腺管状腺癌 (110)"
+        },
+        {
+          "section_num": "第三节",
+          "title": "肉芽肿性多血管炎 (166)"
+        }
+      ]
+    },
+    "第四章": {
+      "title": "肺脏少见病的ROSE组学特征 (153)",
+      "sections": [
+        {
+          "section_num": "第四节",
+          "title": "细胞成分增多 (2)"
+        },
+        {
+          "section_num": "第五节",
+          "title": "细胞核膜厚而浆膜相对菲薄 (2)"
+        },
+        {
+          "section_num": "第六节",
+          "title": "细胞及其成分拥挤层叠 (3)"
+        },
+        {
+          "section_num": "第七节",
+          "title": "细胞及其成分排列紊乱 (3)"
+        },
+        {
+          "section_num": "第八节",
+          "title": "细胞背景分析 (3)"
+        },
+        {
+          "section_num": "第四节",
+          "title": "大细胞神经内分泌癌 (27)"
+        },
+        {
+          "section_num": "第五节",
+          "title": "典型类癌 (33)"
+        },
+        {
+          "section_num": "第六节",
+          "title": "不典型类癌 (41)"
+        },
+        {
+          "section_num": "第七节",
+          "title": "黏液表皮样癌 (47)"
+        },
+        {
+          "section_num": "第八节",
+          "title": "腺样囊性癌 (53)"
+        },
+        {
+          "section_num": "第九节",
+          "title": "黏液腺癌 (61)"
+        },
+        {
+          "section_num": "第十节",
+          "title": "腺泡细胞癌 (72)"
+        },
+        {
+          "section_num": "第四节",
+          "title": "急性髓系白血病肺浸润 (116)"
+        },
+        {
+          "section_num": "第五节",
+          "title": "弥漫性大B细胞淋巴瘤肺浸润 (122)"
+        },
+        {
+          "section_num": "第六节",
+          "title": "套细胞淋巴瘤肺浸润 (128)"
+        },
+        {
+          "section_num": "第七节",
+          "title": "黏膜相关淋巴组织淋巴瘤肺浸润 (134)"
+        },
+        {
+          "section_num": "第八节",
+          "title": "转移性结肠腺癌 (140)"
+        },
+        {
+          "section_num": "第九节",
+          "title": "上皮型间皮瘤 (146)"
+        },
+        {
+          "section_num": "第四节",
+          "title": "过敏性肺炎 (172)"
+        },
+        {
+          "section_num": "第五节",
+          "title": "变态反应性支气管肺曲菌病 (178)"
+        },
+        {
+          "section_num": "第六节",
+          "title": "急性纤维素性机化性肺炎 (184)"
+        }
+      ]
+    }
+  },
+  "medical_concepts": [
+    {
+      "name": "ROSE",
+      "category": "technique",
+      "description": "快速现场评价技术",
+      "chapter": "第一章",
+      "section": "前言",
+      "related_terms": [],
+      "importance_score": 0.9
+    },
+    {
+      "name": "ROSE组学",
+      "category": "technique",
+      "description": "细胞组学分析方法",
+      "chapter": "第一章",
+      "section": "前言",
+      "related_terms": [],
+      "importance_score": 0.9
+    },
+    {
+      "name": "定位细胞",
+      "category": "technique",
+      "description": "三维构象还原关键概念",
+      "chapter": "第一章",
+      "section": "前言",
+      "related_terms": [],
+      "importance_score": 0.9
+    },
+    {
+      "name": "细胞组学",
+      "category": "technique",
+      "description": "细胞群空间关系分析",
+      "chapter": "第一章",
+      "section": "前言",
+      "related_terms": [],
+      "importance_score": 0.9
+    },
+    {
+      "name": "肿瘤素质",
+      "category": "technique",
+      "description": "恶性细胞背景特征",
+      "chapter": "第一章",
+      "section": "前言",
+      "related_terms": [],
+      "importance_score": 0.9
+    },
+    {
+      "name": "核质比",
+      "category": "cell_feature",
+      "description": "N/C比值，>1/2提示恶性",
+      "chapter": "第一章",
+      "section": "细胞学特点",
+      "related_terms": [],
+      "importance_score": 0.8
+    },
+    {
+      "name": "核仁比例",
+      "category": "cell_feature",
+      "description": "m/N比值，>0.25提示恶性",
+      "chapter": "第一章",
+      "section": "细胞学特点",
+      "related_terms": [],
+      "importance_score": 0.8
+    },
+    {
+      "name": "深染",
+      "category": "cell_feature",
+      "description": "染色质浓缩特征",
+      "chapter": "第一章",
+      "section": "细胞学特点",
+      "related_terms": [],
+      "importance_score": 0.8
+    },
+    {
+      "name": "镶嵌样排列",
+      "category": "cell_feature",
+      "description": "细胞排列方式",
+      "chapter": "第一章",
+      "section": "细胞学特点",
+      "related_terms": [],
+      "importance_score": 0.8
+    },
+    {
+      "name": "乳头状结构",
+      "category": "cell_feature",
+      "description": "腺癌特征性排列",
+      "chapter": "第一章",
+      "section": "细胞学特点",
+      "related_terms": [],
+      "importance_score": 0.8
+    },
+    {
+      "name": "腺泡状结构",
+      "category": "cell_feature",
+      "description": "腺癌排列方式",
+      "chapter": "第一章",
+      "section": "细胞学特点",
+      "related_terms": [],
+      "importance_score": 0.8
+    },
+    {
+      "name": "桑葚状结构",
+      "category": "cell_feature",
+      "description": "细胞聚集形态",
+      "chapter": "第一章",
+      "section": "细胞学特点",
+      "related_terms": [],
+      "importance_score": 0.8
+    },
+    {
+      "name": "梭形细胞",
+      "category": "cell_feature",
+      "description": "特定细胞形态",
+      "chapter": "第一章",
+      "section": "细胞学特点",
+      "related_terms": [],
+      "importance_score": 0.8
+    },
+    {
+      "name": "透明细胞",
+      "category": "cell_feature",
+      "description": "细胞质透明特征",
+      "chapter": "第一章",
+      "section": "细胞学特点",
+      "related_terms": [],
+      "importance_score": 0.8
+    },
+    {
+      "name": "ROSE",
+      "category": "technique",
+      "description": "快速现场评价技术",
+      "chapter": "第一章",
+      "section": "前言",
+      "related_terms": [],
+      "importance_score": 0.9
+    },
+    {
+      "name": "ROSE组学",
+      "category": "technique",
+      "description": "细胞组学分析方法",
+      "chapter": "第一章",
+      "section": "前言",
+      "related_terms": [],
+      "importance_score": 0.9
+    },
+    {
+      "name": "定位细胞",
+      "category": "technique",
+      "description": "三维构象还原关键概念",
+      "chapter": "第一章",
+      "section": "前言",
+      "related_terms": [],
+      "importance_score": 0.9
+    },
+    {
+      "name": "细胞组学",
+      "category": "technique",
+      "description": "细胞群空间关系分析",
+      "chapter": "第一章",
+      "section": "前言",
+      "related_terms": [],
+      "importance_score": 0.9
+    },
+    {
+      "name": "肿瘤素质",
+      "category": "technique",
+      "description": "恶性细胞背景特征",
+      "chapter": "第一章",
+      "section": "前言",
+      "related_terms": [],
+      "importance_score": 0.9
+    },
+    {
+      "name": "核质比",
+      "category": "cell_feature",
+      "description": "N/C比值，>1/2提示恶性",
+      "chapter": "第一章",
+      "section": "细胞学特点",
+      "related_terms": [],
+      "importance_score": 0.8
+    },
+    {
+      "name": "核仁比例",
+      "category": "cell_feature",
+      "description": "m/N比值，>0.25提示恶性",
+      "chapter": "第一章",
+      "section": "细胞学特点",
+      "related_terms": [],
+      "importance_score": 0.8
+    },
+    {
+      "name": "深染",
+      "category": "cell_feature",
+      "description": "染色质浓缩特征",
+      "chapter": "第一章",
+      "section": "细胞学特点",
+      "related_terms": [],
+      "importance_score": 0.8
+    },
+    {
+      "name": "镶嵌样排列",
+      "category": "cell_feature",
+      "description": "细胞排列方式",
+      "chapter": "第一章",
+      "section": "细胞学特点",
+      "related_terms": [],
+      "importance_score": 0.8
+    },
+    {
+      "name": "乳头状结构",
+      "category": "cell_feature",
+      "description": "腺癌特征性排列",
+      "chapter": "第一章",
+      "section": "细胞学特点",
+      "related_terms": [],
+      "importance_score": 0.8
+    },
+    {
+      "name": "腺泡状结构",
+      "category": "cell_feature",
+      "description": "腺癌排列方式",
+      "chapter": "第一章",
+      "section": "细胞学特点",
+      "related_terms": [],
+      "importance_score": 0.8
+    },
+    {
+      "name": "桑葚状结构",
+      "category": "cell_feature",
+      "description": "细胞聚集形态",
+      "chapter": "第一章",
+      "section": "细胞学特点",
+      "related_terms": [],
+      "importance_score": 0.8
+    },
+    {
+      "name": "梭形细胞",
+      "category": "cell_feature",
+      "description": "特定细胞形态",
+      "chapter": "第一章",
+      "section": "细胞学特点",
+      "related_terms": [],
+      "importance_score": 0.8
+    },
+    {
+      "name": "透明细胞",
+      "category": "cell_feature",
+      "description": "细胞质透明特征",
+      "chapter": "第一章",
+      "section": "细胞学特点",
+      "related_terms": [],
+      "importance_score": 0.8
+    }
+  ],
+  "diseases": [
+    {
+      "name": "腺癌",
+      "category": "lung_cancer",
+      "rose_features": [
+        "分化较高时细胞较大，分化较低时细胞较小"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：分化较高时细胞较大，分化较低时细胞较小"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第二章",
+      "section": "腺癌相关章节",
+      "cell_types": [
+        "腺癌"
+      ]
+    },
+    {
+      "name": "鳞癌",
+      "category": "lung_cancer",
+      "rose_features": [
+        "分化较高时角化明显，分化较低时异型明显"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：分化较高时角化明显，分化较低时异型明显"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第二章",
+      "section": "鳞癌相关章节",
+      "cell_types": [
+        "鳞癌"
+      ]
+    },
+    {
+      "name": "小细胞癌",
+      "category": "lung_cancer",
+      "rose_features": [
+        "无质、无仁、鬼脸、镶嵌"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：无质、无仁、鬼脸、镶嵌"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第二章",
+      "section": "小细胞癌相关章节",
+      "cell_types": [
+        "小细胞癌"
+      ]
+    },
+    {
+      "name": "大细胞神经内分泌癌",
+      "category": "lung_cancer",
+      "rose_features": [
+        "三大一少伴镶嵌"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：三大一少伴镶嵌"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第二章",
+      "section": "大细胞神经内分泌癌相关章节",
+      "cell_types": [
+        "大细胞神经内分泌癌"
+      ]
+    },
+    {
+      "name": "典型类癌",
+      "category": "lung_cancer",
+      "rose_features": [
+        "细胞大小较一致，异型性小"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：细胞大小较一致，异型性小"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第二章",
+      "section": "典型类癌相关章节",
+      "cell_types": [
+        "典型类癌"
+      ]
+    },
+    {
+      "name": "不典型类癌",
+      "category": "lung_cancer",
+      "rose_features": [
+        "细胞大小不一，异型性明显"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：细胞大小不一，异型性明显"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第二章",
+      "section": "不典型类癌相关章节",
+      "cell_types": [
+        "不典型类癌"
+      ]
+    },
+    {
+      "name": "黏液表皮样癌",
+      "category": "lung_cancer",
+      "rose_features": [
+        "含黏液细胞、表皮样细胞及中间型细胞"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：含黏液细胞、表皮样细胞及中间型细胞"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第二章",
+      "section": "黏液表皮样癌相关章节",
+      "cell_types": [
+        "黏液表皮样癌"
+      ]
+    },
+    {
+      "name": "腺样囊性癌",
+      "category": "lung_cancer",
+      "rose_features": [
+        "体积小、核深染、黏液样基质"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：体积小、核深染、黏液样基质"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第二章",
+      "section": "腺样囊性癌相关章节",
+      "cell_types": [
+        "腺样囊性癌"
+      ]
+    },
+    {
+      "name": "黏液腺癌",
+      "category": "lung_cancer",
+      "rose_features": [
+        "黏液湖中癌细胞成团"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：黏液湖中癌细胞成团"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第二章",
+      "section": "黏液腺癌相关章节",
+      "cell_types": [
+        "黏液腺癌"
+      ]
+    },
+    {
+      "name": "腺泡细胞癌",
+      "category": "lung_cancer",
+      "rose_features": [
+        "浆液细胞腺癌，低度恶性"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：浆液细胞腺癌，低度恶性"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第二章",
+      "section": "腺泡细胞癌相关章节",
+      "cell_types": [
+        "腺泡细胞癌"
+      ]
+    },
+    {
+      "name": "肉瘤样癌",
+      "category": "lung_cancer",
+      "rose_features": [
+        "异型明显，可见巨细胞样、梭形细胞样"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：异型明显，可见巨细胞样、梭形细胞样"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第二章",
+      "section": "肉瘤样癌相关章节",
+      "cell_types": [
+        "肉瘤样癌"
+      ]
+    },
+    {
+      "name": "转移性平滑肌肉瘤",
+      "category": "metastatic_tumor",
+      "rose_features": [
+        "梭形细胞，核细长"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：梭形细胞，核细长"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第三章",
+      "section": "转移性平滑肌肉瘤相关章节",
+      "cell_types": [
+        "转移性平滑肌肉瘤"
+      ]
+    },
+    {
+      "name": "转移性肾透明细胞癌",
+      "category": "metastatic_tumor",
+      "rose_features": [
+        "细胞质透明或弱嗜酸性"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：细胞质透明或弱嗜酸性"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第三章",
+      "section": "转移性肾透明细胞癌相关章节",
+      "cell_types": [
+        "转移性肾透明细胞癌"
+      ]
+    },
+    {
+      "name": "转移性宫颈绒毛腺管状腺癌",
+      "category": "metastatic_tumor",
+      "rose_features": [
+        "低柱状细胞，绒毛状结构"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：低柱状细胞，绒毛状结构"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第三章",
+      "section": "转移性宫颈绒毛腺管状腺癌相关章节",
+      "cell_types": [
+        "转移性宫颈绒毛腺管状腺癌"
+      ]
+    },
+    {
+      "name": "急性髓系白血病肺浸润",
+      "category": "metastatic_tumor",
+      "rose_features": [
+        "髓系原始细胞特征"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：髓系原始细胞特征"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第三章",
+      "section": "急性髓系白血病肺浸润相关章节",
+      "cell_types": [
+        "急性髓系白血病肺浸润"
+      ]
+    },
+    {
+      "name": "弥漫性大B细胞淋巴瘤",
+      "category": "metastatic_tumor",
+      "rose_features": [
+        "大B淋巴细胞特征"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：大B淋巴细胞特征"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第三章",
+      "section": "弥漫性大B细胞淋巴瘤相关章节",
+      "cell_types": [
+        "弥漫性大B细胞淋巴瘤"
+      ]
+    },
+    {
+      "name": "转移性结肠腺癌",
+      "category": "metastatic_tumor",
+      "rose_features": [
+        "柱形或杯状细胞"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：柱形或杯状细胞"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第三章",
+      "section": "转移性结肠腺癌相关章节",
+      "cell_types": [
+        "转移性结肠腺癌"
+      ]
+    },
+    {
+      "name": "上皮型间皮瘤",
+      "category": "metastatic_tumor",
+      "rose_features": [
+        "立方状、多边形细胞"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：立方状、多边形细胞"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第三章",
+      "section": "上皮型间皮瘤相关章节",
+      "cell_types": [
+        "上皮型间皮瘤"
+      ]
+    },
+    {
+      "name": "肺泡蛋白沉积症",
+      "category": "rare_disease",
+      "rose_features": [
+        "粉染颗粒状蛋白样物质"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：粉染颗粒状蛋白样物质"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第四章",
+      "section": "肺泡蛋白沉积症相关章节",
+      "cell_types": [
+        "肺泡蛋白沉积症"
+      ]
+    },
+    {
+      "name": "肺淀粉样物质沉积症",
+      "category": "rare_disease",
+      "rose_features": [
+        "致密无定形嗜氰物质"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：致密无定形嗜氰物质"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第四章",
+      "section": "肺淀粉样物质沉积症相关章节",
+      "cell_types": [
+        "肺淀粉样物质沉积症"
+      ]
+    },
+    {
+      "name": "肉芽肿性多血管炎",
+      "category": "rare_disease",
+      "rose_features": [
+        "坏死、中性粒细胞浸润"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：坏死、中性粒细胞浸润"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第四章",
+      "section": "肉芽肿性多血管炎相关章节",
+      "cell_types": [
+        "肉芽肿性多血管炎"
+      ]
+    },
+    {
+      "name": "过敏性肺炎",
+      "category": "rare_disease",
+      "rose_features": [
+        "淋巴细胞优势，非坏死性肉芽肿"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：淋巴细胞优势，非坏死性肉芽肿"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第四章",
+      "section": "过敏性肺炎相关章节",
+      "cell_types": [
+        "过敏性肺炎"
+      ]
+    },
+    {
+      "name": "变态反应性支气管肺曲菌病",
+      "category": "rare_disease",
+      "rose_features": [
+        "嗜酸性粒细胞、曲霉菌丝"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：嗜酸性粒细胞、曲霉菌丝"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第四章",
+      "section": "变态反应性支气管肺曲菌病相关章节",
+      "cell_types": [
+        "变态反应性支气管肺曲菌病"
+      ]
+    },
+    {
+      "name": "急性纤维素性机化性肺炎",
+      "category": "rare_disease",
+      "rose_features": [
+        "纤维素样物质及机化性病变"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：纤维素样物质及机化性病变"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第四章",
+      "section": "急性纤维素性机化性肺炎相关章节",
+      "cell_types": [
+        "急性纤维素性机化性肺炎"
+      ]
+    },
+    {
+      "name": "腺癌",
+      "category": "lung_cancer",
+      "rose_features": [
+        "分化较高时细胞较大，分化较低时细胞较小"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：分化较高时细胞较大，分化较低时细胞较小"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第二章",
+      "section": "腺癌相关章节",
+      "cell_types": [
+        "腺癌"
+      ]
+    },
+    {
+      "name": "鳞癌",
+      "category": "lung_cancer",
+      "rose_features": [
+        "分化较高时角化明显，分化较低时异型明显"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：分化较高时角化明显，分化较低时异型明显"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第二章",
+      "section": "鳞癌相关章节",
+      "cell_types": [
+        "鳞癌"
+      ]
+    },
+    {
+      "name": "小细胞癌",
+      "category": "lung_cancer",
+      "rose_features": [
+        "无质、无仁、鬼脸、镶嵌"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：无质、无仁、鬼脸、镶嵌"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第二章",
+      "section": "小细胞癌相关章节",
+      "cell_types": [
+        "小细胞癌"
+      ]
+    },
+    {
+      "name": "大细胞神经内分泌癌",
+      "category": "lung_cancer",
+      "rose_features": [
+        "三大一少伴镶嵌"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：三大一少伴镶嵌"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第二章",
+      "section": "大细胞神经内分泌癌相关章节",
+      "cell_types": [
+        "大细胞神经内分泌癌"
+      ]
+    },
+    {
+      "name": "典型类癌",
+      "category": "lung_cancer",
+      "rose_features": [
+        "细胞大小较一致，异型性小"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：细胞大小较一致，异型性小"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第二章",
+      "section": "典型类癌相关章节",
+      "cell_types": [
+        "典型类癌"
+      ]
+    },
+    {
+      "name": "不典型类癌",
+      "category": "lung_cancer",
+      "rose_features": [
+        "细胞大小不一，异型性明显"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：细胞大小不一，异型性明显"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第二章",
+      "section": "不典型类癌相关章节",
+      "cell_types": [
+        "不典型类癌"
+      ]
+    },
+    {
+      "name": "黏液表皮样癌",
+      "category": "lung_cancer",
+      "rose_features": [
+        "含黏液细胞、表皮样细胞及中间型细胞"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：含黏液细胞、表皮样细胞及中间型细胞"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第二章",
+      "section": "黏液表皮样癌相关章节",
+      "cell_types": [
+        "黏液表皮样癌"
+      ]
+    },
+    {
+      "name": "腺样囊性癌",
+      "category": "lung_cancer",
+      "rose_features": [
+        "体积小、核深染、黏液样基质"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：体积小、核深染、黏液样基质"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第二章",
+      "section": "腺样囊性癌相关章节",
+      "cell_types": [
+        "腺样囊性癌"
+      ]
+    },
+    {
+      "name": "黏液腺癌",
+      "category": "lung_cancer",
+      "rose_features": [
+        "黏液湖中癌细胞成团"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：黏液湖中癌细胞成团"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第二章",
+      "section": "黏液腺癌相关章节",
+      "cell_types": [
+        "黏液腺癌"
+      ]
+    },
+    {
+      "name": "腺泡细胞癌",
+      "category": "lung_cancer",
+      "rose_features": [
+        "浆液细胞腺癌，低度恶性"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：浆液细胞腺癌，低度恶性"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第二章",
+      "section": "腺泡细胞癌相关章节",
+      "cell_types": [
+        "腺泡细胞癌"
+      ]
+    },
+    {
+      "name": "肉瘤样癌",
+      "category": "lung_cancer",
+      "rose_features": [
+        "异型明显，可见巨细胞样、梭形细胞样"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：异型明显，可见巨细胞样、梭形细胞样"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第二章",
+      "section": "肉瘤样癌相关章节",
+      "cell_types": [
+        "肉瘤样癌"
+      ]
+    },
+    {
+      "name": "转移性平滑肌肉瘤",
+      "category": "metastatic_tumor",
+      "rose_features": [
+        "梭形细胞，核细长"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：梭形细胞，核细长"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第三章",
+      "section": "转移性平滑肌肉瘤相关章节",
+      "cell_types": [
+        "转移性平滑肌肉瘤"
+      ]
+    },
+    {
+      "name": "转移性肾透明细胞癌",
+      "category": "metastatic_tumor",
+      "rose_features": [
+        "细胞质透明或弱嗜酸性"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：细胞质透明或弱嗜酸性"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第三章",
+      "section": "转移性肾透明细胞癌相关章节",
+      "cell_types": [
+        "转移性肾透明细胞癌"
+      ]
+    },
+    {
+      "name": "转移性宫颈绒毛腺管状腺癌",
+      "category": "metastatic_tumor",
+      "rose_features": [
+        "低柱状细胞，绒毛状结构"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：低柱状细胞，绒毛状结构"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第三章",
+      "section": "转移性宫颈绒毛腺管状腺癌相关章节",
+      "cell_types": [
+        "转移性宫颈绒毛腺管状腺癌"
+      ]
+    },
+    {
+      "name": "急性髓系白血病肺浸润",
+      "category": "metastatic_tumor",
+      "rose_features": [
+        "髓系原始细胞特征"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：髓系原始细胞特征"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第三章",
+      "section": "急性髓系白血病肺浸润相关章节",
+      "cell_types": [
+        "急性髓系白血病肺浸润"
+      ]
+    },
+    {
+      "name": "弥漫性大B细胞淋巴瘤",
+      "category": "metastatic_tumor",
+      "rose_features": [
+        "大B淋巴细胞特征"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：大B淋巴细胞特征"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第三章",
+      "section": "弥漫性大B细胞淋巴瘤相关章节",
+      "cell_types": [
+        "弥漫性大B细胞淋巴瘤"
+      ]
+    },
+    {
+      "name": "转移性结肠腺癌",
+      "category": "metastatic_tumor",
+      "rose_features": [
+        "柱形或杯状细胞"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：柱形或杯状细胞"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第三章",
+      "section": "转移性结肠腺癌相关章节",
+      "cell_types": [
+        "转移性结肠腺癌"
+      ]
+    },
+    {
+      "name": "上皮型间皮瘤",
+      "category": "metastatic_tumor",
+      "rose_features": [
+        "立方状、多边形细胞"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：立方状、多边形细胞"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第三章",
+      "section": "上皮型间皮瘤相关章节",
+      "cell_types": [
+        "上皮型间皮瘤"
+      ]
+    },
+    {
+      "name": "肺泡蛋白沉积症",
+      "category": "rare_disease",
+      "rose_features": [
+        "粉染颗粒状蛋白样物质"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：粉染颗粒状蛋白样物质"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第四章",
+      "section": "肺泡蛋白沉积症相关章节",
+      "cell_types": [
+        "肺泡蛋白沉积症"
+      ]
+    },
+    {
+      "name": "肺淀粉样物质沉积症",
+      "category": "rare_disease",
+      "rose_features": [
+        "致密无定形嗜氰物质"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：致密无定形嗜氰物质"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第四章",
+      "section": "肺淀粉样物质沉积症相关章节",
+      "cell_types": [
+        "肺淀粉样物质沉积症"
+      ]
+    },
+    {
+      "name": "肉芽肿性多血管炎",
+      "category": "rare_disease",
+      "rose_features": [
+        "坏死、中性粒细胞浸润"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：坏死、中性粒细胞浸润"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第四章",
+      "section": "肉芽肿性多血管炎相关章节",
+      "cell_types": [
+        "肉芽肿性多血管炎"
+      ]
+    },
+    {
+      "name": "过敏性肺炎",
+      "category": "rare_disease",
+      "rose_features": [
+        "淋巴细胞优势，非坏死性肉芽肿"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：淋巴细胞优势，非坏死性肉芽肿"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第四章",
+      "section": "过敏性肺炎相关章节",
+      "cell_types": [
+        "过敏性肺炎"
+      ]
+    },
+    {
+      "name": "变态反应性支气管肺曲菌病",
+      "category": "rare_disease",
+      "rose_features": [
+        "嗜酸性粒细胞、曲霉菌丝"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：嗜酸性粒细胞、曲霉菌丝"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第四章",
+      "section": "变态反应性支气管肺曲菌病相关章节",
+      "cell_types": [
+        "变态反应性支气管肺曲菌病"
+      ]
+    },
+    {
+      "name": "急性纤维素性机化性肺炎",
+      "category": "rare_disease",
+      "rose_features": [
+        "纤维素样物质及机化性病变"
+      ],
+      "diagnostic_points": [
+        "ROSE特征：纤维素样物质及机化性病变"
+      ],
+      "differential_diagnosis": [],
+      "chapter": "第四章",
+      "section": "急性纤维素性机化性肺炎相关章节",
+      "cell_types": [
+        "急性纤维素性机化性肺炎"
+      ]
+    }
+  ],
+  "rose_features": [
+    "1. **肺部实体恶性肿瘤**：主要表现为细胞异型性、排列紊乱和肿瘤素质"
+  ],
+  "cell_features": [
+    "细胞质",
+    "核膜",
+    "深染",
+    "卵圆形",
+    "核小",
+    "嗜酸",
+    "嗜碱",
+    "透明",
+    "核质比",
+    "桑葚状",
+    "巨细胞",
+    "核分裂",
+    "多形性",
+    "镶嵌",
+    "浓染",
+    "立方状",
+    "多边形",
+    "梭形",
+    "乳头状",
+    "核仁",
+    "核大",
+    "坏死",
+    "圆形",
+    "腺泡状",
+    "异型性"
+  ]
+}

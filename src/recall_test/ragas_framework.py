@@ -70,11 +70,36 @@ class RAGASTestFramework:
         # 加载测试问题
         await self._load_test_questions()
 
-        # 初始化检索管理器
-        self.retrieval_manager = EnhancedMedicalRetrievalManager()
+        # 初始化嵌入模型（必需用于语义搜索）
+        logger.info("初始化嵌入模型...")
+        try:
+            from src.embedding.embedding_models import get_embedding_manager
+            embedding_manager = get_embedding_manager(model_type="jina")
+            logger.info("✅ 嵌入模型初始化成功")
+        except Exception as e:
+            logger.error(f"❌ 嵌入模型初始化失败: {e}")
+            logger.info("将使用基础检索管理器（无语义搜索功能）")
+            embedding_manager = None
 
-        # 初始化嵌入模型（暂时不需要）
-        # self.embedding_model = EmbeddingModel()
+        # 初始化检索管理器（使用正确的参数）
+        logger.info("初始化检索管理器...")
+        try:
+            self.retrieval_manager = EnhancedMedicalRetrievalManager(
+                es_host=DB_CONFIG.get('elasticsearch_host', 'localhost'),
+                es_port=DB_CONFIG.get('elasticsearch_port', 9200),
+                milvus_host=DB_CONFIG.get('milvus_host', 'localhost'),
+                milvus_port=DB_CONFIG.get('milvus_port', 19530),
+                embedding_manager=embedding_manager
+            )
+            logger.info("✅ 增强版检索管理器初始化成功")
+        except Exception as e:
+            logger.error(f"❌ 增强版检索管理器初始化失败: {e}")
+            logger.info("将使用基础检索管理器")
+            from src.agent.retrieval_manager import MedicalRetrievalManager
+            self.retrieval_manager = MedicalRetrievalManager(
+                es_host=DB_CONFIG.get('elasticsearch_host', 'localhost'),
+                es_port=DB_CONFIG.get('elasticsearch_port', 9200)
+            )
 
         logger.info(f"RAGAS测试框架初始化完成，加载了{len(self.questions)}个测试问题")
 

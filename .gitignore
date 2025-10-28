@@ -1,5 +1,5 @@
 backups
-data
+data/*
 volumes
 useless
 __pycache__/
@@ -7,3 +7,6 @@ logs
 *.log
 src/recall_test/logs
 src/recall_test/evaluation_reports
+
+!data/simple_chunks.json
+!data/clean_data.md

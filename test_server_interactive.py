@@ -9,8 +9,36 @@ import requests
 import json
 import time
 import sys
+import logging
 from datetime import datetime
 from typing import Dict, Any, Optional
+
+# 设置详细调试日志
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler(),
+        logging.FileHandler(f'test_server_debug_{datetime.now().strftime("%Y%m%d_%H%M%S")}.log')
+    ]
+)
+logger = logging.getLogger(__name__)
+
+# 为关键模块设置DEBUG级别
+key_modules = [
+    'agent.rag_engine',
+    'agent.enhanced_react_agent',
+    'agent.simple_enhanced_react_agent',
+    'agent.enhanced_retrieval_manager',
+    'agent.llm_manager',
+    'agent.simple_chapter_enhancer'
+]
+
+for module in key_modules:
+    module_logger = logging.getLogger(module)
+    module_logger.setLevel(logging.DEBUG)
+
+logger.info("🚀 启动交互式后端测试 - 调试模式已启用")
 
 # API配置
 API_BASE_URL = "http://localhost:8001"  # 修复：使用端口8001避免冲突
@@ -57,8 +85,8 @@ def check_system_status() -> bool:
         else:
             print(f"{Colors.WARNING}⚠️  健康检查失败: {health_response.status_code}{Colors.ENDC}")
 
-        # 检查系统状态
-        status_response = requests.get(STATUS_ENDPOINT, timeout=10)
+        # 检查系统状态 - 增加超时时间
+        status_response = requests.get(STATUS_ENDPOINT, timeout=30)
         if status_response.status_code == 200:
             status_data = status_response.json()
             print(f"{Colors.OKGREEN}✅ 系统状态: {status_data.get('status', 'unknown')}{Colors.ENDC}")
@@ -145,7 +173,7 @@ def send_query(question: str, **kwargs) -> Optional[Dict[str, Any]]:
         return None
 
 def display_response(response: Dict[str, Any]):
-    """显示响应结果"""
+    """显示响应结果 - 增强版，显示完整处理流程"""
     print(f"\n{Colors.HEADER}{Colors.BOLD}📋 查询结果{Colors.ENDC}")
     print("-" * 80)
 
@@ -156,6 +184,46 @@ def display_response(response: Dict[str, Any]):
     print(f"{Colors.OKCYAN}响应时间: {response.get('response_time', 0):.2f}秒{Colors.ENDC}")
     print(f"{Colors.OKCYAN}使用模型: {response.get('model_used', 'N/A')}{Colors.ENDC}")
     print(f"{Colors.OKCYAN}时间戳: {response.get('timestamp', 'N/A')}{Colors.ENDC}")
+
+    # 后端处理流程分析
+    print(f"\n{Colors.HEADER}{Colors.BOLD}🔍 后端处理流程分析:{Colors.ENDC}")
+
+    # 搜索查询历史
+    search_queries = response.get('search_queries', [])
+    if search_queries:
+        print(f"{Colors.OKCYAN}🔍 搜索查询历史 ({len(search_queries)} 个):{Colors.ENDC}")
+        for i, query in enumerate(search_queries, 1):
+            print(f"  {i}. {query}")
+
+    # 推理步骤
+    reasoning_steps = response.get('reasoning_steps', [])
+    if reasoning_steps:
+        print(f"\n{Colors.OKCYAN}🧠 推理步骤 ({len(reasoning_steps)} 步):{Colors.ENDC}")
+        for i, step in enumerate(reasoning_steps, 1):
+            step_name = step.get('step', f'步骤{i}')
+            print(f"  🔍 {step_name}")
+            if 'thought' in step:
+                print(f"     💭 思考: {step['thought'][:150]}...")
+            if 'action' in step:
+                print(f"     🛠️  动作: {step['action']}")
+            if 'observation' in step:
+                print(f"     👁️  观察: {step['observation'][:150]}...")
+
+    # 检索到的文档分析
+    retrieved_docs = response.get('retrieved_documents', [])
+    if retrieved_docs:
+        print(f"\n{Colors.OKCYAN}📚 检索到的文档 ({len(retrieved_docs)} 个):{Colors.ENDC}")
+        for i, doc in enumerate(retrieved_docs[:5], 1):  # 显示前5个
+            print(f"  📄 文档 {i}:")
+            print(f"     📖 章节: {doc.get('chapter_title', 'N/A')}")
+            print(f"     📑 小节: {doc.get('section_title', 'N/A')}")
+            print(f"     📄 页码: 第{doc.get('page_number', 'N/A')}页")
+            print(f"     ⭐ 相关度分数: {doc.get('score', 0):.3f}")
+            if doc.get('chapter_boost_score', 0) > 0:
+                print(f"     🚀 章节增强分数: +{doc.get('chapter_boost_score', 0):.3f}")
+            print(f"     🔍 搜索类型: {doc.get('search_type', 'unknown')}")
+            print(f"     📝 内容预览: {doc.get('content', '')[:200]}...")
+            print()
 
     # 答案
     print(f"\n{Colors.HEADER}{Colors.BOLD}📝 答案:{Colors.ENDC}")

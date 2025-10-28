@@ -133,8 +133,8 @@ class OneClickTester:
 
             # 保存结果
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            results_file = f'src/recall_test/test_data/chunk_test_results_{timestamp}.json'
-            report_file = f'src/recall_test/evaluation_reports/chunk_summary_report_{timestamp}.md'
+            results_file = f'test_data/chunk_test_results_{timestamp}.json'
+            report_file = f'test_data/evaluation_reports/chunk_summary_report_{timestamp}.md'
 
             framework.save_results(results_file)
             framework.save_summary_report(report_file)

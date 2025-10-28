@@ -198,7 +198,7 @@ async def process_query(
     background_tasks: BackgroundTasks,
     api_key_valid: bool = Depends(verify_api_key)
 ):
-    """处理查询请求"""
+    """处理查询请求 - 增强调试日志"""
     try:
         if not rag_engine:
             raise HTTPException(status_code=503, detail="RAG引擎未初始化")
@@ -206,13 +206,18 @@ async def process_query(
         # 生成查询ID
         query_id = str(uuid.uuid4())
         logger.info(f"🚀 处理查询请求: {query_id}")
+        logger.info(f"📋 原始查询: {request.question}")
+        logger.info(f"👤 用户ID: {request.user_id}")
+        logger.info(f"🔧 搜索配置: {request.search_config}")
 
         # 创建会话（如果需要）
         session_id = request.session_id
         if not session_id:
             session_id = session_manager.create_session(request.user_id)
+            logger.info(f"🆕 创建新会话: {session_id}")
 
         # 创建RAG查询
+        logger.info(f"🔨 创建RAG查询对象...")
         rag_query = RAGQuery(
             question=request.question,
             query_id=query_id,
@@ -221,9 +226,12 @@ async def process_query(
             search_config=request.search_config,
             metadata=request.metadata
         )
+        logger.info(f"✅ RAG查询对象创建完成")
 
-        # 处理查询
+        # 处理查询 - 这是核心流程
+        logger.info(f"🔄 开始处理RAG查询...")
         response = await rag_engine.process_query(rag_query)
+        logger.info(f"✅ RAG查询处理完成")
 
         # 后台任务：更新会话历史
         background_tasks.add_task(
@@ -234,10 +242,16 @@ async def process_query(
         )
 
         # 转换为Pydantic模型
-        return QueryResponse(**asdict(response))
+        logger.info(f"📤 准备响应数据...")
+        result = QueryResponse(**asdict(response))
+        logger.info(f"🎉 查询处理成功完成: {query_id}")
+        return result
 
     except Exception as e:
         logger.error(f"❌ 查询处理失败: {e}")
+        logger.error(f"📋 失败查询: {request.question}")
+        import traceback
+        logger.error(f"🔍 详细错误: {traceback.format_exc()}")
         raise HTTPException(status_code=500, detail=str(e))
 
 # 同步查询端点（用于不支持异步的客户端）

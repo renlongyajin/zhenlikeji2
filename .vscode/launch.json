@@ -1,48 +1,138 @@
 {
-    // 使用 IntelliSense 了解相关属性。 
-    // 悬停以查看现有属性的描述。
-    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: 调试 Milvus 单项测试",
+            "name": "调试: test_server_interactive.py (完整后端流程)",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/one_click_test.py",
+            "program": "${workspaceFolder}/test_server_interactive.py",
             "console": "integratedTerminal",
-            "args": [
-               
-            ],
-            "justMyCode": true,
-            "cwd": "${workspaceFolder}"
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src",
+                "LOG_LEVEL": "DEBUG"
+            },
+            "envFile": "${workspaceFolder}/.env",
+            "args": [],
+            "stopOnEntry": false,
+            "justMyCode": false,
+            "subProcess": true,
+            "logToFile": true,
+            "internalConsoleOptions": "openOnSessionStart",
         },
         {
-            
-                "name": "测试llm_question_generator",
-                "type": "python",
-                "request": "launch",
-                "program": "${workspaceFolder}/src/recall_test/llm_question_generator.py",
-                "console": "integratedTerminal",
-                "args": [
-                   
-                ],
-                "justMyCode": true,
-                "cwd": "${workspaceFolder}"
-            
-        },
-        {
-            
-            "name": "测试simple_interactive_test",
+            "name": "调试: API服务 (api_service.py)",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/simple_interactive_test.py",
+            "program": "${workspaceFolder}/src/agent/api_service.py",
             "console": "integratedTerminal",
-            "args": [
-               
-            ],
-            "justMyCode": true,
-            "cwd": "${workspaceFolder}"
-        
-    }
+            "cwd": "${workspaceFolder}/src/agent",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src"
+            },
+            "envFile": "${workspaceFolder}/.env",
+            "args": [],
+            "stopOnEntry": false,
+            "justMyCode": false,
+            "subProcess": true,
+            "logToFile": true
+        },
+        {
+            "name": "调试: RAG引擎 (rag_engine.py)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/agent/rag_engine.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/src/agent",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src"
+            },
+            "envFile": "${workspaceFolder}/.env",
+            "args": [],
+            "stopOnEntry": false,
+            "justMyCode": false,
+            "subProcess": true,
+            "logToFile": true
+        },
+        {
+            "name": "调试: 简化增强Agent (simple_enhanced_react_agent.py)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/agent/simple_enhanced_react_agent.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/src/agent",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src"
+            },
+            "envFile": "${workspaceFolder}/.env",
+            "args": [],
+            "stopOnEntry": false,
+            "justMyCode": false,
+            "subProcess": true
+        },
+        {
+            "name": "调试: 增强检索管理器 (enhanced_retrieval_manager.py)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/agent/enhanced_retrieval_manager.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/src/agent",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src"
+            },
+            "envFile": "${workspaceFolder}/.env",
+            "args": [],
+            "stopOnEntry": false,
+            "justMyCode": false,
+            "subProcess": true
+        },
+        {
+            "name": "调试: API服务 (等待外部请求)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/agent/api_service.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/src/agent",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src",
+                "LOG_LEVEL": "DEBUG",
+                "DEBUG_MODE": "true"
+            },
+            "envFile": "${workspaceFolder}/.env",
+            "args": [],
+            "stopOnEntry": false,
+            "justMyCode": false,
+            "subProcess": true,
+            "logToFile": true,
+            "autoReload": {
+                "enable": true
+            }
+        },
+        {
+            "name": "调试: Elasticsearch POST请求流程 (精确版)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/agent/api_service.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/src/agent",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src",
+                "LOG_LEVEL": "DEBUG",
+                "DEBUG_ES_REQUESTS": "true",
+                "PYTHONUNBUFFERED": "1"
+            },
+            "envFile": "${workspaceFolder}/.env",
+            "args": [],
+            "stopOnEntry": false,
+            "justMyCode": false,
+            "subProcess": true,
+            "logToFile": true,
+            "autoReload": {
+                "enable": true
+            },
+            "django": false,
+            "jinja": false,
+            "fastapi": true
+        }
     ]
 }

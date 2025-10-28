@@ -584,10 +584,16 @@ class EnhancedMedicalRetrievalManager:
         logger.info(f"🔍 执行增强版语义搜索: '{query}'")
 
         try:
-            # 生成查询向量 - 使用milvus_data_test.py的成功模式
+            # 生成查询向量 - 使用正确的编码方法
             if self.embedding_manager:
-                # 【关键修复】直接使用[0]访问第一个元素，避免复杂的形状检测
-                query_vector = self.embedding_manager.encode(query)[0].tolist()
+                # 使用encode_texts方法，并正确处理返回结果
+                embedding_result = self.embedding_manager.encode_texts(query)
+                if embedding_result is not None and len(embedding_result) > 0:
+                    query_vector = embedding_result[0].tolist()
+                else:
+                    # 如果编码失败，使用模拟向量
+                    np.random.seed(hash(query) % 1000)
+                    query_vector = np.random.random(768).tolist()
             else:
                 # 模拟向量
                 np.random.seed(hash(query) % 1000)
@@ -674,16 +680,62 @@ class EnhancedMedicalRetrievalManager:
             logger.error(f"❌ 增强版语义搜索失败: {e}")
             return []
 
+    def _extract_search_keywords(self, query: str) -> str:
+        """提取搜索关键词 - 借鉴简化版Agent的实体提取逻辑"""
+        # 关键医学实体列表（来自简化版Agent）
+        key_medical_entities = {
+            '腺癌', '鳞癌', '小细胞癌', '大细胞癌', '肺腺癌', '肺鳞癌',
+            '黏液腺癌', '粘液腺癌', '印戒细胞癌', '神经内分泌癌',
+            '类癌', '肉瘤样癌', '腺样囊性癌', '黏液表皮样癌',
+            'ROSE', '细胞学', '病理', '图像特征', '诊断'
+        }
+
+        query_lower = query.lower()
+        keywords = []
+
+        # 提取医学实体
+        for entity in key_medical_entities:
+            if entity in query_lower:
+                keywords.append(entity)
+
+        # 如果没有提取到医学实体，使用查询预处理方法
+        if not keywords:
+            return self._preprocess_search_query(query)
+
+        return ' '.join(keywords)
+
+    def _preprocess_search_query(self, query: str) -> str:
+        """预处理搜索查询 - 移除停用词和疑问词"""
+        # 常见的停用词和疑问词（中文）
+        stop_words = [
+            '是什么', '什么是', '的', '吗', '呢', '怎么', '如何',
+            '有哪些', '有什么', '是什么', '什么是', '哪些',
+            '吗', '呢', '啊', '吧', '呀'
+        ]
+
+        cleaned_query = query
+        for word in stop_words:
+            cleaned_query = cleaned_query.replace(word, '')
+
+        # 移除多余空格
+        cleaned_query = ' '.join(cleaned_query.split())
+
+        return cleaned_query.strip()
+
     def _enhanced_hybrid_search(self, query: str, top_k: int = 10, keyword_weight: float = 0.6,
                                title_priority_config: Dict[str, Any] = None) -> List[EnhancedSearchResult]:
-        """增强版混合搜索"""
+        """增强版混合搜索 - 修复关键词提取问题"""
         logger.info(f"🔍 执行增强版混合搜索: '{query}' (权重: {keyword_weight})")
 
         try:
-            # 执行增强版关键词搜索
-            keyword_results = self.enhanced_keyword_search(query, top_k * 2, title_priority_config)
+            # 🔥 修复：提取关键词用于关键词搜索
+            search_keywords = self._extract_search_keywords(query)
+            logger.info(f"📊 提取关键词: '{search_keywords}' (原始: '{query}')")
 
-            # 执行增强版语义搜索
+            # 执行增强版关键词搜索（使用提取的关键词）
+            keyword_results = self.enhanced_keyword_search(search_keywords, top_k * 2, title_priority_config)
+
+            # 执行增强版语义搜索（使用原始查询保持语义完整性）
             semantic_results = self._semantic_search_enhanced(query, top_k * 2)
 
             # 合并和重排序（增强版）
