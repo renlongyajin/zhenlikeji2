@@ -1,0 +1,184 @@
+x-healthcheck-etcd: &etcd_hc
+  test: ["CMD-SHELL", "etcdctl endpoint health"]
+  interval: 5s
+  timeout: 3s
+  retries: 5
+
+x-healthcheck-minio: &minio_hc
+  test: ["CMD-SHELL", "timeout 1 bash -c 'cat < /dev/null > /dev/tcp/127.0.0.1/9000'"]
+  interval: 5s
+  timeout: 3s
+  retries: 5
+
+x-healthcheck-es: &es_hc
+  test: ["CMD-SHELL", "nc -z localhost 9200"]
+  interval: 10s
+  timeout: 3s
+  retries: 5
+  start_period: 60s
+
+x-healthcheck-pg: &pg_hc
+  test: ["CMD-SHELL", "pg_isready -U admin -d rag_system"]
+  interval: 10s
+  timeout: 3s
+  retries: 5
+
+x-healthcheck-milvus: &milvus_hc
+  test: ["CMD-SHELL", "curl -f http://localhost:9091/healthz || exit 1"]
+  interval: 10s
+  timeout: 5s
+  retries: 5
+  start_period: 60s
+
+
+services:
+  etcd:
+    image: quay.io/coreos/etcd:v3.5.5
+    container_name: rag-etcd
+    command: >
+      etcd --advertise-client-urls http://etcd:2379
+           --listen-client-urls http://0.0.0.0:2379
+           --data-dir /etcd-data
+    volumes:
+      - etcd-data:/etcd-data
+    networks: [rag-network]
+    restart: unless-stopped
+    healthcheck: *etcd_hc   # 使用新锚点
+
+  minio:
+    image: minio/minio:RELEASE.2023-11-01T18-37-25Z
+    container_name: rag-minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    volumes:
+      - minio-data:/data
+    networks: [rag-network]
+    restart: unless-stopped
+    healthcheck: *minio_hc   # 使用新锚点
+    
+  postgres:
+    image: postgres:15
+    container_name: rag-postgres
+    environment:
+      POSTGRES_DB: rag_system
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks: [rag-network]
+    restart: unless-stopped
+    healthcheck: *pg_hc
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.8.0
+    container_name: rag-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - bootstrap.memory_lock=true
+    ulimits:
+      memlock: {soft: -1, hard: -1}
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    ports: ["9200:9200"]
+    networks: [rag-network]
+    restart: unless-stopped
+    healthcheck: *es_hc
+
+  # 2. Milvus 依赖 etcd+minio 都 healthy 才启动
+  milvus:
+    image: milvusdb/milvus:v2.3.0
+    container_name: rag-milvus
+    command: ["milvus", "run", "standalone"]
+    environment:
+      ETCD_ENDPOINTS: etcd:2379
+      MINIO_ADDRESS: minio:9000
+    volumes:
+      - milvus-data:/var/lib/milvus
+    ports: ["19530:19530"]
+    depends_on:
+      etcd:        {condition: service_healthy}
+      minio:       {condition: service_healthy}
+    networks: [rag-network]
+    restart: unless-stopped
+    healthcheck: *milvus_hc
+
+  # 3. 业务容器依赖 ES+Milvus+Postgres 全部 healthy
+  app:
+    # build: .
+    image: bladedragon233/myapp:1.2
+    container_name: rag-react-app
+    ports: ["8001:8001"]
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      - MILVUS_URL=milvus:19530
+      - POSTGRES_URL=postgresql://admin:password@postgres:5432/rag_system
+      - JINA_API_KEY=${JINA_API_KEY:-}
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY:-}
+      - QWEN_API_KEY=${DASHSCOPE_API_KEY:-}
+      - DASHSCOPE_API_KEY=${DASHSCOPE_API_KEY:-}
+      - SILICONFLOW_API_KEY=${SILICONFLOW_API_KEY:-}
+      - ENVIRONMENT=production
+      - LOG_LEVEL=INFO
+      - API_PORT=8001
+    depends_on:
+      elasticsearch: {condition: service_healthy}
+      milvus:        {condition: service_healthy}
+      postgres:      {condition: service_healthy}
+    volumes:
+      - ./logs:/app/logs
+      - ./data:/app/data
+      - ./config:/app/config
+      # - ./src:/app/src:ro
+    networks: [rag-network]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # 4. Nginx（前端）最后起，只依赖 app
+  nginx:
+    image: nginx:alpine
+    container_name: rag-react-nginx
+    ports: ["12345:80"]
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      app: {condition: service_healthy}
+    networks: [rag-network]
+    restart: unless-stopped
+
+  # 5. Kibana 可视化
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.8.0
+    container_name: rag-kibana
+    ports: ["5601:5601"]
+    environment:
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    depends_on:
+      elasticsearch: {condition: service_healthy}
+    networks: [rag-network]
+    restart: unless-stopped
+
+volumes:
+  elasticsearch-data:
+  milvus-data:
+  postgres-data:
+  minio-data:
+  etcd-data:
+
+networks:
+  rag-network:
+    driver: bridge
+    # ipam:
+    #   driver: default
+    #   config:
+    #     - subnet: 172.20.0.0/16
