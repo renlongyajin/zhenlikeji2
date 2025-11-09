@@ -16,6 +16,7 @@ from langgraph.graph.message import add_messages
 import logging
 import json
 import asyncio
+import re
 from datetime import datetime
 from dataclasses import dataclass, asdict
 
@@ -49,6 +50,8 @@ class ReActAgentState(TypedDict):
     original_question: str
     query_type: str  # 查询类型：medical, general, comparison, etc.
     entities: List[str]  # 识别的实体列表
+    keywords: List[str]  # LLM提取或回退生成的关键词
+    need_search: bool  # 是否需要执行检索
     current_step: str  # 当前步骤
     tool_calls: List[Dict[str, Any]]  # 工具调用历史
     search_results: List[Dict[str, Any]]  # 搜索结果
@@ -68,6 +71,10 @@ class ToolNode:
     def __call__(self, state: ReActAgentState) -> Dict[str, Any]:
         """执行工具调用"""
         messages = state.get("messages", [])
+        if messages is None:
+            messages = []
+        if messages is None:
+            messages = []
         tool_calls = state.get("tool_calls", [])
 
         if not tool_calls:
@@ -406,74 +413,75 @@ class LangGraphReActAgent:
         question = state["question"]
         messages = state.get("messages", [])
 
-        # 构建分析提示
-        analysis_prompt = f"""你是一个医学AI助手，请分析用户的查询意图。
-
-用户查询：{question}
-
-请分析：
-1. 这个查询的主要意图是什么？
-2. 是否需要搜索医学文档来获取信息？
-3. 如果需要搜索，应该搜索什么类型的内容？
-4. 查询中包含了哪些关键医学实体？
-
-请提供详细的分析结果，帮助后续的工具选择。"""
-
         try:
-            if self.llm_manager:
-                # 调用LLM进行分析
-                analysis_messages = [
-                    SystemMessage(content="你是一个专业的医学AI助手，擅长分析用户查询意图。"),
-                    HumanMessage(content=analysis_prompt)
-                ]
+            classification = self._classify_query(question, state.get("metadata"))
+            summary_text = classification.get("summary") or classification.get("reason") or ""
+            query_type = classification.get("query_type") or self._determine_query_type(question, summary_text)
+            keywords = classification.get("keywords") or self._fallback_keywords(question)
+            need_search = classification.get("need_search")
 
-                # 使用同步方法生成响应
-                response = self.llm_manager.generate_response_sync(analysis_messages)
-                analysis_content = response.content if hasattr(response, 'content') else str(response)
+            if need_search is None:
+                # 默认：医学类查询或包含关键词则需要检索
+                need_search = query_type != "general" or len(keywords) > 0
 
-                # 提取关键信息（简化版实体提取）
-                entities = self._extract_entities(question)
-                query_type = self._determine_query_type(question, analysis_content)
-
-                logger.info(f"✅ 意图分析完成 - 类型: {query_type}, 实体: {entities}")
-
-                # 添加分析结果到消息历史
-                messages.append(AIMessage(content=f"意图分析结果：{analysis_content}"))
-
-                return {
-                    "messages": messages,
-                    "query_type": query_type,
-                    "entities": entities,
-                    "current_step": "intent_analysis",
-                    "iteration_count": 0
-                }
+            analysis_summary = classification.get("summary") or classification.get("reason")
+            if analysis_summary:
+                messages.append(AIMessage(content=f"查询分析：{analysis_summary}"))
             else:
-                # LLM管理器不可用时的降级处理
-                entities = self._extract_entities(question)
-                query_type = "medical" if any(term in question for term in ["癌", "细胞", "病理", "诊断"]) else "general"
+                preview_keywords = ", ".join(keywords[:5]) if keywords else "无"
+                messages.append(AIMessage(
+                    content=f"查询分析：类型={query_type}，关键词={preview_keywords}，需要检索={'是' if need_search else '否'}"
+                ))
 
-                return {
-                    "query_type": query_type,
-                    "entities": entities,
-                    "current_step": "intent_analysis",
-                    "iteration_count": 0
-                }
+            logger.info(
+                "✅ 意图分析完成 - 类型: %s, 关键词: %s, 需要检索: %s",
+                query_type,
+                keywords,
+                need_search
+            )
 
-        except Exception as e:
-            logger.error(f"❌ 意图分析失败: {e}")
             return {
-                "query_type": "unknown",
-                "entities": [],
+                "messages": messages,
+                "query_type": query_type,
+                "entities": keywords,  # 兼容旧字段
+                "keywords": keywords,
+                "need_search": need_search,
                 "current_step": "intent_analysis",
                 "iteration_count": 0
             }
 
-    def _generate_optimized_search_query(self, original_query: str, optimization_strategy: str,
-                                       previous_results: List[Dict[str, Any]], iteration_count: int) -> str:
+        except Exception as e:
+            logger.error(f"❌ 意图分析失败: {e}")
+            fallback_keywords = self._fallback_keywords(question)
+            fallback_query_type = self._determine_query_type(question, "")
+            need_search = fallback_query_type != "general" or len(fallback_keywords) > 0
+
+            messages.append(AIMessage(
+                content="查询分析遇到异常，已使用回退规则提取关键词。"
+            ))
+
+            return {
+                "messages": messages,
+                "query_type": fallback_query_type,
+                "entities": fallback_keywords,
+                "keywords": fallback_keywords,
+                "need_search": need_search,
+                "current_step": "intent_analysis",
+                "iteration_count": 0
+            }
+
+    def _generate_optimized_search_query(self,
+                                         original_query: str,
+                                         optimization_strategy: str,
+                                         previous_results: List[Dict[str, Any]],
+                                         iteration_count: int,
+                                         keywords: Optional[List[str]] = None) -> str:
         """基于优化策略生成改进的搜索查询"""
 
         if optimization_strategy == "none" or iteration_count == 0:
             return original_query
+
+        keywords = keywords or self._fallback_keywords(original_query)
 
         if optimization_strategy == "broaden_search":
             # 扩大搜索范围 - 使用更通用的术语
@@ -481,9 +489,8 @@ class LangGraphReActAgent:
 
         elif optimization_strategy == "refine_keywords":
             # 优化关键词 - 提取核心医学术语
-            entities = self._extract_entities(original_query)
-            if entities:
-                return " ".join(entities[:2]) + " 图像特征 细胞学"
+            if keywords:
+                return " ".join(keywords[:3])
             return original_query
 
         elif optimization_strategy == "target_descriptive":
@@ -492,10 +499,14 @@ class LangGraphReActAgent:
 
         elif optimization_strategy == "target_titles":
             # 针对标题匹配 - 使用章节结构关键词
-            return f"第九节 {original_query} 第二章 {original_query}"
+            if keywords:
+                return " ".join([keywords[0], "章节", "标题"]) if len(keywords) > 0 else original_query
+            return original_query
 
         elif optimization_strategy == "adjust_weights":
             # 调整权重策略 - 使用更具体的医学术语
+            if keywords:
+                return f"{' '.join(keywords[:2])} 病理特征 显微镜下表现"
             return f"{original_query} 病理特征 显微镜下表现"
 
         else:
@@ -511,15 +522,26 @@ class LangGraphReActAgent:
         iteration_count = state.get("iteration_count", 0)
         messages = state.get("messages", [])
         optimization_strategy = state.get("optimization_strategy", "none")
+        keywords = state.get("keywords", [])
+
+        if messages is None:
+            messages = []
+
+        base_query = " ".join(keywords) if keywords else question
+        base_query = base_query.strip() or question
 
         # 智能搜索词生成
         if iteration_count > 0 and optimization_strategy != "none":
             optimized_query = self._generate_optimized_search_query(
-                question, optimization_strategy, search_results, iteration_count
+                base_query,
+                optimization_strategy,
+                search_results,
+                iteration_count,
+                keywords=keywords
             )
             logger.info(f"使用优化搜索词: '{optimized_query}' (策略: {optimization_strategy})")
         else:
-            optimized_query = question
+            optimized_query = base_query
             logger.info(f"使用原始搜索词: '{optimized_query}'")
 
         # 构建工具选择提示
@@ -532,7 +554,8 @@ class LangGraphReActAgent:
 已有搜索结果：{len(search_results)} 个
 优化策略：{optimization_strategy}
 
-可用工具：
+    候选关键词：{', '.join(keywords[:5]) if keywords else '无'}
+    可用工具：
 1. rag_search: 搜索医学文档，支持标题优先级和多轮优化
 2. evaluate_search_quality: 评估搜索结果质量
 
@@ -751,7 +774,7 @@ PARAMETERS: [工具参数]"""
 
             # 2. 内容相关性评估 (25%)
             relevant_results = 0
-            query_terms = set(question.lower().split())
+            query_terms = set(effective_query_text.lower().split())
 
             for result in search_results:
                 content = result.get('content', '').lower()
@@ -955,7 +978,13 @@ PARAMETERS: [工具参数]"""
         """判断是否需要使用工具"""
         query_type = state.get("query_type", "unknown")
         entities = state.get("entities", [])
+        need_search = state.get("need_search")
         iteration_count = state.get("iteration_count", 0)
+
+        if need_search is True:
+            return "use_tools"
+        if need_search is False:
+            return "direct_response"
 
         # 简单的决策逻辑
         if iteration_count > 0:
@@ -990,44 +1019,182 @@ PARAMETERS: [工具参数]"""
         logger.info(f"结果质量足够 ({result_quality:.2f})，停止优化")
         return "sufficient"
 
-    def _extract_entities(self, question: str) -> List[str]:
-        """提取医学实体"""
-        # 简化的实体提取
-        medical_entities = {
-            '腺癌', '鳞癌', '小细胞癌', '大细胞癌', '肺腺癌', '肺鳞癌',
-            '肺小细胞癌', '肺大细胞癌', '粘液腺癌', '黏液腺癌', '印戒细胞癌',
-            '粘液癌', '乳腺癌', '胃癌', '肝癌', '食道癌', '结肠癌', '直肠癌',
-            '胰腺癌', '胆管癌', '胆囊癌', '甲状腺癌', '前列腺癌',
-            'ROSE', '细胞学', '病理学', '组织学', '图像特征', '诊断'
+    def _classify_query(self, question: str, metadata: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        """使用LLM对查询进行分类，返回结构化结果"""
+        metadata = metadata or {}
+        fallback_keywords = self._fallback_keywords(question)
+        default = {
+            "query_type": self._determine_query_type(question, ""),
+            "need_search": None,
+            "keywords": fallback_keywords,
+            "reason": None,
+            "summary": None
         }
 
-        entities = []
-        question_lower = question.lower()
+        if not self.llm_manager:
+            default["reason"] = "LLM不可用，使用回退关键词。"
+            return default
 
-        # 检查更长的实体（避免部分匹配）
-        sorted_entities = sorted(medical_entities, key=len, reverse=True)
+        classification_prompt = f"""请扮演医学知识检索助手，对用户查询进行分类并输出JSON。
 
-        temp_question = question_lower
-        for entity in sorted_entities:
-            if entity in temp_question:
-                entities.append(entity)
-                temp_question = temp_question.replace(entity, '')
+用户查询：{question}
+附加元数据：{json.dumps(metadata, ensure_ascii=False)}
 
-        return entities
+请以严格的JSON格式返回，字段包括：
+- query_type: "medical"、"general"、"comparison"或其他自定义类别
+- need_search: true/false，表示是否需要访问文档检索工具
+- keywords: 3-6个用于检索的关键词数组（中文或英文，按重要性排序）
+- summary: 一句话概括判断依据
+
+示例输出：
+{{
+  "query_type": "medical",
+  "need_search": true,
+  "keywords": ["肺腺癌", "ROSE", "细胞学"],
+  "summary": "问题询问肺腺癌的ROSE检查细节，需要查阅医学文献。"
+}}
+
+请只返回JSON。"""
+
+        try:
+            classification_messages = [
+                SystemMessage(content="你是医学RAG系统的意图分析助手，回答必须是有效JSON。"),
+                HumanMessage(content=classification_prompt)
+            ]
+            response = self.llm_manager.generate_response_sync(
+                classification_messages,
+                temperature=0.2,
+                max_tokens=400
+            )
+            raw_content = response.content if hasattr(response, "content") else str(response)
+            parsed = self._safe_json_parse(raw_content)
+
+            if not parsed:
+                raise ValueError(f"无法解析分类结果: {raw_content}")
+
+            query_type = parsed.get("query_type") or default["query_type"]
+            need_search = parsed.get("need_search")
+            keywords = parsed.get("keywords") or fallback_keywords
+            summary = parsed.get("summary") or parsed.get("reason")
+
+            if isinstance(need_search, str):
+                normalized = need_search.strip().lower()
+                need_search = normalized in {"true", "yes", "需要", "是", "1"}
+
+            if not isinstance(need_search, bool):
+                need_search = None
+
+            if isinstance(keywords, str):
+                keywords = [kw.strip() for kw in re.split(r"[,\s]+", keywords) if kw.strip()]
+
+            if not isinstance(keywords, list):
+                keywords = fallback_keywords
+
+            cleaned_keywords = []
+            seen = set()
+            for kw in keywords:
+                if not isinstance(kw, str):
+                    continue
+                token = kw.strip()
+                if not token:
+                    continue
+                lower_token = token.lower()
+                if lower_token in seen:
+                    continue
+                seen.add(lower_token)
+                cleaned_keywords.append(token)
+
+            if not cleaned_keywords:
+                cleaned_keywords = fallback_keywords
+
+            return {
+                "query_type": query_type,
+                "need_search": need_search,
+                "keywords": cleaned_keywords,
+                "summary": summary,
+                "reason": summary
+            }
+
+        except Exception as e:
+            logger.warning(f"分类LLM调用失败，使用默认策略: {e}")
+            default["reason"] = f"LLM调用失败，使用回退关键词: {fallback_keywords}"
+            return default
+
+    def _safe_json_parse(self, text: str) -> Optional[Dict[str, Any]]:
+        """安全解析JSON，兼容代码块或额外文本"""
+        if not text:
+            return None
+
+        text = text.strip()
+
+        try:
+            return json.loads(text)
+        except json.JSONDecodeError:
+            pass
+
+        fenced_match = re.search(r"```json\s*(\{.*?\})\s*```", text, re.DOTALL)
+        if fenced_match:
+            try:
+                return json.loads(fenced_match.group(1))
+            except json.JSONDecodeError:
+                pass
+
+        brace_match = re.search(r"\{.*\}", text, re.DOTALL)
+        if brace_match:
+            candidate = brace_match.group(0)
+            try:
+                return json.loads(candidate)
+            except json.JSONDecodeError:
+                return None
+
+        return None
+
+    def _fallback_keywords(self, question: str, max_terms: int = 6) -> List[str]:
+        """基于规则的关键词回退策略"""
+        if not question:
+            return []
+
+        # 提取中文词块与英文/数字token
+        candidates = re.findall(r"[A-Za-z0-9]+|[\u4e00-\u9fff]{2,}", question)
+        cleaned: List[str] = []
+        seen = set()
+
+        for token in candidates:
+            token = token.strip()
+            if not token:
+                continue
+
+            lower_token = token.lower()
+            if lower_token in {"什么", "有哪些", "怎么", "如何", "需要", "以及", "和", "的"}:
+                continue
+
+            if lower_token in seen:
+                continue
+
+            seen.add(lower_token)
+            cleaned.append(token)
+
+        if not cleaned:
+            # 最少返回一些字符以避免空检索
+            return [question[:8]]
+
+        return cleaned[:max_terms]
 
     def _determine_query_type(self, question: str, analysis_content: str) -> str:
         """确定查询类型"""
         question_lower = question.lower()
+        analysis_lower = analysis_content.lower() if analysis_content else ""
+        combined_text = f"{question_lower} {analysis_lower}"
 
         # 医学相关关键词
         medical_keywords = ['癌', '细胞', '病理', '诊断', '治疗', '预后', 'ROSE']
 
-        if any(keyword in question_lower for keyword in medical_keywords):
+        if any(keyword in combined_text for keyword in medical_keywords):
             return "medical"
 
         # 对比类查询
         comparison_keywords = ['区别', '差异', '不同', '比较', 'vs']
-        if any(keyword in question_lower for keyword in comparison_keywords):
+        if any(keyword in combined_text for keyword in comparison_keywords):
             return "comparison"
 
         return "general"

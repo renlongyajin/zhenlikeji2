@@ -1,68 +1,70 @@
-# 使用官方Python运行时作为基础镜像
 FROM python:3.11-slim
 
-# 设置工作目录
-WORKDIR /app
-
-# 设置环境变量
+# ========= 环境变量 =========
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PYTHONPATH=/app \
     DEBIAN_FRONTEND=noninteractive
 
-# 换国内源 - 兼容 debian.sources
-RUN <<EOF
-cat > /etc/apt/sources.list.d/debian.sources <<'SRC'
-Types: deb
-URIs: https://mirrors.tuna.tsinghua.edu.cn/debian
-Suites: trixie
-Components: main
-Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
-SRC
-EOF
+WORKDIR /app
 
+# ========= 换 APT 镜像源（兼容 debian.sources） =========
+RUN set -eux; \
+    MIRROR="https://mirrors.tuna.tsinghua.edu.cn"; \
+    suite="$(. /etc/os-release; echo "${VERSION_CODENAME:-bookworm}")"; \
+    if [ -f /etc/apt/sources.list ]; then \
+        sed -i -e "s|http://deb.debian.org|${MIRROR}|g" \
+               -e "s|https://deb.debian.org|${MIRROR}|g" \
+               -e "s|http://security.debian.org|${MIRROR}|g" \
+               -e "s|https://security.debian.org|${MIRROR}|g" /etc/apt/sources.list; \
+    else \
+        echo "Types: deb" > /etc/apt/sources.list.d/debian.sources; \
+        echo "URIs: ${MIRROR}/debian" >> /etc/apt/sources.list.d/debian.sources; \
+        echo "Suites: ${suite} ${suite}-updates" >> /etc/apt/sources.list.d/debian.sources; \
+        echo "Components: main contrib non-free non-free-firmware" >> /etc/apt/sources.list.d/debian.sources; \
+        echo "Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg" >> /etc/apt/sources.list.d/debian.sources; \
+    fi; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends \
+        gcc g++ curl netcat-traditional ca-certificates; \
+    rm -rf /var/lib/apt/lists/*
 
-# 安装系统依赖
-RUN apt-get update && apt-get install -y \
-    gcc \
-    g++ \
-    curl \
-    netcat-traditional \ 
-    && rm -rf /var/lib/apt/lists/*
+# ========= 可选：构建时代理 =========
+ARG HTTP_PROXY=
+ARG HTTPS_PROXY=
+ENV http_proxy=${HTTP_PROXY} \
+    https_proxy=${HTTPS_PROXY}
 
-# 复制依赖文件
-COPY requirements.txt .
+# ========= Python 依赖安装 =========
+ARG PIP_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple
+ENV PIP_INDEX_URL=${PIP_INDEX_URL} \
+    PIP_NO_CACHE_DIR=1
 
-# 安装Python依赖
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt ./requirements.txt
 
-# 复制应用代码
+RUN --mount=type=cache,target=/root/.cache/pip \
+    python -m pip install --upgrade pip setuptools wheel && \
+    python -m pip install --index-url "${PIP_INDEX_URL}" -r requirements.txt
+
+# ========= 拷贝项目文件 =========
 COPY src/ ./src/
 COPY frontend/ ./frontend/
 COPY scripts/ ./scripts/
 COPY config/ ./config/
 COPY docs/ ./docs/
 
-# 创建必要的目录
-RUN mkdir -p logs data extracted
-
-# 设置文件权限
-RUN chmod +x scripts/*.py
-
-# 创建非root用户
-RUN useradd --create-home --shell /bin/bash app && \
+# ========= 创建目录、用户、权限 =========
+RUN set -eux; \
+    mkdir -p logs data extracted; \
+    [ -d scripts ] && chmod +x scripts/*.py || true; \
+    useradd --create-home --shell /bin/bash app; \
     chown -R app:app /app
 
-# 切换到非root用户
 USER app
 
-# 暴露端口
 EXPOSE 8001
 
-# 健康检查
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8001/health || exit 1
+  CMD curl -fsS http://localhost:8001/health || exit 1
 
-# 启动命令 - 使用环境变量端口
 CMD ["sh", "-c", "python3 -m uvicorn src.agent.api_service:app --host 0.0.0.0 --port ${API_PORT:-8001} --log-level info"]

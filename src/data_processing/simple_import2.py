@@ -13,7 +13,6 @@ import requests
 from typing import List, Dict, Any
 import logging
 from datetime import datetime
-import numpy as np
 
 # 配置日志
 logging.basicConfig(

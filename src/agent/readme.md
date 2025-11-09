@@ -48,3 +48,8 @@
 
   总结: 当前主要使用的是 LangGraph架构，核心文件包括
   api_service.py、rag_engine.py、langgraph_rag_engine.py、langgraph_react_agent.py 和 enhanced_retrieval_manager.py。
+
+  🧠 意图分析流水线（langgraph_react_agent.py）
+  - 通过LLM输出结构化JSON快速判定 query_type / need_search / keywords
+  - 若LLM不可用则使用规则回退生成检索关键词，保证流程稳定
+  - downstream 节点直接复用 keywords 进行 ElasticSearch + Milvus 联合检索
